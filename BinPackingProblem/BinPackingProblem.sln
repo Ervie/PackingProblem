@@ -5,10 +5,19 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GUI.ObjectSetGenerator", "GUI.ObjectSetGenerator\GUI.ObjectSetGenerator.csproj", "{F2B3F6CC-065F-427F-8064-961E8B822A02}"
 	ProjectSection(ProjectDependencies) = postProject
+		{857FA274-1403-41F5-91AE-16E23853D05C} = {857FA274-1403-41F5-91AE-16E23853D05C}
 		{80407FD0-49B7-423B-8079-5B8B3B53A8DE} = {80407FD0-49B7-423B-8079-5B8B3B53A8DE}
+		{1CD7C5E5-4C9D-4EC1-B56F-BAC25BD49152} = {1CD7C5E5-4C9D-4EC1-B56F-BAC25BD49152}
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GUI.Helpers", "GUI.Helpers\GUI.Helpers.csproj", "{80407FD0-49B7-423B-8079-5B8B3B53A8DE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logic.Domain", "Logic.Domain\Logic.Domain.csproj", "{857FA274-1403-41F5-91AE-16E23853D05C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logic.ObjectGenerator", "Logic.ObjectGenerator\Logic.ObjectGenerator.csproj", "{1CD7C5E5-4C9D-4EC1-B56F-BAC25BD49152}"
+	ProjectSection(ProjectDependencies) = postProject
+		{857FA274-1403-41F5-91AE-16E23853D05C} = {857FA274-1403-41F5-91AE-16E23853D05C}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,6 +33,14 @@ Global
 		{80407FD0-49B7-423B-8079-5B8B3B53A8DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{80407FD0-49B7-423B-8079-5B8B3B53A8DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{80407FD0-49B7-423B-8079-5B8B3B53A8DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{857FA274-1403-41F5-91AE-16E23853D05C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{857FA274-1403-41F5-91AE-16E23853D05C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{857FA274-1403-41F5-91AE-16E23853D05C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{857FA274-1403-41F5-91AE-16E23853D05C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1CD7C5E5-4C9D-4EC1-B56F-BAC25BD49152}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CD7C5E5-4C9D-4EC1-B56F-BAC25BD49152}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CD7C5E5-4C9D-4EC1-B56F-BAC25BD49152}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CD7C5E5-4C9D-4EC1-B56F-BAC25BD49152}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
