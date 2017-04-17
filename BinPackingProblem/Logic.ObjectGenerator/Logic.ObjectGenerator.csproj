@@ -40,8 +40,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ObjectGenerator.cs" />
+    <Compile Include="ObjectSetProperties.cs" />
     <Compile Include="RandomExtensionMethods.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Logic.Domain\Logic.Domain.csproj">
+      <Project>{857FA274-1403-41F5-91AE-16E23853D05C}</Project>
+      <Name>Logic.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
