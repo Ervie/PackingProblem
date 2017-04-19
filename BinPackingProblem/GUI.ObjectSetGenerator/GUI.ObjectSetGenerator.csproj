@@ -63,6 +63,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -94,6 +95,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GUI.Helpers\GUI.Helpers.csproj">
+      <Project>{80407fd0-49b7-423b-8079-5b8b3b53a8de}</Project>
+      <Name>GUI.Helpers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Logic.Domain\Logic.Domain.csproj">
+      <Project>{857fa274-1403-41f5-91ae-16e23853d05c}</Project>
+      <Name>Logic.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Logic.ObjectGenerator\Logic.ObjectGenerator.csproj">
+      <Project>{1cd7c5e5-4c9d-4ec1-b56f-bac25bd49152}</Project>
+      <Name>Logic.ObjectGenerator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Logic.Utilities\Logic.Utilities.csproj">
+      <Project>{11c16f4e-9c26-4f15-9884-dbc1092ade20}</Project>
+      <Name>Logic.Utilities</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

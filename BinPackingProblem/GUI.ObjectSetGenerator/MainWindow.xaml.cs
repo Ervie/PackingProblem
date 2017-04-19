@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GUI.ObjectSetGenerator.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,7 @@ namespace GUI.ObjectSetGenerator
         public MainWindow()
         {
             InitializeComponent();
+            this.DataContext = new MainViewModel();
         }
     }
 }
