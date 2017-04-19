@@ -35,6 +35,8 @@ namespace TestConsole
                 Console.WriteLine("Object w = {0}, h = {1}", (element as Object2D).Width, (element as Object2D).Height);
             }
 
+            generator.SaveObjectSet(testSet, "E:\\test2d.set");
+
             Console.ReadKey();
 
             testSet = generator.Generate3DObjectSet(new ObjectSetProperties3D()
@@ -60,6 +62,15 @@ namespace TestConsole
             {
                 Console.WriteLine("Object w = {0}, h = {1}, d = {2}", (element as Object3D).Width, (element as Object3D).Height, (element as Object3D).Depth);
             }
+
+            generator.SaveObjectSet(testSet, "E:\\test3d.set");
+
+            Console.ReadKey();
+
+
+            var objectSet2d = generator.LoadObjectSet("E:\\test2d.set");
+
+            var objectSet3d = generator.LoadObjectSet("E:\\test3d.set");
 
             Console.ReadKey();
         }

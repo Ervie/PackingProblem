@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1CD7C5E5-4C9D-4EC1-B56F-BAC25BD49152}</ProjectGuid>
+    <ProjectGuid>{11C16F4E-9C26-4F15-9884-DBC1092ADE20}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Logic.ObjectGenerator</RootNamespace>
-    <AssemblyName>Logic.ObjectGenerator</AssemblyName>
+    <RootNamespace>Logic.Utilities</RootNamespace>
+    <AssemblyName>Logic.Utilities</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,20 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ObjectGenerator.cs" />
-    <Compile Include="ObjectSetProperties.cs" />
-    <Compile Include="RandomExtensionMethods.cs" />
+    <Compile Include="Files\File.cs" />
+    <Compile Include="Files\FileHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Logic.Domain\Logic.Domain.csproj">
-      <Project>{857FA274-1403-41F5-91AE-16E23853D05C}</Project>
-      <Name>Logic.Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Logic.Utilities\Logic.Utilities.csproj">
-      <Project>{11c16f4e-9c26-4f15-9884-dbc1092ade20}</Project>
-      <Name>Logic.Utilities</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

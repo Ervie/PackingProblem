@@ -1,5 +1,6 @@
 ﻿using Logic.Domain.Objects;
 using System;
+using Logic.Utilities.Files;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -89,6 +90,20 @@ namespace Logic.ObjectGenerator
             var cuboidObject = new Object3D(Math.Max((int)objectWidth, 1), Math.Max((int)objectHeight, 1), Math.Max((int)objectDepth, 1));
 
             return cuboidObject;
+        }
+
+        public void SaveObjectSet(ObjectSet objectSet, string path)
+        {
+            var objectSetFile = new File<ObjectSet> { Content = objectSet, Path = path };
+
+            FileHelper.Save(objectSetFile);
+        }
+
+        public ObjectSet LoadObjectSet(string path)
+        {
+            var objectSetFile = FileHelper.Load<ObjectSet>(path);
+
+            return objectSetFile.Content;
         }
     }
 }

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Logic.Domain.Objects
 {
+    [Serializable]
     public class Object3D: Object
     {
         public Object3D(int height, int width, int depth)

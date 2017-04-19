@@ -9,6 +9,7 @@ namespace Logic.Domain.Figures
     /// <summary>
     /// 2 Dimensions figure.
     /// </summary>
+    [Serializable]
     public class Rectangle: IFigure
     {
         public int Width { get; set; }

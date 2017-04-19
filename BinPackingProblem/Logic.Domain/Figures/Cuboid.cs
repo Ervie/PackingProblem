@@ -9,6 +9,7 @@ namespace Logic.Domain.Figures
     /// <summary>
     /// 3 Dimensions figure.
     /// </summary>
+    [Serializable]
     public class Cuboid: IFigure
     {
         public int Width { get; set; }

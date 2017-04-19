@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Logic.Domain.Objects
 {
+    [Serializable]
     public class ObjectSet: List<Object>
     {
     }

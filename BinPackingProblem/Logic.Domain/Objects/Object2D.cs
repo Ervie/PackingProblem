@@ -1,4 +1,5 @@
 ﻿using Logic.Domain.Figures;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Logic.Domain.Objects
 {
+    [Serializable]
     public class Object2D : Object
     {
         public Object2D(int height, int width)

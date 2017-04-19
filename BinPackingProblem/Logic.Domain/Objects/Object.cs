@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Logic.Domain.Objects
 {
+    [Serializable]
     public abstract class Object
     {
         public IFigure Size { get; set; }
