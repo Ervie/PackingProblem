@@ -4,23 +4,23 @@ using System.Windows.Input;
 
 namespace GUI.Helpers
 {
-    public class RelayCommand<T> : ICommand
+    public class RelayCommand : ICommand
     {
-        private readonly Action<T> _execute = null;
-        private readonly Func<Boolean> _canExecute = null;
+        private readonly Action<object> _execute = null;
+        private readonly Predicate<object> _canExecute = null;
 
         /// <summary>
         /// Creates a new command that can always execute.
         /// </summary>
         /// <param name="execute">The execution logic.</param>
-        public RelayCommand(Action<T> execute) : this(execute, null) { }
+        public RelayCommand(Action<object> execute) : this(execute, null) { }
 
         /// <summary>
         /// Creates a new command with conditional execution.
         /// </summary>
         /// <param name="execute">The execution logic.</param>
         /// <param name="canExecute">The execution status logic.</param>
-        public RelayCommand(Action<T> execute, Func<Boolean> canExecute)
+        public RelayCommand(Action<object> execute, Predicate<object> canExecute)
         {
             if (execute == null)
                 throw new ArgumentNullException("execute");
@@ -31,7 +31,7 @@ namespace GUI.Helpers
 
         public bool CanExecute(object parameter)
         {
-            return _canExecute == null ? true : _canExecute();
+            return _canExecute == null ? true : _canExecute(parameter);
         }
 
         public event EventHandler CanExecuteChanged
@@ -50,7 +50,7 @@ namespace GUI.Helpers
 
         public void Execute(object parameter)
         {
-            _execute((T)parameter);
+            _execute(parameter);
         }
     }
 }
