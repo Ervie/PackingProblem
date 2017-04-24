@@ -34,5 +34,32 @@ namespace Logic.Utilities.Files
                 return file;
             }
         }
+
+		public static bool DirectoryExist(string path)
+		{
+			path = Path.GetPathRoot(path);
+
+			return (Directory.Exists(path));
+		}
+
+		public static bool HasAccessPermission(string path)
+		{
+			try
+			{
+				path = Path.GetPathRoot(path);
+
+				System.Security.AccessControl.DirectorySecurity ds = Directory.GetAccessControl(path);
+			}
+			catch (UnauthorizedAccessException)
+			{
+				return false;
+			}
+			catch (ArgumentException)
+			{
+				return false;
+			}
+
+			return true;
+		}
     }
 }

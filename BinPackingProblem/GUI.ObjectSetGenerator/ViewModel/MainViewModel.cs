@@ -1,5 +1,7 @@
 ﻿using GUI.Helpers;
+using GUI.ObjectSetGenerator.Properties;
 using Logic.ObjectGenerator;
+using Logic.Utilities.Files;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -55,8 +57,8 @@ namespace GUI.ObjectSetGenerator.ViewModel
 		/// </summary>
 		public MainViewModel()
 		{
-			savePath2D = "C:\\";
-			savePath3D = "C:\\";
+			savePath2D = Settings.Default.DefaultSavePath;
+			savePath3D = Settings.Default.DefaultSavePath;
 			generator = new ObjectGenerator();
 			objectSetProperties2D = new ObjectSetProperties2D()
 			{
@@ -486,51 +488,94 @@ namespace GUI.ObjectSetGenerator.ViewModel
 
 		private void Generate2dObjectSet_Execute()
 		{
-			var objectSet = generator.Generate2DObjectSet(objectSetProperties2D);
-			generator.SaveObjectSet(objectSet, SavePath2D);
+			try
+			{
+				var objectSet = generator.Generate2DObjectSet(objectSetProperties2D);
+				generator.SaveObjectSet(objectSet, SavePath2D);
 
-			System.Windows.MessageBox.Show(string.Format("Object set {0} was successfully created at {1}", Path.GetFileNameWithoutExtension(SavePath2D), Path.GetPathRoot(SavePath2D)), "Success");
+				System.Windows.MessageBox.Show(string.Format("Object set {0} was successfully created at {1}", Path.GetFileNameWithoutExtension(SavePath2D), Path.GetPathRoot(SavePath2D)), "Success");
+			}
+			catch (Exception err)
+			{
+				System.Windows.MessageBox.Show("Error during changing save path:" + err.Message, "Error");
+			}
 		}
 
 		private bool Generate2dObjectSet_CanExecute()
 		{
-			return true;
+			return (FileHelper.HasAccessPermission(SavePath2D) &&
+						FileHelper.DirectoryExist(SavePath2D) &&
+						ObjectAmount2d > 0 &&
+						MaxArea2d > MinArea2d &&
+						MaxWidthHeightRatio2d > MinWidthHeightRatio2d);
 		}
 
 		private void Generate3dObjectSet_Execute()
 		{
-			var objectSet = generator.Generate3DObjectSet(objectSetProperties3D);
-			generator.SaveObjectSet(objectSet, SavePath3D);
+			try
+			{
+				var objectSet = generator.Generate3DObjectSet(objectSetProperties3D);
+				generator.SaveObjectSet(objectSet, SavePath3D);
 
-			System.Windows.MessageBox.Show(string.Format("Object set {0} was successfully created at {1}", Path.GetFileNameWithoutExtension(SavePath3D), Path.GetPathRoot(SavePath3D)), "Success");
+				System.Windows.MessageBox.Show(string.Format("Object set {0} was successfully created at {1}", Path.GetFileNameWithoutExtension(SavePath3D), Path.GetPathRoot(SavePath3D)), "Success");
+			}
+			catch (Exception err)
+			{
+				System.Windows.MessageBox.Show("Error during changing save path:" + err.Message, "Error");
+			}
 		}
 
 		private bool Generate3dObjectSet_CanExecute()
 		{
-			return true;
+			return (FileHelper.HasAccessPermission(SavePath3D) &&
+						FileHelper.DirectoryExist(SavePath3D) &&
+						ObjectAmount3d > 0 &&
+						MaxVolume3d > MinVolume3d &&
+						MaxWidthHeightRatio3d > MinWidthHeightRatio3d &&
+						MaxDepthHeightRatio3d > MinDepthHeightRatio3d);
 		}
 
 		private void ChangePath2D_Execute()
 		{
-			var saveFileDialog = new SaveFileDialog();
-
-			saveFileDialog.Filter = "2D Object set file (*.2Dset)|*.2Dset";
-
-			if (saveFileDialog.ShowDialog() == true)
+			try
 			{
-				SavePath2D = saveFileDialog.FileName;
+				var saveFileDialog = new SaveFileDialog();
+
+				saveFileDialog.Filter = "2D Object set file (*.2Dset)|*.2Dset";
+
+				if (saveFileDialog.ShowDialog() == true)
+				{
+					if (FileHelper.HasAccessPermission(saveFileDialog.FileName) && FileHelper.DirectoryExist(saveFileDialog.FileName))
+						SavePath2D = saveFileDialog.FileName;
+					else
+						System.Windows.MessageBox.Show(string.Format("Error during changing save path: Access is denied."), "Error");
+				}
+			}
+			catch(Exception err)
+			{
+				System.Windows.MessageBox.Show("Error during changing save path:" + err.Message, "Error");
 			}
 		}
 
 		private void ChangePath3D_Execute()
 		{
-			var saveFileDialog = new SaveFileDialog();
-
-			saveFileDialog.Filter = "3D Object set file (*.3Dset)|*.3Dset";
-
-			if (saveFileDialog.ShowDialog() == true)
+			try
 			{
-				SavePath2D = saveFileDialog.FileName;
+				var saveFileDialog = new SaveFileDialog();
+
+				saveFileDialog.Filter = "3D Object set file (*.3Dset)|*.3Dset";
+
+				if (saveFileDialog.ShowDialog() == true)
+				{
+					if (FileHelper.HasAccessPermission(saveFileDialog.FileName) && FileHelper.DirectoryExist(saveFileDialog.FileName))
+						SavePath3D = saveFileDialog.FileName;
+					else
+						System.Windows.MessageBox.Show(string.Format("Error during changing save path: Access is denied."), "Error");
+				}
+			}
+			catch (Exception err)
+			{
+				System.Windows.MessageBox.Show("Error during changing save path:" + err.Message, "Error");
 			}
 		}
 		#endregion

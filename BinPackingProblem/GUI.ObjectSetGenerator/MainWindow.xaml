@@ -28,7 +28,7 @@
 
 
 					<Label Grid.Column="1" Grid.Row="0" Content="Amount of objects:" HorizontalAlignment="Left" VerticalAlignment="Center" />
-					<xctk:IntegerUpDown Grid.Column="2" Grid.Row="0" Margin="20, 0" Value="{Binding Path=ObjectAmount2d, UpdateSourceTrigger=PropertyChanged}" Name="objectAmount2dControl" />
+					<xctk:IntegerUpDown Grid.Column="2" Grid.Row="0" Margin="20, 0" Value="{Binding Path=ObjectAmount2d, UpdateSourceTrigger=PropertyChanged}" Name="objectAmount2dControl" Minimum="1" />
 
 
 					<GroupBox Header="Object Area" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2">
@@ -95,7 +95,7 @@
 					</Grid.RowDefinitions>
 
 					<Label Grid.Column="1" Grid.Row="0" Content="Amount of objects:" HorizontalAlignment="Left" VerticalAlignment="Center" />
-					<xctk:IntegerUpDown Grid.Column="2" Grid.Row="0" Margin="20, 0" Value="{Binding Path=ObjectAmount3d, UpdateSourceTrigger=PropertyChanged}" Name="objectAmount3dControl" />
+					<xctk:IntegerUpDown Grid.Column="2" Grid.Row="0" Margin="20, 0" Value="{Binding Path=ObjectAmount3d, UpdateSourceTrigger=PropertyChanged}" Name="objectAmount3dControl" Minimum="1" />
 
 					<GroupBox Header="Object Volume" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2">
 						<StackPanel>
