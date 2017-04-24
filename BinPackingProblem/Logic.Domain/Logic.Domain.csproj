@@ -44,6 +44,10 @@
     <Compile Include="Objects\Object2D.cs" />
     <Compile Include="Objects\Object3D.cs" />
     <Compile Include="Objects\ObjectSet.cs" />
+    <Compile Include="Objects\PlacedObject2D.cs" />
+    <Compile Include="Objects\PlacedObject3D.cs" />
+    <Compile Include="Position2D.cs" />
+    <Compile Include="Position3D.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Figures\Cuboid.cs" />
     <Compile Include="Figures\IFigure.cs" />
