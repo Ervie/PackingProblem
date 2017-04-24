@@ -21,7 +21,9 @@ namespace GUI.ObjectSetGenerator.ViewModel
 
 		private ObjectGenerator generator;
 
-		private string savePath;
+		private string savePath2D;
+
+		private string savePath3D;
 
 
 		/// <summary>
@@ -30,38 +32,97 @@ namespace GUI.ObjectSetGenerator.ViewModel
 		ICommand _Generate2dObjectSet;
 
 		/// <summary>
-		/// Command for changing object save path.
+		/// Command for Generating 3D Object Set.
 		/// </summary>
-		ICommand _ChangePath;
+		ICommand _Generate3dObjectSet;
+
+		/// <summary>
+		/// Command for changing object save path for 2D object sets.
+		/// </summary>
+		ICommand _ChangePath2D;
+
+		/// <summary>
+		/// Command for changing object save path for 3D object sets.
+		/// </summary>
+		ICommand _ChangePath3D;
 
 		#endregion
 
 		#region Constructors
 
+		/// <summary>
+		/// Constructor with dummy values.
+		/// </summary>
 		public MainViewModel()
 		{
-			SavePath = "C:\\";
+			savePath2D = "C:\\";
+			savePath3D = "C:\\";
 			generator = new ObjectGenerator();
-			objectSetProperties2D = new ObjectSetProperties2D();
-			objectSetProperties3D = new ObjectSetProperties3D();
+			objectSetProperties2D = new ObjectSetProperties2D()
+			{
+				ObjectAmount = 100,
+				AverageObjectWidthHeightRatio = 1,
+				ObjectWidthHeightRatioStandardDeviation = 1,
+				MaxObjectWidthHeightRatio = 10,
+				MinObjectWidthHeightRatio = 0.1m,
+
+				AverageObjectArea = 100,
+				ObjectAreaStandardDeviation = 20,
+				MaxObjectArea = 200,
+				MinObjectArea = 10
+			};
+
+			objectSetProperties3D = new ObjectSetProperties3D()
+			{
+				ObjectAmount = 100,
+				AverageObjectWidthHeightRatio = 1,
+				ObjectWidthHeightRatioStandardDeviation = 1,
+				MaxObjectWidthHeightRatio = 10,
+				MinObjectWidthHeightRatio = 0.2m,
+
+				AverageObjectDepthHeightRatio = 1,
+				ObjectDepthHeightRatioStandardDeviation = 1,
+				MaxObjectDepthHeightRatio = 10,
+				MinObjectDepthHeightRatio = 0.2m,
+
+				AverageObjectVolume = 1000,
+				VolumeStandardDeviation = 200,
+				MaxVolume = 2000,
+				MinVolume = 100
+			};
 		}
 
 		#endregion
 
 		#region Properties
 
-		public string SavePath
+		public string SavePath2D
 		{
 			get
 			{
-				return savePath;
+				return savePath2D;
 			}
 			set
 			{
-				savePath = value;
-				RaisePropertyChanged("SavePath");
+				savePath2D = value;
+				RaisePropertyChanged("SavePath2D");
 			}
 		}
+
+		public string SavePath3D
+		{
+			get
+			{
+				return savePath3D;
+			}
+			set
+			{
+				savePath3D = value;
+				RaisePropertyChanged("SavePath3D");
+			}
+		}
+
+		#region 2 Dimensions
 
 		public int ObjectAmount2d
 		{
@@ -182,6 +243,181 @@ namespace GUI.ObjectSetGenerator.ViewModel
 
 		#endregion
 
+		#region 3 Dimensions
+
+		public int ObjectAmount3d
+		{
+			get
+			{
+				return objectSetProperties3D.ObjectAmount;
+			}
+			set
+			{
+				objectSetProperties3D.ObjectAmount = value;
+				RaisePropertyChanged("ObjectAmount3d");
+			}
+		}
+
+		public decimal AverageObjectVolume3d
+		{
+			get
+			{
+				return objectSetProperties3D.AverageObjectVolume;
+			}
+			set
+			{
+				objectSetProperties3D.AverageObjectVolume = value;
+				RaisePropertyChanged("AverageObjectVolume3d");
+			}
+		}
+
+		public decimal StandardDeviationObjectVolume3d
+		{
+			get
+			{
+				return objectSetProperties3D.VolumeStandardDeviation;
+			}
+			set
+			{
+				objectSetProperties3D.VolumeStandardDeviation = value;
+				RaisePropertyChanged("StandardDeviationObjectVolume3d");
+			}
+		}
+
+		public decimal MinVolume3d
+		{
+			get
+			{
+				return objectSetProperties3D.MinVolume;
+			}
+			set
+			{
+				objectSetProperties3D.MinVolume = value;
+				RaisePropertyChanged("MinVolume3d");
+			}
+		}
+
+		public decimal MaxVolume3d
+		{
+			get
+			{
+				return objectSetProperties3D.MaxVolume;
+			}
+			set
+			{
+				objectSetProperties3D.MaxVolume = value;
+				RaisePropertyChanged("MaxVolume3d");
+			}
+		}
+
+		public decimal AverageWidthHeightRatio3d
+		{
+			get
+			{
+				return objectSetProperties3D.AverageObjectWidthHeightRatio;
+			}
+			set
+			{
+				objectSetProperties3D.AverageObjectWidthHeightRatio = value;
+				RaisePropertyChanged("AverageWidthHeightRatio3d");
+			}
+		}
+
+		public decimal StandardDeviationWidthHeightRatio3d
+		{
+			get
+			{
+				return objectSetProperties3D.ObjectWidthHeightRatioStandardDeviation;
+			}
+			set
+			{
+				objectSetProperties3D.ObjectWidthHeightRatioStandardDeviation = value;
+				RaisePropertyChanged("StandardDeviationWidthHeightRatio3d");
+			}
+		}
+
+		public decimal MinWidthHeightRatio3d
+		{
+			get
+			{
+				return objectSetProperties3D.MinObjectWidthHeightRatio;
+			}
+			set
+			{
+				objectSetProperties3D.MinObjectWidthHeightRatio = value;
+				RaisePropertyChanged("MinWidthHeightRatio3d");
+			}
+		}
+
+		public decimal MaxWidthHeightRatio3d
+		{
+			get
+			{
+				return objectSetProperties3D.MaxObjectWidthHeightRatio;
+			}
+			set
+			{
+				objectSetProperties3D.MaxObjectWidthHeightRatio = value;
+				RaisePropertyChanged("MaxWidthHeightRatio3d");
+			}
+		}
+
+		public decimal AverageDepthHeightRatio3d
+		{
+			get
+			{
+				return objectSetProperties3D.AverageObjectDepthHeightRatio;
+			}
+			set
+			{
+				objectSetProperties3D.AverageObjectDepthHeightRatio = value;
+				RaisePropertyChanged("AverageDepthHeightRatio3d");
+			}
+		}
+
+		public decimal StandardDeviationDepthHeightRatio3d
+		{
+			get
+			{
+				return objectSetProperties3D.ObjectDepthHeightRatioStandardDeviation;
+			}
+			set
+			{
+				objectSetProperties3D.ObjectDepthHeightRatioStandardDeviation = value;
+				RaisePropertyChanged("StandardDeviationDepthHeightRatio3d");
+			}
+		}
+
+		public decimal MinDepthHeightRatio3d
+		{
+			get
+			{
+				return objectSetProperties3D.MinObjectDepthHeightRatio;
+			}
+			set
+			{
+				objectSetProperties3D.MinObjectDepthHeightRatio = value;
+				RaisePropertyChanged("MinDepthHeightRatio3d");
+			}
+		}
+
+		public decimal MaxDepthHeightRatio3d
+		{
+			get
+			{
+				return objectSetProperties3D.MaxObjectDepthHeightRatio;
+			}
+			set
+			{
+				objectSetProperties3D.MaxObjectDepthHeightRatio = value;
+				RaisePropertyChanged("MaxDepthHeightRatio3d");
+			}
+		}
+
+		#endregion
+
+		#endregion
+
 		#region Commands
 
 		public ICommand Generate2dObjectSet
@@ -199,18 +435,48 @@ namespace GUI.ObjectSetGenerator.ViewModel
 			}
 		}
 
-		public ICommand ChangePath
+		public ICommand Generate3dObjectSet
 		{
 			get
 			{
-				if (_ChangePath == null)
+				if (_Generate3dObjectSet == null)
 				{
-					_ChangePath = new Helpers.RelayCommand(
-						param => ChangePath_Execute(),
+					_Generate3dObjectSet = new Helpers.RelayCommand(
+						param => Generate3dObjectSet_Execute(),
+						param => Generate3dObjectSet_CanExecute()
+					);
+				}
+				return _Generate3dObjectSet;
+			}
+		}
+
+		public ICommand ChangePath2D
+		{
+			get
+			{
+				if (_ChangePath2D == null)
+				{
+					_ChangePath2D = new Helpers.RelayCommand(
+						param => ChangePath2D_Execute(),
 						param => true
 					);
 				}
-				return _ChangePath;
+				return _ChangePath2D;
+			}
+		}
+
+		public ICommand ChangePath3D
+		{
+			get
+			{
+				if (_ChangePath3D == null)
+				{
+					_ChangePath3D = new Helpers.RelayCommand(
+						param => ChangePath3D_Execute(),
+						param => true
+					);
+				}
+				return _ChangePath3D;
 			}
 		}
 
@@ -221,9 +487,9 @@ namespace GUI.ObjectSetGenerator.ViewModel
 		private void Generate2dObjectSet_Execute()
 		{
 			var objectSet = generator.Generate2DObjectSet(objectSetProperties2D);
-			generator.SaveObjectSet(objectSet, SavePath);
+			generator.SaveObjectSet(objectSet, SavePath2D);
 
-			System.Windows.MessageBox.Show(string.Format("Object set {0} was successfully created at {1}", Path.GetFileNameWithoutExtension(SavePath), Path.GetPathRoot(SavePath)), "Success");
+			System.Windows.MessageBox.Show(string.Format("Object set {0} was successfully created at {1}", Path.GetFileNameWithoutExtension(SavePath2D), Path.GetPathRoot(SavePath2D)), "Success");
 		}
 
 		private bool Generate2dObjectSet_CanExecute()
@@ -231,7 +497,20 @@ namespace GUI.ObjectSetGenerator.ViewModel
 			return true;
 		}
 
-		private void ChangePath_Execute()
+		private void Generate3dObjectSet_Execute()
+		{
+			var objectSet = generator.Generate3DObjectSet(objectSetProperties3D);
+			generator.SaveObjectSet(objectSet, SavePath3D);
+
+			System.Windows.MessageBox.Show(string.Format("Object set {0} was successfully created at {1}", Path.GetFileNameWithoutExtension(SavePath3D), Path.GetPathRoot(SavePath3D)), "Success");
+		}
+
+		private bool Generate3dObjectSet_CanExecute()
+		{
+			return true;
+		}
+
+		private void ChangePath2D_Execute()
 		{
 			var saveFileDialog = new SaveFileDialog();
 
@@ -239,7 +518,19 @@ namespace GUI.ObjectSetGenerator.ViewModel
 
 			if (saveFileDialog.ShowDialog() == true)
 			{
-				SavePath = saveFileDialog.FileName;
+				SavePath2D = saveFileDialog.FileName;
+			}
+		}
+
+		private void ChangePath3D_Execute()
+		{
+			var saveFileDialog = new SaveFileDialog();
+
+			saveFileDialog.Filter = "3D Object set file (*.3Dset)|*.3Dset";
+
+			if (saveFileDialog.ShowDialog() == true)
+			{
+				SavePath2D = saveFileDialog.FileName;
 			}
 		}
 		#endregion
