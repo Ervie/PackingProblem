@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Logic.Domain.Objects
 {
-	public class PlacedObject2D: Object2D
+	public class PlacedObject2D: Object2D, IPlacedObject
 	{
 		public int X
 		{
@@ -42,6 +42,9 @@ namespace Logic.Domain.Objects
 
 		public Position2D Position { get; protected set; }
 
-
+		public IPosition GetPostion()
+		{
+			return Position;
+		}
 	}
 }

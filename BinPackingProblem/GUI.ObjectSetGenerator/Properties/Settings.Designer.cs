@@ -25,7 +25,7 @@ namespace GUI.ObjectSetGenerator.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("\"C:\\\\\"")]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\\\")]
         public string DefaultSavePath {
             get {
                 return ((string)(this["DefaultSavePath"]));

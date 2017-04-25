@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Logic.Domain
 {
-	public class Position3D
+	public class Position3D: IPosition
 	{
 		public int X { get; set; }
 
