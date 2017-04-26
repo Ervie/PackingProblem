@@ -10,7 +10,7 @@ namespace Logic.Algorithms.Structs
 {
 	public struct AlgorithmExecutionResults
 	{
-		public List<IPlacedObject> PlacedObjects { get; set; }
+		public PlacedObjects PlacedObjects { get; set; }
 		public IFigure ContainerSize { get; set; }
 
 		/// <summary>

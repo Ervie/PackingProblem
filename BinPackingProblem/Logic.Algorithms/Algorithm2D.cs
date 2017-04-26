@@ -12,11 +12,12 @@ namespace Logic.Algorithms
 {
 	public abstract class Algorithm2D : IAlgorithm
 	{
-		private Container2D container;
+		private List<Container2D> containers;
 
-		public Algorithm2D(Container2D _container)
+		public Algorithm2D(Container2D initialContainer)
 		{
-			container = _container;
+			containers = new List<Container2D>();
+			containers.Add(initialContainer);
 		}
 
 		public void Execute(ObjectSet originalObjects)
@@ -26,13 +27,20 @@ namespace Logic.Algorithms
 
 		public AlgorithmExecutionResults CreateResults()
 		{
-			var containerArea = container.Height * container.Width;
-			var objectsTotalArea = container.PlacedObjects.Sum(o => (o as Rectangle).Width * (o as Rectangle).Height);
+			var containerArea = containers.Sum(x => x.Height * x.Width);
+			var objectsTotalArea = containers.Sum(container => container.PlacedObjects.Sum(o => (o as Rectangle).Width * (o as Rectangle).Height));
+
+			PlacedObjects placedObjectsTotal = new PlacedObjects();
+
+			foreach (var container in containers)
+			{
+				placedObjectsTotal.AddRange(container.PlacedObjects);
+			}
 
 			var results = new AlgorithmExecutionResults
 			{
-				PlacedObjects = container.PlacedObjects,
-				ContainerSize = container,
+				PlacedObjects = placedObjectsTotal,
+				ContainerSize = containers.First(),
 				ContainerFulfilment = containerArea,
 				ObjectsTotalFulfilment = objectsTotalArea,
 				Quality = (double)containerArea / objectsTotalArea,
