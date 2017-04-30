@@ -42,9 +42,17 @@
   <ItemGroup>
     <Compile Include="Algorithm2D.cs" />
     <Compile Include="Algorithm3D.cs" />
+    <Compile Include="AlgorithmFactory.cs" />
+    <Compile Include="Enums\AlgorithmDimensionality.cs" />
+    <Compile Include="Enums\AlgorithmFamily.cs" />
+    <Compile Include="Enums\ObjectFittingStrategy.cs" />
+    <Compile Include="Enums\ObjectSplittingStrategy.cs" />
     <Compile Include="IAlgorithm.cs" />
+    <Compile Include="IAlgorithmFactory.cs" />
+    <Compile Include="Exceptions\NotSuchAlgorithmException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Structs\AlgorithmExecutionResults.cs" />
+    <Compile Include="Structs\AlgorithmProperties.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Logic.Domain\Logic.Domain.csproj">
@@ -52,9 +60,7 @@
       <Name>Logic.Domain</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Enums\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
