@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace Logic.Algorithms
 {
-	internal class Algorithm3D : IAlgorithm
+	public abstract class Algorithm3D : IAlgorithm
 	{
 		private List<Container3D> containers;
 
@@ -18,10 +18,7 @@ namespace Logic.Algorithms
 			containers.Add(initialContainer);
 		}
 
-		public void Execute(ObjectSet originalObjects)
-		{
-			throw new NotImplementedException();
-		}
+		public abstract void Execute(ObjectSet originalObjects);
 
 		public AlgorithmExecutionResults CreateResults()
 		{

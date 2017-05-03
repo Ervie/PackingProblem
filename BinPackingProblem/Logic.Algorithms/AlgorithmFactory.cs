@@ -6,48 +6,52 @@ using System.Threading.Tasks;
 using Logic.Algorithms.Structs;
 using Logic.Algorithms.Enums;
 using Logic.Algorithms.Exceptions;
+using Logic.Algorithms.Implementations._2D.Shelf;
+using Logic.Domain.Figures;
+using Logic.Domain.Containers._2D;
+using Logic.Domain.Containers._3D;
 
 namespace Logic.Algorithms
 {
-	class AlgorithmFactory : IAlgorithmFactory
+	public class AlgorithmFactory : IAlgorithmFactory
 	{
-		public IAlgorithm Create(AlgorithmProperties properties)
+		public IAlgorithm Create(AlgorithmProperties properties, IFigure size)
 		{
 			switch(properties.Dimensionality)
 			{
 				case (AlgorithmDimensionality.TwoDimensional):
-					return Create2DAlgorithm(properties);
+					return Create2DAlgorithm(properties, size as Container2D);
 				case (AlgorithmDimensionality.ThreeDimensional):
-					return Create3DAlgorithm(properties);
+					return Create3DAlgorithm(properties, size as Container3D);
 				default:
 					throw new NotSuchAlgorithmException();
 			}
 		}
 
 
-		private IAlgorithm Create2DAlgorithm(AlgorithmProperties properties)
+		private IAlgorithm Create2DAlgorithm(AlgorithmProperties properties, Container2D initialContainer)
 		{
 			switch (properties.Family)
 			{
 				case (AlgorithmFamily.Shelf):
-					return Create2DShelfAlgorithm(properties.FittingStrategy);
+					return Create2DShelfAlgorithm(properties.AlgorithmType, initialContainer);
 				default:
 					throw new NotSuchAlgorithmException();
 			}
 		}
 
-		private IAlgorithm Create3DAlgorithm(AlgorithmProperties properties)
+		private IAlgorithm Create3DAlgorithm(AlgorithmProperties properties, Container3D initialContainer)
 		{
 			throw new NotImplementedException();
 		}
 
 		
-		private IAlgorithm Create2DShelfAlgorithm(ObjectFittingStrategy fittingStrategy)
+		private IAlgorithm Create2DShelfAlgorithm(ObjectFittingStrategy fittingStrategy, Container2D initialContainer)
 		{
 			switch (fittingStrategy)
 			{
 				case (ObjectFittingStrategy.FirstFit):
-					throw new NotSuchAlgorithmException();
+					return new FirstFitShelf2DAlgorithm(initialContainer);
 				case (ObjectFittingStrategy.NextFit):
 					throw new NotSuchAlgorithmException();
 				case (ObjectFittingStrategy.BestWidthFit):

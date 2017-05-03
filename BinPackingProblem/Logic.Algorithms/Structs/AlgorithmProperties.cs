@@ -10,7 +10,7 @@ namespace Logic.Algorithms.Structs
 
 		public ObjectFittingStrategy AlgorithmType { get; set; }
 
-		public ObjectFittingStrategy FittingStrategy { get; set; }
+		public ContainerSplittingStrategy SplittingStrategy { get; set; }
 
 	}
 }

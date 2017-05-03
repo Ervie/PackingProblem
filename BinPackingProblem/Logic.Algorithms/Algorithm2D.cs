@@ -16,14 +16,11 @@ namespace Logic.Algorithms
 
 		public Algorithm2D(Container2D initialContainer)
 		{
-			containers = new List<Container2D>();
-			containers.Add(initialContainer);
+			//containers = new List<Container2D>();
+			//containers.Add(initialContainer);
 		}
 
-		public void Execute(ObjectSet originalObjects)
-		{
-			throw new NotImplementedException();
-		}
+		public abstract void Execute(ObjectSet originalObjects);
 
 		public AlgorithmExecutionResults CreateResults()
 		{

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Logic.Algorithms.Enums
 {
-	public enum ContainerSplittingStrategies
+	public enum ContainerSplittingStrategy
 	{
 		// For shelf/skyline
 		None,

@@ -50,6 +50,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Logic.Algorithms\Logic.Algorithms.csproj">
+      <Project>{31B9338D-67D1-455A-B31B-9236483A6D0E}</Project>
+      <Name>Logic.Algorithms</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Logic.Domain\Logic.Domain.csproj">
       <Project>{857FA274-1403-41F5-91AE-16E23853D05C}</Project>
       <Name>Logic.Domain</Name>
@@ -57,6 +61,10 @@
     <ProjectReference Include="..\Logic.ObjectGenerator\Logic.ObjectGenerator.csproj">
       <Project>{1cd7c5e5-4c9d-4ec1-b56f-bac25bd49152}</Project>
       <Name>Logic.ObjectGenerator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Logic.Utilities\Logic.Utilities.csproj">
+      <Project>{11c16f4e-9c26-4f15-9884-dbc1092ade20}</Project>
+      <Name>Logic.Utilities</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
