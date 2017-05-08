@@ -52,6 +52,7 @@
     <Compile Include="Exceptions\NotSuchAlgorithmException.cs" />
     <Compile Include="Implementations\2D\Shelf\AbstractShelf2DAlgorithm.cs" />
     <Compile Include="Implementations\2D\Shelf\FirstFitShelf2DAlgorithm.cs" />
+    <Compile Include="Implementations\2D\Shelf\NextFitShelf2DAlgorithm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Structs\AlgorithmExecutionResults.cs" />
     <Compile Include="Structs\AlgorithmProperties.cs" />
@@ -60,6 +61,10 @@
     <ProjectReference Include="..\Logic.Domain\Logic.Domain.csproj">
       <Project>{857fa274-1403-41f5-91ae-16e23853d05c}</Project>
       <Name>Logic.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Logic.Utilities\Logic.Utilities.csproj">
+      <Project>{11c16f4e-9c26-4f15-9884-dbc1092ade20}</Project>
+      <Name>Logic.Utilities</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

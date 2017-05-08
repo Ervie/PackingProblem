@@ -10,7 +10,7 @@ namespace Logic.Algorithms
 {
 	public abstract class Algorithm3D : IAlgorithm
 	{
-		private List<Container3D> containers;
+		public List<Container3D> containers;
 
 		public Algorithm3D(Container3D initialContainer)
 		{

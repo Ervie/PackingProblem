@@ -53,7 +53,7 @@ namespace Logic.Algorithms
 				case (ObjectFittingStrategy.FirstFit):
 					return new FirstFitShelf2DAlgorithm(initialContainer);
 				case (ObjectFittingStrategy.NextFit):
-					throw new NotSuchAlgorithmException();
+					return new NextFitShelf2DAlgorithm(initialContainer);
 				case (ObjectFittingStrategy.BestWidthFit):
 					throw new NotSuchAlgorithmException();
 				case (ObjectFittingStrategy.BestHeightFit):

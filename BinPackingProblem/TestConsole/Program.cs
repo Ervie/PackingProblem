@@ -80,9 +80,9 @@ namespace TestConsole
 			{
 				Dimensionality = Logic.Algorithms.Enums.AlgorithmDimensionality.TwoDimensional,
 				Family = Logic.Algorithms.Enums.AlgorithmFamily.Shelf,
-				AlgorithmType = Logic.Algorithms.Enums.ObjectFittingStrategy.FirstFit,
+				AlgorithmType = Logic.Algorithms.Enums.ObjectFittingStrategy.NextFit,
 				SplittingStrategy = Logic.Algorithms.Enums.ContainerSplittingStrategy.None
-			}, new ShelfContainer(40, 100));
+			}, new ShelfContainer2D(40, 100));
 
 			algo.Execute(objectSet2d);
 

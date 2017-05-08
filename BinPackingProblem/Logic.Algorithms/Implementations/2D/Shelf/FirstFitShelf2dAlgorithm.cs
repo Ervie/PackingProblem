@@ -16,7 +16,9 @@ namespace Logic.Algorithms.Implementations._2D.Shelf
 
 		public override void Execute(ObjectSet originalObjects)
 		{
-			throw new NotImplementedException();
+			Container2D selectedContainer = containers.First();
+
+
 		}
 	}
 }

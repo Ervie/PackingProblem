@@ -28,13 +28,13 @@ namespace Logic.Domain.Objects
 			get { return Y + Height; }
 		}
 
-		protected PlacedObject2D(int x, int y, int width, int height) 
+		public PlacedObject2D(int x, int y, int width, int height) 
             :base(width, height)
         {
 			Position = new Position2D(x, y);
 		}
 
-		protected PlacedObject2D(Position2D position, int width, int height) 
+		public PlacedObject2D(Position2D position, int width, int height) 
             :base(width, height)
         {
 			Position = position;

@@ -14,7 +14,7 @@ namespace Logic.Domain.Containers._2D
 
 		public bool IsClosed { get; set; }
 
-		public IList<SubContainer2D> Subcontainers { get; private set; }
+		public IList<SubContainer2D> Subcontainers { get; set; }
 
 		public Container2D(int width, int height) : base(width, height)
 		{
@@ -25,7 +25,9 @@ namespace Logic.Domain.Containers._2D
 
 		public void PlaceObject(Object2D objectToPlace, Position2D position)
 		{
-			throw new NotImplementedException();
+			PlacedObject2D newObject = new PlacedObject2D(position, objectToPlace.Width, objectToPlace.Height);
+
+			PlacedObjects.Add(newObject);
 		}
 
 		private PlacedObjects GetAllPlacedObjects()

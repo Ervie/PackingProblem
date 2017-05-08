@@ -12,15 +12,15 @@ namespace Logic.Algorithms
 {
 	public abstract class Algorithm2D : IAlgorithm
 	{
-		private List<Container2D> containers;
+		public List<Container2D> containers;
 
 		public Algorithm2D(Container2D initialContainer)
 		{
-			//containers = new List<Container2D>();
-			//containers.Add(initialContainer);
 		}
 
 		public abstract void Execute(ObjectSet originalObjects);
+
+		public abstract void AddContainer();
 
 		public AlgorithmExecutionResults CreateResults()
 		{
