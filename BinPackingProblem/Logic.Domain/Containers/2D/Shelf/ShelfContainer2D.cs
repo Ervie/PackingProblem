@@ -26,6 +26,9 @@ namespace Logic.Domain.Containers._2D.Shelf
 
 		public void AddShelf()
 		{
+			if (Subcontainers.Count != 0)
+				(TopShelf as ShelfSubContainer2D).SetShelfHeight();
+
 			ShelfSubContainer2D newShelf;
 
 			if (Subcontainers.Count == 0)

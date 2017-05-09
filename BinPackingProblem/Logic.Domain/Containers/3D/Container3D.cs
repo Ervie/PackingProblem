@@ -16,7 +16,7 @@ namespace Logic.Domain.Containers._3D
 			IsClosed = false;
 		}
 
-		public void PlaceObject(Object3D objectToPlace, Position2D position)
+		public IPlacedObject PlaceObject(Object3D objectToPlace, Position2D position)
 		{
 			throw new NotImplementedException();
 		}

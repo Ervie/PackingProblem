@@ -23,11 +23,13 @@ namespace Logic.Domain.Objects
         public int Height
         {
             get { return (Size as Rectangle).Height; }
+			set { (Size as Rectangle).Height = value; }
         }
         public int Width
         {
             get { return (Size as Rectangle).Width; }
-        }
+			set { (Size as Rectangle).Width = value; }
+		}
 
         public int Area
         {

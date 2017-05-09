@@ -12,9 +12,12 @@ namespace Logic.Domain.Containers._2D.Shelf
 		public ShelfSubContainer2D(int x, int y, int width, int height) : base(x, y, width, height)
 		{
 			LastPlacedObject = null;
+			MaxItemHeight = 0;
 		}
 
 		private PlacedObject2D _lastPlacedObject;
+
+		public int MaxItemHeight { get; set; }
 
 		public PlacedObject2D LastPlacedObject
 		{
@@ -28,9 +31,19 @@ namespace Logic.Domain.Containers._2D.Shelf
 			set
 			{
 				_lastPlacedObject = value;
+
+				// remember heighest element as shelf height
+				if (value != null)
+					if (MaxItemHeight < value.Height)
+						MaxItemHeight = value.Height;
 			}
 		}
 
+		public void SetShelfHeight()
+		{
+			this.Height = MaxItemHeight;
+		}
+	
 
 	}
 }

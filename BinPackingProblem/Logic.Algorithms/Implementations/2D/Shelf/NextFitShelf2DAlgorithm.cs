@@ -56,8 +56,8 @@ namespace Logic.Algorithms.Implementations._2D.Shelf
 				positionToPlace = new Position2D(selectedShelf.LastPlacedObject.X2, selectedShelf.Y);
 
 				objectsCopy.Remove(selectedObject);
-				selectedContainer.PlaceObject(selectedObject, positionToPlace);
-				selectedShelf.LastPlacedObject = selectedObject as SubContainer2D;
+				selectedShelf.LastPlacedObject = selectedContainer.PlaceObject(selectedObject, positionToPlace) as PlacedObject2D;
+			
 			}
 
 			CreateResults();

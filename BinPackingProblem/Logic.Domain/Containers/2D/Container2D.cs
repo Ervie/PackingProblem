@@ -7,10 +7,13 @@ namespace Logic.Domain.Containers._2D
 {
 	public abstract class Container2D : Rectangle, IContainer<Object2D, Position2D>
 	{
-		public PlacedObjects PlacedObjects
-		{
-			get { return GetAllPlacedObjects(); }
-		}
+		//public PlacedObjects PlacedObjects
+		//{
+		//	get { return GetAllPlacedObjects(); }
+		//	set { }
+		//}
+
+		public PlacedObjects PlacedObjects { get; set; }
 
 		public bool IsClosed { get; set; }
 
@@ -19,32 +22,35 @@ namespace Logic.Domain.Containers._2D
 		public Container2D(int width, int height) : base(width, height)
 		{
 			IsClosed = false;
+			PlacedObjects = new PlacedObjects();
 		}
 
 		protected abstract SubContainer2D CreateSubcontainer(Position2D position, Rectangle size);
 
-		public void PlaceObject(Object2D objectToPlace, Position2D position)
+		public IPlacedObject PlaceObject(Object2D objectToPlace, Position2D position)
 		{
 			PlacedObject2D newObject = new PlacedObject2D(position, objectToPlace.Width, objectToPlace.Height);
 
 			PlacedObjects.Add(newObject);
+
+			return newObject;
 		}
 
-		private PlacedObjects GetAllPlacedObjects()
-		{
-			var placedObjects = new PlacedObjects();
+		//private PlacedObjects GetAllPlacedObjects()
+		//{
+		//	var placedObjects = new PlacedObjects();
 
-			if (Subcontainers == null)
-			{
-				return placedObjects;
-			}
+		//	if (Subcontainers == null)
+		//	{
+		//		return placedObjects;
+		//	}
 
-			foreach (var subcontainer in Subcontainers)
-			{
-				placedObjects.AddRange(subcontainer.PlacedObjects);
-			}
+		//	foreach (var subcontainer in Subcontainers)
+		//	{
+		//		placedObjects.AddRange(subcontainer.PlacedObjects);
+		//	}
 
-			return placedObjects;
-		}
+		//	return placedObjects;
+		//}
 	}
 }

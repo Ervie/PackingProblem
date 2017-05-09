@@ -25,7 +25,7 @@ namespace Logic.Algorithms
 		public AlgorithmExecutionResults CreateResults()
 		{
 			var containerArea = containers.Sum(x => x.Height * x.Width);
-			var objectsTotalArea = containers.Sum(container => container.PlacedObjects.Sum(o => (o as Rectangle).Width * (o as Rectangle).Height));
+			var objectsTotalArea = containers.Sum(container => container.PlacedObjects.Sum(o => (o as Object2D).Width * (o as Object2D).Height));
 
 			PlacedObjects placedObjectsTotal = new PlacedObjects();
 
@@ -42,6 +42,7 @@ namespace Logic.Algorithms
 				ObjectsTotalFulfilment = objectsTotalArea,
 				Quality = (double)containerArea / objectsTotalArea,
 			};
+
 
 			return results;
 		}
