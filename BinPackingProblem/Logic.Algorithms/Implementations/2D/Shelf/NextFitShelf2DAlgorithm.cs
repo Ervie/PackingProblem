@@ -32,6 +32,14 @@ namespace Logic.Algorithms.Implementations._2D.Shelf
 			while (objectsCopy.Any())
 			{
 				Object2D selectedObject = objectsCopy.First() as Object2D;
+				
+				// Change Shelf
+				if (selectedObject.Width + selectedShelf.LastPlacedObject.X2 > selectedContainer.Width)
+				{
+					selectedContainer.AddShelf();
+
+					selectedShelf = selectedContainer.TopShelf as ShelfSubContainer2D;
+				}
 
 				// Change Container
 				if (selectedObject.Height + selectedContainer.TopShelf.Y2 > selectedContainer.Height)
@@ -40,14 +48,6 @@ namespace Logic.Algorithms.Implementations._2D.Shelf
 
 					selectedContainer = containers.Last() as ShelfContainer2D;
 
-					selectedContainer.AddShelf();
-
-					selectedShelf = selectedContainer.TopShelf as ShelfSubContainer2D;
-				}
-
-				// Change Shelf
-				if (selectedObject.Width + selectedShelf.LastPlacedObject.X2 > selectedContainer.Width)
-				{
 					selectedContainer.AddShelf();
 
 					selectedShelf = selectedContainer.TopShelf as ShelfSubContainer2D;
