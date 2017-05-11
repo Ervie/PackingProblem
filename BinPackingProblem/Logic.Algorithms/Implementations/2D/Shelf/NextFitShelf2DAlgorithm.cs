@@ -59,8 +59,6 @@ namespace Logic.Algorithms.Implementations._2D.Shelf
 				selectedShelf.LastPlacedObject = selectedContainer.PlaceObject(selectedObject, positionToPlace) as PlacedObject2D;
 			
 			}
-
-			CreateResults();
 		}
 	}
 }

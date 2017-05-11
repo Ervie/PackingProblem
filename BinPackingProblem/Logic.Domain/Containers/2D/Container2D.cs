@@ -2,6 +2,7 @@
 using Logic.Domain.Objects;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Logic.Domain.Containers._2D
 {
@@ -34,6 +35,11 @@ namespace Logic.Domain.Containers._2D
 			PlacedObjects.Add(newObject);
 
 			return newObject;
+		}
+
+		public double GetFulfilment()
+		{
+			return (double)PlacedObjects.Sum(o => (o as Object2D).Width * (o as Object2D).Height)/Area;
 		}
 
 		//private PlacedObjects GetAllPlacedObjects()

@@ -2,6 +2,7 @@
 using Logic.Domain.Objects;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Logic.Domain.Containers._3D
 {
@@ -19,6 +20,11 @@ namespace Logic.Domain.Containers._3D
 		public IPlacedObject PlaceObject(Object3D objectToPlace, Position2D position)
 		{
 			throw new NotImplementedException();
+		}
+
+		public double GetFulfilment()
+		{
+			return (double)PlacedObjects.Sum(o => (o as Object3D).Width * (o as Object3D).Height * (o as Object3D).Depth) / Volume;
 		}
 	}
 }

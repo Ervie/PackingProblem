@@ -85,6 +85,8 @@ namespace TestConsole
 
 			algo.Execute(objectSet2d);
 
+			var results = algo.CreateResults();
+
 			ObjectSet sortedObjectSet = objectSet2d.OrderBy(x => (x as Object2D).Height).ToObjectList();
 			
 			algo = factory.Create(new AlgorithmProperties()
@@ -96,6 +98,8 @@ namespace TestConsole
 			}, new ShelfContainer2D(40, 100));
 
 			algo.Execute(sortedObjectSet);
+
+			results = algo.CreateResults();
 
             Console.ReadKey();
         }

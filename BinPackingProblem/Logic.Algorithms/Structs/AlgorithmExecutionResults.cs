@@ -22,6 +22,10 @@ namespace Logic.Algorithms.Structs
 		/// Either total area or volume of all placed objects
 		/// </summary>
 		public int ObjectsTotalFulfilment { get; set; }
+
+		public double AverageFulfilmentRatio { get; set; }
+
+		public double FulfilmentRatioStandardDeviation { get; set; }
 		public double Quality { get; set; }
 		public TimeSpan ExecutionTime { get; set; }
 	}

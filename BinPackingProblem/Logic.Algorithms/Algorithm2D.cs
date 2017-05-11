@@ -24,6 +24,8 @@ namespace Logic.Algorithms
 
 		public AlgorithmExecutionResults CreateResults()
 		{
+			double averageFulfilment = 0.0;
+			double standardDeviation = 0.0;
 			var containerArea = containers.Sum(x => x.Height * x.Width);
 			var objectsTotalArea = containers.Sum(container => container.PlacedObjects.Sum(o => (o as Object2D).Width * (o as Object2D).Height));
 
@@ -32,7 +34,17 @@ namespace Logic.Algorithms
 			foreach (var container in containers)
 			{
 				placedObjectsTotal.AddRange(container.PlacedObjects);
+				averageFulfilment += container.GetFulfilment();
 			}
+
+			averageFulfilment /= containers.Count();
+
+			foreach (var container in containers)
+			{
+				standardDeviation += Math.Pow((double)(averageFulfilment - container.GetFulfilment()), 2.0);
+			}
+
+			standardDeviation = Math.Sqrt(standardDeviation / containers.Count);
 
 			var results = new AlgorithmExecutionResults
 			{
@@ -40,6 +52,8 @@ namespace Logic.Algorithms
 				ContainerSize = containers.First(),
 				ContainerFulfilment = containerArea,
 				ObjectsTotalFulfilment = objectsTotalArea,
+				AverageFulfilmentRatio = averageFulfilment,
+				FulfilmentRatioStandardDeviation = standardDeviation,
 				Quality = (double)containerArea / objectsTotalArea,
 			};
 
