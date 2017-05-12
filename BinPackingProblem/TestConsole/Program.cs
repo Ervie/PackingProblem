@@ -19,26 +19,26 @@ namespace TestConsole
         {
             ObjectGenerator generator = new ObjectGenerator();
 
-			//var testSet = generator.Generate2DObjectSet(new ObjectSetProperties2D()
-			//{
-			//	ObjectAmount = 300,
-			//	AverageObjectWidthHeightRatio = 1,
-			//	ObjectWidthHeightRatioStandardDeviation = 1,
-			//	MaxObjectWidthHeightRatio = 10,
-			//	MinObjectWidthHeightRatio = 0.1m,
+			var testSet = generator.Generate2DObjectSet(new ObjectSetProperties2D()
+			{
+				ObjectAmount = 1000,
+				AverageObjectWidthHeightRatio = 1,
+				ObjectWidthHeightRatioStandardDeviation = 0.5m,
+				MaxObjectWidthHeightRatio = 5,
+				MinObjectWidthHeightRatio = 0.2m,
 
-			//	AverageObjectArea = 100,
-			//	ObjectAreaStandardDeviation = 20,
-			//	MaxObjectArea = 200,
-			//	MinObjectArea = 10
-			//});
+				AverageObjectArea = 100,
+				ObjectAreaStandardDeviation = 20,
+				MaxObjectArea = 200,
+				MinObjectArea = 10
+			});
 
-			//foreach(var element in testSet)
-			//{
-			//    Console.WriteLine("Object w = {0}, h = {1}", (element as Object2D).Width, (element as Object2D).Height);
-			//}
+			foreach (var element in testSet)
+			{
+				Console.WriteLine("Object w = {0}, h = {1}", (element as Object2D).Width, (element as Object2D).Height);
+			}
 
-			//generator.SaveObjectSet(testSet, "E:\\test2d.set");
+			generator.SaveObjectSet(testSet, "C:\\Users\\bbuchala\\Documents\\Git Repos\\PackingProblem\\BinPackingProblem\\Data\\test2d.set");
 
 
 			//testSet = generator.Generate3DObjectSet(new ObjectSetProperties3D()
@@ -69,12 +69,12 @@ namespace TestConsole
 
 
 
-			ObjectSet objectSet2d = generator.LoadObjectSet("E:\\test2d.set");
+			ObjectSet objectSet2d = generator.LoadObjectSet("C:\\Users\\bbuchala\\Documents\\Git Repos\\PackingProblem\\BinPackingProblem\\Data\\test2d.set");
 
 			//var objectSet3d = generator.LoadObjectSet("E:\\test3d.set");
 
 
-			ObjectSet sortedObjectSet = objectSet2d.OrderBy(x => (x as Object2D).Height).ToObjectList();
+			ObjectSet sortedObjectSet = objectSet2d.OrderBy(x => (x as Object2D).Width).ToObjectList();
 
 			IAlgorithmFactory factory = new AlgorithmFactory();
 			IAlgorithm algo = factory.Create(new AlgorithmProperties()
@@ -83,7 +83,7 @@ namespace TestConsole
 				Family = Logic.Algorithms.Enums.AlgorithmFamily.Shelf,
 				AlgorithmType = Logic.Algorithms.Enums.ObjectFittingStrategy.NextFit,
 				SplittingStrategy = Logic.Algorithms.Enums.ContainerSplittingStrategy.None
-			}, new ShelfContainer2D(40, 100));
+			}, new ShelfContainer2D(40, 50));
 
 			algo.Execute(objectSet2d);
 
@@ -96,13 +96,25 @@ namespace TestConsole
 				Family = Logic.Algorithms.Enums.AlgorithmFamily.Shelf,
 				AlgorithmType = Logic.Algorithms.Enums.ObjectFittingStrategy.FirstFit,
 				SplittingStrategy = Logic.Algorithms.Enums.ContainerSplittingStrategy.None
-			}, new ShelfContainer2D(40, 100));
+			}, new ShelfContainer2D(40, 50));
 
 			algo.Execute(objectSet2d);
 
-			results = algo.CreateResults();
+			var results2 = algo.CreateResults();
 
-            Console.ReadKey();
+			algo = factory.Create(new AlgorithmProperties()
+			{
+				Dimensionality = Logic.Algorithms.Enums.AlgorithmDimensionality.TwoDimensional,
+				Family = Logic.Algorithms.Enums.AlgorithmFamily.Shelf,
+				AlgorithmType = Logic.Algorithms.Enums.ObjectFittingStrategy.BestHeightFit,
+				SplittingStrategy = Logic.Algorithms.Enums.ContainerSplittingStrategy.None
+			}, new ShelfContainer2D(40, 50));
+
+			algo.Execute(objectSet2d);
+
+			var results3 = algo.CreateResults();
+
+			Console.ReadKey();
         }
     }
 }

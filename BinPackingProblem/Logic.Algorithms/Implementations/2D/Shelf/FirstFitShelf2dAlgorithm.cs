@@ -31,11 +31,6 @@ namespace Logic.Algorithms.Implementations._2D.Shelf
 				
 				for (int i = 0; positionToPlace == null; i++)
 				{
-					//if (i > containers.Count - 1)
-					//{
-						
-					//}
-
 					selectedContainer = containers[i] as ShelfContainer2D;
 
 					for (int j = 0; positionToPlace == null; j++)

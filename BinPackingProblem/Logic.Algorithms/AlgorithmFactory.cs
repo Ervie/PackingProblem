@@ -57,7 +57,7 @@ namespace Logic.Algorithms
 				case (ObjectFittingStrategy.BestWidthFit):
 					throw new NotSuchAlgorithmException();
 				case (ObjectFittingStrategy.BestHeightFit):
-					throw new NotSuchAlgorithmException();
+					return new BestFitHeightShelf2DAlgorithm(initialContainer);
 				case (ObjectFittingStrategy.BestAreaFit):
 					throw new NotSuchAlgorithmException();
 				default:

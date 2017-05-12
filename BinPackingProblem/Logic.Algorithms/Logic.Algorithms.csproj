@@ -50,7 +50,9 @@
     <Compile Include="IAlgorithm.cs" />
     <Compile Include="IAlgorithmFactory.cs" />
     <Compile Include="Exceptions\NotSuchAlgorithmException.cs" />
+    <Compile Include="Implementations\2D\Shelf\AbstractBestFitShelf2DAlgorithm.cs" />
     <Compile Include="Implementations\2D\Shelf\AbstractShelf2DAlgorithm.cs" />
+    <Compile Include="Implementations\2D\Shelf\BestFitHeightShelf2DAlgorithm.cs" />
     <Compile Include="Implementations\2D\Shelf\FirstFitShelf2DAlgorithm.cs" />
     <Compile Include="Implementations\2D\Shelf\NextFitShelf2DAlgorithm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
