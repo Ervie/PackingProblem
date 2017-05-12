@@ -14,16 +14,16 @@ namespace Logic.Algorithms.Implementations._2D.Shelf
 		{
 		}
 
-		protected override double CalculateFitResult(Object2D objectToPlace, int widthLeftInShelf, int shelfHeight, int containerWidth, int ContainerHeight)
+		protected override double CalculateFitResult(Object2D objectToPlace, int widthLeftInShelf, int shelfLevel, int shelfHeight, int containerWidth, int ContainerHeight)
 		{
-			if (objectToPlace.Height + shelfHeight > ContainerHeight)
+			if (objectToPlace.Height + shelfLevel > ContainerHeight)
 				return Double.MaxValue;
 			else if (objectToPlace.Height > shelfHeight && shelfHeight != 0)
 				return Double.MaxValue;
 			else if (objectToPlace.Width > widthLeftInShelf)
 				return Double.MaxValue;
 			else
-				return shelfHeight - objectToPlace.Height;
+				return Math.Max(shelfHeight - objectToPlace.Height, 0);
 		}
 	}
 }

@@ -39,18 +39,18 @@ namespace Logic.Algorithms.Implementations._2D.Shelf
 						selectedShelf = selectedContainer.Subcontainers[j] as ShelfSubContainer2D;
 
 						if (selectedObject.Width + selectedShelf.LastPlacedObject.X2 <= selectedContainer.Width &&
-							((j == selectedContainer.Subcontainers.Count - 1 && selectedObject.Height + selectedShelf.Y2 <= selectedContainer.Height) ||
+							((j == selectedContainer.Subcontainers.Count - 1 && selectedObject.Height + selectedShelf.Y <= selectedContainer.Height) ||
 							j != selectedContainer.Subcontainers.Count - 1 && selectedObject.Height < selectedShelf.Height))
 						{
 							positionToPlace = new Position2D(selectedShelf.LastPlacedObject.X2, selectedShelf.Y);
 						}
-						else if (selectedObject.Height + selectedShelf.Y2 > selectedContainer.Height && i == containers.Count - 1 && j == selectedContainer.Subcontainers.Count - 1)
+						else if (selectedObject.Height + selectedShelf.Y > selectedContainer.Height && i == containers.Count - 1 && j == selectedContainer.Subcontainers.Count - 1)
 						{
 							AddContainer();
 							(containers.Last() as ShelfContainer2D).AddShelf();
 							break;
 						}
-						else if (selectedObject.Height + selectedShelf.Y2 > selectedContainer.Height && j == selectedContainer.Subcontainers.Count - 1)
+						else if (selectedObject.Height + selectedShelf.Y > selectedContainer.Height && j == selectedContainer.Subcontainers.Count - 1)
 							break;
 						else if (selectedObject.Width + selectedShelf.LastPlacedObject.X2 > selectedContainer.Width && j == selectedContainer.Subcontainers.Count - 1)
 							selectedContainer.AddShelf();

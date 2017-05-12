@@ -42,7 +42,7 @@ namespace Logic.Algorithms.Implementations._2D.Shelf
 				}
 
 				// Change Container
-				if (selectedObject.Height + selectedContainer.TopShelf.Y2 > selectedContainer.Height)
+				if (selectedObject.Height + selectedContainer.TopShelf.Y > selectedContainer.Height)
 				{
 					AddContainer();
 

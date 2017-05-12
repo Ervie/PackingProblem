@@ -46,7 +46,7 @@ namespace Logic.Algorithms.Implementations._2D.Shelf
 						selectedShelf = selectedContainer.Subcontainers[j] as ShelfSubContainer2D;
 
 						var localFitResult = CalculateFitResult(selectedObject, selectedContainer.Width - selectedShelf.LastPlacedObject.X2,
-							selectedShelf.Height, selectedContainer.Width, selectedContainer.Height);
+							selectedShelf.Y, selectedShelf.Height, selectedContainer.Width, selectedContainer.Height);
 						if (localFitResult < bestFitResult)
 						{
 							bestFitResult = localFitResult;
@@ -58,7 +58,7 @@ namespace Logic.Algorithms.Implementations._2D.Shelf
 
 				if (bestFitResult == Double.MaxValue)
 				{
-					if (selectedObject.Height + selectedContainer.TopShelf.Y2 < selectedContainer.Height)
+					if (selectedObject.Height + selectedContainer.TopShelf.Y < selectedContainer.Height)
 					{
 						selectedContainer.AddShelf();
 
@@ -91,6 +91,6 @@ namespace Logic.Algorithms.Implementations._2D.Shelf
 			}
 		}
 
-		protected abstract double CalculateFitResult(Object2D objectToPlace, int widthLeftInShelf, int shelfHeight, int containerWidth, int ContainerHeight);
+		protected abstract double CalculateFitResult(Object2D objectToPlace, int widthLeftInShelf, int shelfLevel,int shelfHeight, int containerWidth, int ContainerHeight);
 	}
 }
