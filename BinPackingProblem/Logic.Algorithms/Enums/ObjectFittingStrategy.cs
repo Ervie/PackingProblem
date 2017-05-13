@@ -12,6 +12,7 @@ namespace Logic.Algorithms.Enums
 		NextFit,
 		FirstFit,
 		BestWidthFit,
+		WorstWidthFit,
 		BestHeightFit,
 		BestAreaFit,
 		WorstAreaFit,

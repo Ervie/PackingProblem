@@ -33,10 +33,10 @@ namespace TestConsole
 				MinObjectArea = 10
 			});
 
-			foreach (var element in testSet)
-			{
-				Console.WriteLine("Object w = {0}, h = {1}", (element as Object2D).Width, (element as Object2D).Height);
-			}
+			//foreach (var element in testSet)
+			//{
+			//	Console.WriteLine("Object w = {0}, h = {1}", (element as Object2D).Width, (element as Object2D).Height);
+			//}
 
 			generator.SaveObjectSet(testSet, "E:\\est2d.set");
 
@@ -114,7 +114,54 @@ namespace TestConsole
 
 			var results3 = algo.CreateResults();
 
-			Console.ReadKey();
-        }
+			algo = factory.Create(new AlgorithmProperties()
+			{
+				Dimensionality = Logic.Algorithms.Enums.AlgorithmDimensionality.TwoDimensional,
+				Family = Logic.Algorithms.Enums.AlgorithmFamily.Shelf,
+				AlgorithmType = Logic.Algorithms.Enums.ObjectFittingStrategy.BestWidthFit,
+				SplittingStrategy = Logic.Algorithms.Enums.ContainerSplittingStrategy.None
+			}, new ShelfContainer2D(40, 50));
+
+			algo.Execute(objectSet2d);
+
+			var results4 = algo.CreateResults();
+
+			algo = factory.Create(new AlgorithmProperties()
+			{
+				Dimensionality = Logic.Algorithms.Enums.AlgorithmDimensionality.TwoDimensional,
+				Family = Logic.Algorithms.Enums.AlgorithmFamily.Shelf,
+				AlgorithmType = Logic.Algorithms.Enums.ObjectFittingStrategy.BestAreaFit,
+				SplittingStrategy = Logic.Algorithms.Enums.ContainerSplittingStrategy.None
+			}, new ShelfContainer2D(40, 50));
+
+			algo.Execute(objectSet2d);
+
+			var results5 = algo.CreateResults();
+
+			algo = factory.Create(new AlgorithmProperties()
+			{
+				Dimensionality = Logic.Algorithms.Enums.AlgorithmDimensionality.TwoDimensional,
+				Family = Logic.Algorithms.Enums.AlgorithmFamily.Shelf,
+				AlgorithmType = Logic.Algorithms.Enums.ObjectFittingStrategy.WorstWidthFit,
+				SplittingStrategy = Logic.Algorithms.Enums.ContainerSplittingStrategy.None
+			}, new ShelfContainer2D(40, 50));
+
+			algo.Execute(objectSet2d);
+
+			var results6 = algo.CreateResults();
+
+			algo = factory.Create(new AlgorithmProperties()
+			{
+				Dimensionality = Logic.Algorithms.Enums.AlgorithmDimensionality.TwoDimensional,
+				Family = Logic.Algorithms.Enums.AlgorithmFamily.Shelf,
+				AlgorithmType = Logic.Algorithms.Enums.ObjectFittingStrategy.WorstAreaFit,
+				SplittingStrategy = Logic.Algorithms.Enums.ContainerSplittingStrategy.None
+			}, new ShelfContainer2D(40, 50));
+
+			algo.Execute(objectSet2d);
+
+			var results7 = algo.CreateResults();
+
+		}
     }
 }

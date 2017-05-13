@@ -55,11 +55,15 @@ namespace Logic.Algorithms
 				case (ObjectFittingStrategy.NextFit):
 					return new NextFitShelf2DAlgorithm(initialContainer);
 				case (ObjectFittingStrategy.BestWidthFit):
-					throw new NotSuchAlgorithmException();
+					return new BestFitWidthShelf2DAlgorithm(initialContainer);
 				case (ObjectFittingStrategy.BestHeightFit):
 					return new BestFitHeightShelf2DAlgorithm(initialContainer);
 				case (ObjectFittingStrategy.BestAreaFit):
-					throw new NotSuchAlgorithmException();
+					return new BestFitAreaShelf2DAlgorithm(initialContainer);
+				case (ObjectFittingStrategy.WorstAreaFit):
+					return new WorstFitAreaShelf2DAlgorithm(initialContainer);
+				case (ObjectFittingStrategy.WorstWidthFit):
+					return new WorstFitWidthShelf2DAlgorithm(initialContainer);
 				default:
 					throw new NotSuchAlgorithmException();
 			}

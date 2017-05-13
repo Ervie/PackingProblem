@@ -8,9 +8,9 @@ using Logic.Domain.Objects;
 
 namespace Logic.Algorithms.Implementations._2D.Shelf
 {
-	public class BestFitHeightShelf2DAlgorithm : AbstractBestFitShelf2DAlgorithm
+	public class BestFitWidthShelf2DAlgorithm : AbstractBestFitShelf2DAlgorithm
 	{
-		public BestFitHeightShelf2DAlgorithm(Container2D initialContainer) : base(initialContainer)
+		public BestFitWidthShelf2DAlgorithm(Container2D initialContainer) : base(initialContainer)
 		{
 		}
 
@@ -26,7 +26,7 @@ namespace Logic.Algorithms.Implementations._2D.Shelf
 			else if (objectToPlace.Width > widthLeftInShelf)
 				return Double.MaxValue;
 			else
-				return Math.Max(shelfHeight - objectToPlace.Height, 0);
+				return widthLeftInShelf - objectToPlace.Width;
 		}
 	}
 }
