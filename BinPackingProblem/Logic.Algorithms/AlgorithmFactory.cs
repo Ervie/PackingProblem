@@ -35,6 +35,8 @@ namespace Logic.Algorithms
 			{
 				case (AlgorithmFamily.Shelf):
 					return Create2DShelfAlgorithm(properties.AlgorithmType, initialContainer);
+				case (AlgorithmFamily.Skyline):
+					return Create2DSkylineAlgorithm(properties.AlgorithmType, initialContainer);
 				default:
 					throw new NotSuchAlgorithmException();
 			}
@@ -44,8 +46,20 @@ namespace Logic.Algorithms
 		{
 			throw new NotImplementedException();
 		}
-
 		
+		private IAlgorithm Create2DSkylineAlgorithm(ObjectFittingStrategy fittingStrategy, Container2D initialContainer)
+		{
+			switch (fittingStrategy)
+			{
+				case (ObjectFittingStrategy.BestFit):
+					throw new NotImplementedException();
+				case (ObjectFittingStrategy.BottomLeft):
+					throw new NotImplementedException();
+				default:
+					throw new NotSuchAlgorithmException();
+			}
+		}
+
 		private IAlgorithm Create2DShelfAlgorithm(ObjectFittingStrategy fittingStrategy, Container2D initialContainer)
 		{
 			switch (fittingStrategy)
