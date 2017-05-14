@@ -13,14 +13,17 @@ namespace Logic.Domain.Figures
 
 		public int X { get; private set; }
 
+		public int Y { get; private set; }
+
 		public int X2
 		{
 			get { return X + Length; }
 		}
 
-		public Line(int xPosition, int length)
+		public Line(int xPosition, int length, int yPosition)
 		{
 			X = xPosition;
+			Y = yPosition;
 			Length = length;
 		}
 

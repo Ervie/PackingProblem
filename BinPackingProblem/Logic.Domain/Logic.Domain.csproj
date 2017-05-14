@@ -43,9 +43,7 @@
     <Compile Include="Containers\2D\Container2D.cs" />
     <Compile Include="Containers\2D\Shelf\ShelfContainer2D.cs" />
     <Compile Include="Containers\2D\Shelf\ShelfSubContainer2D.cs" />
-    <Compile Include="Containers\2D\Skyline\PlacedObject.cs" />
     <Compile Include="Containers\2D\Skyline\SkylineContainer2D.cs" />
-    <Compile Include="Containers\2D\Skyline\SkylineSubContainer2D.cs" />
     <Compile Include="Containers\2D\SubContainer2D.cs" />
     <Compile Include="Containers\3D\Container3D.cs" />
     <Compile Include="Containers\IContainer.cs" />

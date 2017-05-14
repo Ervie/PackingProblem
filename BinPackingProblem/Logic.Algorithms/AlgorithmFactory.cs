@@ -10,6 +10,7 @@ using Logic.Algorithms.Implementations._2D.Shelf;
 using Logic.Domain.Figures;
 using Logic.Domain.Containers._2D;
 using Logic.Domain.Containers._3D;
+using Logic.Algorithms.Implementations._2D.Skyline;
 
 namespace Logic.Algorithms
 {
@@ -54,7 +55,7 @@ namespace Logic.Algorithms
 				case (ObjectFittingStrategy.BestFit):
 					throw new NotImplementedException();
 				case (ObjectFittingStrategy.BottomLeft):
-					throw new NotImplementedException();
+					return new BottomLeftSkyline2DAlgorithm(initialContainer);
 				default:
 					throw new NotSuchAlgorithmException();
 			}
