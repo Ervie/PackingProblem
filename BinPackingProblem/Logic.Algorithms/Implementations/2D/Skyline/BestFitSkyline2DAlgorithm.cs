@@ -5,27 +5,30 @@ using System.Text;
 using System.Threading.Tasks;
 using Logic.Domain.Containers._2D;
 using Logic.Domain.Objects;
-using Logic.Utilities.Extensions;
 using Logic.Domain;
 using Logic.Domain.Containers._2D.Skyline;
+using Logic.Utilities.Extensions;
 using Logic.Domain.Figures;
 
 namespace Logic.Algorithms.Implementations._2D.Skyline
 {
-	public class BottomLeftSkyline2DAlgorithm : AbstractSkyline2DAlgorithm
+	public class BestFitSkyline2DAlgorithm : AbstractSkyline2DAlgorithm
 	{
-		public BottomLeftSkyline2DAlgorithm(Container2D initialContainer) : base(initialContainer)
+		public BestFitSkyline2DAlgorithm(Container2D initialContainer) : base(initialContainer)
 		{
 		}
 
 		public override void Execute(ObjectSet originalObjects)
 		{
+			double bestFitResult = Double.MaxValue;
+			double currentFitResult;
+
 			int selectedFitContainerIndex = 0;
 
 			Position2D positionToPlace = null;
 
 			SkylineContainer2D selectedContainer = containers.First() as SkylineContainer2D;
-			
+
 			var objectsCopy = originalObjects.ToObjectList();
 
 			while (objectsCopy.Any())
@@ -34,12 +37,12 @@ namespace Logic.Algorithms.Implementations._2D.Skyline
 
 				for (int i = 0; i < containers.Count; i++)
 				{
-					positionToPlace = FindMostBottomFittingSkyline(containers[i] as SkylineContainer2D, selectedObject);
-					
-					if (positionToPlace != null)
+					currentFitResult = FindBestFitWithinContainer(containers[i] as SkylineContainer2D, selectedObject, bestFitResult, ref positionToPlace);
+
+					if (currentFitResult < bestFitResult)
 					{
+						bestFitResult = currentFitResult;
 						selectedFitContainerIndex = i;
-						break;
 					}
 				}
 
@@ -54,18 +57,21 @@ namespace Logic.Algorithms.Implementations._2D.Skyline
 				}
 				else
 					selectedContainer = containers[selectedFitContainerIndex] as SkylineContainer2D;
-				
+
 				objectsCopy.Remove(selectedObject);
 				selectedContainer.PlaceNewObject(selectedObject, positionToPlace);
 				selectedFitContainerIndex = 0;
+				bestFitResult = Double.MaxValue;
+				positionToPlace = null;
 			}
 		}
 
-		private Position2D FindMostBottomFittingSkyline(SkylineContainer2D container2D, Object2D objectToPlace)
+		private double FindBestFitWithinContainer(SkylineContainer2D container2D, Object2D objectToPlace, double globallyBestFit, ref Position2D bestGlobalFitPosition)
 		{
 			var sortedSkylines = container2D.AvailableSkylines.OrderBy(o => o.Y);
 
-			Position2D leftShiftedPosition = null;
+			Position2D leftShiftedPosition, bestFitPosition = null;
+			double currentFitValue, bestFitValueInContainer = 0.0;
 
 			foreach (Line skyline in sortedSkylines)
 			{
@@ -73,15 +79,32 @@ namespace Logic.Algorithms.Implementations._2D.Skyline
 				if (skyline.Y + objectToPlace.Height > container2D.Height)
 					break;
 
-				// Object is wider than skyline
+
 				leftShiftedPosition = CheckShiftedPositionAvailability(container2D, objectToPlace, skyline);
 				if (leftShiftedPosition != null)
-					return leftShiftedPosition;
+				{
+					currentFitValue = GetBelowUnavaibleArea(leftShiftedPosition, container2D);
+
+					if (currentFitValue < bestFitValueInContainer)
+					{
+						bestFitValueInContainer = currentFitValue;
+						bestFitPosition = leftShiftedPosition;
+					}
+				}
 			}
 
-			return null;
+			if (bestFitValueInContainer < globallyBestFit)
+			{
+				bestGlobalFitPosition = bestFitPosition;
+				return bestFitValueInContainer;
+			}
+			else
+				return globallyBestFit;
 		}
 
-		
+		private double GetBelowUnavaibleArea(Position2D leftShiftedPosition, SkylineContainer2D container2D)
+		{
+			throw new NotImplementedException();
+		}
 	}
 }

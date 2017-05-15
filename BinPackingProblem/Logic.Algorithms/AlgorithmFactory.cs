@@ -53,7 +53,7 @@ namespace Logic.Algorithms
 			switch (fittingStrategy)
 			{
 				case (ObjectFittingStrategy.BestFit):
-					throw new NotImplementedException();
+					return new BestFitSkyline2DAlgorithm(initialContainer);
 				case (ObjectFittingStrategy.BottomLeft):
 					return new BottomLeftSkyline2DAlgorithm(initialContainer);
 				default:

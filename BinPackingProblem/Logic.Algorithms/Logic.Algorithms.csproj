@@ -60,6 +60,7 @@
     <Compile Include="Implementations\2D\Shelf\WorstFitAreaShelf2DAlgorithm.cs" />
     <Compile Include="Implementations\2D\Shelf\WorstFitWidthShelf2DAlgorithm.cs" />
     <Compile Include="Implementations\2D\Skyline\AbstractSkyline2DAlgorithm.cs" />
+    <Compile Include="Implementations\2D\Skyline\BestFitSkyline2DAlgorithm.cs" />
     <Compile Include="Implementations\2D\Skyline\BottomLeftSkyline2DAlgorithm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Structs\AlgorithmExecutionResults.cs" />

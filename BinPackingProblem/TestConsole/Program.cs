@@ -174,6 +174,18 @@ namespace TestConsole
 
 			var results8 = algo.CreateResults();
 
+			algo = factory.Create(new AlgorithmProperties()
+			{
+				Dimensionality = Logic.Algorithms.Enums.AlgorithmDimensionality.TwoDimensional,
+				Family = Logic.Algorithms.Enums.AlgorithmFamily.Skyline,
+				AlgorithmType = Logic.Algorithms.Enums.ObjectFittingStrategy.BestFit,
+				SplittingStrategy = Logic.Algorithms.Enums.ContainerSplittingStrategy.None
+			}, new ShelfContainer2D(40, 50));
+
+			algo.Execute(objectSet2d);
+
+			var results9 = algo.CreateResults();
+
 		}
     }
 }

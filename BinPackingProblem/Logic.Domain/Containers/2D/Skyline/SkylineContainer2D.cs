@@ -41,51 +41,6 @@ namespace Logic.Domain.Containers._2D.Skyline
 			CreateSkylineAtopObject(LastPlacedObject);
 		}
 
-		//private bool DoesExistSubcontainerOnGivenYPosition(int yPosition)
-		//{
-		//	return Subcontainers.Any(s => s.Y == yPosition);
-		//}
-
-		//	foreach (var subcontainer in Subcontainers.Where(s => s.Y > lastPlacedObject.Y && s.Y < lastPlacedObject.Y2)
-		//		.Select(s => (SkylineSubcontainer)s))
-		//	{
-		//		subcontainer.MakeSkylineUnavailable(lastPlacedObject);
-		//	}
-		//}
-
-		//private void MakeSkylinesTakenByPlacedObjectUnavailable(ObjectFittingResult objectFittingResult)
-		//{
-		//	var skylineSubcontainer = (SkylineSubcontainer)objectFittingResult.Subcontainer;
-		//	var lastPlacedObject = skylineSubcontainer.LastPlacedObject;
-
-		//private void MakeSkylinesBelowPlacedObjectUnavailable(ObjectFittingResult objectFittingResult)
-		//{
-		//	var skylineSubcontainer = (SkylineSubcontainer)objectFittingResult.Subcontainer;
-		//	var lastPlacedObject = skylineSubcontainer.LastPlacedObject;
-
-		//	foreach (var subcontainer in OpenSubcontainers.Where(s => s.Y < skylineSubcontainer.Y))
-		//	{
-		//		subcontainer.MakeSkylineUnavailable(lastPlacedObject);
-		//	}
-		//}
-
-		//private void CreateSkylineSubcontainer(int objectY2Position)
-		//{
-		//	var subcontainerPosition = new Position(0, objectY2Position);
-		//	var subcontainerSize = new Size(Width, Height - subcontainerPosition.Y);
-		//	var newSubcontainer = (SkylineSubcontainer)CreateSubcontainer(subcontainerPosition, subcontainerSize);
-
-		//	Subcontainers.Add(newSubcontainer);
-		//}
-
-		//private void UpdateSkylines(SkylineSubContainer2D newSubcontainer)
-		//{
-		//	foreach (var theObject in PlacedObjects.Where(o => (o as PlacedObject2D).Y2 > newSubcontainer.Y))
-		//	{
-		//		newSubcontainer.MakeSkylineUnavailable(theObject as PlacedObject2D);
-		//	}
-		//}
-
 		public void MakeSkylineUnavailable(PlacedObject2D theObject)
 		{
 			foreach (var availableSkyline in AvailableSkylines.ToList())
