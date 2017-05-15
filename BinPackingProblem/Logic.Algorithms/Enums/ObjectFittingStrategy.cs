@@ -21,7 +21,8 @@ namespace Logic.Algorithms.Enums
 		BestLongSideFit,
 		WorstLongSideFit,
 		BottomLeft,
-		BestFit,
+		BestFitFirstContainer,
+		BestFitBestContainer,
 		FloorCeiling
 	}
 }

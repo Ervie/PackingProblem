@@ -12,9 +12,9 @@ using Logic.Domain.Figures;
 
 namespace Logic.Algorithms.Implementations._2D.Skyline
 {
-	public class BestFitSkyline2DAlgorithm : AbstractSkyline2DAlgorithm
+	public class BestFitFirstContainerSkyline2DAlgorithm : AbstractSkylineBestFit2DAlgorithm
 	{
-		public BestFitSkyline2DAlgorithm(Container2D initialContainer) : base(initialContainer)
+		public BestFitFirstContainerSkyline2DAlgorithm(Container2D initialContainer) : base(initialContainer)
 		{
 		}
 
@@ -43,6 +43,7 @@ namespace Logic.Algorithms.Implementations._2D.Skyline
 					{
 						bestFitResult = currentFitResult;
 						selectedFitContainerIndex = i;
+						break;
 					}
 				}
 
@@ -66,45 +67,6 @@ namespace Logic.Algorithms.Implementations._2D.Skyline
 			}
 		}
 
-		private double FindBestFitWithinContainer(SkylineContainer2D container2D, Object2D objectToPlace, double globallyBestFit, ref Position2D bestGlobalFitPosition)
-		{
-			var sortedSkylines = container2D.AvailableSkylines.OrderBy(o => o.Y);
 
-			Position2D leftShiftedPosition, bestFitPosition = null;
-			double currentFitValue, bestFitValueInContainer = 0.0;
-
-			foreach (Line skyline in sortedSkylines)
-			{
-				// Skyline + object is higher than container; As skylines are sorted from lowest, break on first compatible statement
-				if (skyline.Y + objectToPlace.Height > container2D.Height)
-					break;
-
-
-				leftShiftedPosition = CheckShiftedPositionAvailability(container2D, objectToPlace, skyline);
-				if (leftShiftedPosition != null)
-				{
-					currentFitValue = GetBelowUnavaibleArea(leftShiftedPosition, container2D);
-
-					if (currentFitValue < bestFitValueInContainer)
-					{
-						bestFitValueInContainer = currentFitValue;
-						bestFitPosition = leftShiftedPosition;
-					}
-				}
-			}
-
-			if (bestFitValueInContainer < globallyBestFit)
-			{
-				bestGlobalFitPosition = bestFitPosition;
-				return bestFitValueInContainer;
-			}
-			else
-				return globallyBestFit;
-		}
-
-		private double GetBelowUnavaibleArea(Position2D leftShiftedPosition, SkylineContainer2D container2D)
-		{
-			throw new NotImplementedException();
-		}
 	}
 }

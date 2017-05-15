@@ -38,7 +38,8 @@ namespace TestConsole
 			//	Console.WriteLine("Object w = {0}, h = {1}", (element as Object2D).Width, (element as Object2D).Height);
 			//}
 
-			generator.SaveObjectSet(testSet, "C:\\Users\\bbuchala\\Documents\\Git Repos\\PackingProblem\\BinPackingProblem\\Data\\test2d.set");
+			//generator.SaveObjectSet(testSet, "C:\\Users\\bbuchala\\Documents\\Git Repos\\PackingProblem\\BinPackingProblem\\Data\\test2d.set");
+			generator.SaveObjectSet(testSet, "E:\\test2d.set");
 
 
 			//testSet = generator.Generate3DObjectSet(new ObjectSetProperties3D()
@@ -69,7 +70,7 @@ namespace TestConsole
 
 
 
-			ObjectSet objectSet2d = generator.LoadObjectSet("C:\\Users\\bbuchala\\Documents\\Git Repos\\PackingProblem\\BinPackingProblem\\Data\\test2d.set");
+			ObjectSet objectSet2d = generator.LoadObjectSet("E:\\test2d.set");
 
 			//var objectSet3d = generator.LoadObjectSet("E:\\test3d.set");
 
@@ -178,13 +179,25 @@ namespace TestConsole
 			{
 				Dimensionality = Logic.Algorithms.Enums.AlgorithmDimensionality.TwoDimensional,
 				Family = Logic.Algorithms.Enums.AlgorithmFamily.Skyline,
-				AlgorithmType = Logic.Algorithms.Enums.ObjectFittingStrategy.BestFit,
+				AlgorithmType = Logic.Algorithms.Enums.ObjectFittingStrategy.BestFitBestContainer,
 				SplittingStrategy = Logic.Algorithms.Enums.ContainerSplittingStrategy.None
 			}, new ShelfContainer2D(40, 50));
 
 			algo.Execute(objectSet2d);
 
 			var results9 = algo.CreateResults();
+
+			algo = factory.Create(new AlgorithmProperties()
+			{
+				Dimensionality = Logic.Algorithms.Enums.AlgorithmDimensionality.TwoDimensional,
+				Family = Logic.Algorithms.Enums.AlgorithmFamily.Skyline,
+				AlgorithmType = Logic.Algorithms.Enums.ObjectFittingStrategy.BestFitFirstContainer,
+				SplittingStrategy = Logic.Algorithms.Enums.ContainerSplittingStrategy.None
+			}, new ShelfContainer2D(40, 50));
+
+			algo.Execute(objectSet2d);
+
+			var results10 = algo.CreateResults();
 
 		}
     }

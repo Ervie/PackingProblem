@@ -52,8 +52,10 @@ namespace Logic.Algorithms
 		{
 			switch (fittingStrategy)
 			{
-				case (ObjectFittingStrategy.BestFit):
-					return new BestFitSkyline2DAlgorithm(initialContainer);
+				case (ObjectFittingStrategy.BestFitFirstContainer):
+					return new BestFitFirstContainerSkyline2DAlgorithm(initialContainer);
+				case (ObjectFittingStrategy.BestFitBestContainer):
+					return new BestFitBestContainerSkyline2DAlgorithm(initialContainer);
 				case (ObjectFittingStrategy.BottomLeft):
 					return new BottomLeftSkyline2DAlgorithm(initialContainer);
 				default:
