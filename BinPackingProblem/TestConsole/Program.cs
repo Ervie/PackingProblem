@@ -38,7 +38,7 @@ namespace TestConsole
 			//	Console.WriteLine("Object w = {0}, h = {1}", (element as Object2D).Width, (element as Object2D).Height);
 			//}
 
-			generator.SaveObjectSet(testSet, "E:\\est2d.set");
+			generator.SaveObjectSet(testSet, "C:\\Users\\bbuchala\\Documents\\Git Repos\\PackingProblem\\BinPackingProblem\\Data\\test2d.set");
 
 
 			//testSet = generator.Generate3DObjectSet(new ObjectSetProperties3D()
@@ -69,7 +69,7 @@ namespace TestConsole
 
 
 
-			ObjectSet objectSet2d = generator.LoadObjectSet("E:\\est2d.set");
+			ObjectSet objectSet2d = generator.LoadObjectSet("C:\\Users\\bbuchala\\Documents\\Git Repos\\PackingProblem\\BinPackingProblem\\Data\\test2d.set");
 
 			//var objectSet3d = generator.LoadObjectSet("E:\\test3d.set");
 

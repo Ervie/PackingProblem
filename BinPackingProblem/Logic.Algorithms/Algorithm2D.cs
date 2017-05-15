@@ -60,5 +60,35 @@ namespace Logic.Algorithms
 
 			return results;
 		}
+
+		/// <summary>
+		/// Help method for checking if placed object overlaps.
+		/// </summary>
+		public bool DoesPlacedObjectsOverlap()
+		{
+			foreach (var container in containers)
+			{
+				foreach (var object1 in container.PlacedObjects)
+				{
+					foreach (var object2 in container.PlacedObjects)
+					{
+						if (object1 != object2)
+						{
+							PlacedObject2D placedObject1 = object1 as PlacedObject2D;
+							PlacedObject2D placedObject2 = object2 as PlacedObject2D;
+
+							if (placedObject1.Position.X < placedObject2.Position.X + placedObject2.Width &&
+								placedObject1.Position.X + placedObject1.Width > placedObject2.Position.X &&
+								placedObject1.Position.Y > placedObject2.Position.Y + placedObject2.Height &&
+								placedObject1.Position.Y + placedObject1.Height < placedObject2.Position.Y)
+								return true;
+						}
+					}
+				}
+			}
+
+			return false;
+		}
+		
 	}
 }

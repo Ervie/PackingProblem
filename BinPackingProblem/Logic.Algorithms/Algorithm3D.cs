@@ -43,5 +43,10 @@ namespace Logic.Algorithms
 
 			return results;
 		}
+
+		public bool DoesPlacedObjectsOverlap()
+		{
+			throw new NotImplementedException();
+		}
 	}
 }

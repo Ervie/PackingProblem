@@ -8,5 +8,7 @@ namespace Logic.Algorithms
 		void Execute(ObjectSet originalObjects);
 
 		AlgorithmExecutionResults CreateResults();
+
+		bool DoesPlacedObjectsOverlap();
 	}
 }
