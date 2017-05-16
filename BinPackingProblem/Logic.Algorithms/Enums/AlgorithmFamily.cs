@@ -11,7 +11,6 @@ namespace Logic.Algorithms.Enums
 		None,
         Shelf,
         GuillotineCut,
-        MaximalRectangles,
         Skyline
 	}
 }

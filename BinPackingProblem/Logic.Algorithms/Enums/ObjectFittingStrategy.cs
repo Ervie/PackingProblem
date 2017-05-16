@@ -16,13 +16,16 @@ namespace Logic.Algorithms.Enums
 		BestHeightFit,
 		BestAreaFit,
 		WorstAreaFit,
+		// Guillotine cut
 		BestShortSideFit,
 		WorstShortSideFit,
 		BestLongSideFit,
 		WorstLongSideFit,
+		// Skyline
 		BottomLeft,
 		BestFitFirstContainer,
 		BestFitBestContainer,
+		// ? Probably to delete
 		FloorCeiling
 	}
 }

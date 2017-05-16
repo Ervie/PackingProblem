@@ -38,6 +38,8 @@ namespace Logic.Algorithms
 					return Create2DShelfAlgorithm(properties.AlgorithmType, initialContainer);
 				case (AlgorithmFamily.Skyline):
 					return Create2DSkylineAlgorithm(properties.AlgorithmType, initialContainer);
+				case (AlgorithmFamily.GuillotineCut):
+					return Create2DGuillotineAlgorithm(properties.AlgorithmType, properties.SplittingStrategy, initialContainer);
 				default:
 					throw new NotSuchAlgorithmException();
 			}
@@ -85,5 +87,11 @@ namespace Logic.Algorithms
 					throw new NotSuchAlgorithmException();
 			}
 		}
+
+		private IAlgorithm Create2DGuillotineAlgorithm(ObjectFittingStrategy algorithmType, ContainerSplittingStrategy splittingStrategy, Container2D initialContainer)
+		{
+			throw new NotImplementedException();
+		}
+
 	}
 }

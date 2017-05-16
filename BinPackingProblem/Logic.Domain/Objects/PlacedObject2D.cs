@@ -40,6 +40,16 @@ namespace Logic.Domain.Objects
 			Position = position;
 		}
 
+		public PlacedObject2D(int x, int y, Object2D theObject): base(theObject.Width, theObject.Height)
+		{
+			Position = new Position2D(x, y);
+		}
+
+		public PlacedObject2D(Position2D position, Object2D theObject) : base(theObject.Width, theObject.Height)
+		{
+			Position = position;
+		}
+
 		public Position2D Position { get; protected set; }
 
 		public IPosition GetPostion()

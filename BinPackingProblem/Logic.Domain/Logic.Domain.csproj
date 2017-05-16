@@ -41,6 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Containers\2D\Container2D.cs" />
+    <Compile Include="Containers\2D\Guillotine\GuillotineCutContainer2D.cs" />
+    <Compile Include="Containers\2D\Guillotine\GuillotineCutSubcontainer2D.cs" />
     <Compile Include="Containers\2D\Shelf\ShelfContainer2D.cs" />
     <Compile Include="Containers\2D\Shelf\ShelfSubContainer2D.cs" />
     <Compile Include="Containers\2D\Skyline\SkylineContainer2D.cs" />

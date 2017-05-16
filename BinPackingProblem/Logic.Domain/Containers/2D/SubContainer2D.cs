@@ -16,5 +16,12 @@ namespace Logic.Domain.Containers._2D
 
 		public PlacedObjects PlacedObjects { get; set; }
 
+		public virtual void PlaceObject(Object2D theObject, Position2D position)
+		{
+			var placedObject = new PlacedObject2D(position, theObject);
+
+			PlacedObjects.Add(placedObject);
+		}
+
 	}
 }
