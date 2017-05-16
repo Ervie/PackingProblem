@@ -14,6 +14,11 @@ namespace Logic.Domain.Containers._2D
 			PlacedObjects = new PlacedObjects();
 		}
 
+		protected SubContainer2D(Position2D position, int width, int height) : base(position, width, height)
+		{
+			PlacedObjects = new PlacedObjects();
+		}
+
 		public PlacedObjects PlacedObjects { get; set; }
 
 		public virtual void PlaceObject(Object2D theObject, Position2D position)

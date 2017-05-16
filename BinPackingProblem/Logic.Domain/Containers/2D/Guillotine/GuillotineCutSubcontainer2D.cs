@@ -15,6 +15,10 @@ namespace Logic.Domain.Containers._2D.Guillotine
 		{
 		}
 
+		public GuillotineCutSubcontainer2D(Position2D position, int width, int height) : base(position, width, height)
+		{
+		}
+
 		public override void PlaceObject(Object2D theObject, Position2D position)
 		{
 			base.PlaceObject(theObject, position);
