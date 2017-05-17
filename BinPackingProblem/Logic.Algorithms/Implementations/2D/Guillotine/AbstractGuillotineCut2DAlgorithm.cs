@@ -8,22 +8,27 @@ using Logic.Domain.Objects;
 using Logic.Domain;
 using Logic.Domain.Containers._2D.Guillotine;
 using Logic.Utilities.Extensions;
+using Logic.Algorithms.ObjectFittingStrategies;
+using Logic.Algorithms.ObjectFittingStrategies._2D;
+using Logic.Algorithms.Enums;
 
 namespace Logic.Algorithms.Implementations._2D.Guillotine
 {
 	public abstract class AbstractGuillotineCut2DAlgorithm : Algorithm2D
 	{
-		public AbstractGuillotineCut2DAlgorithm(Container2D initialContainer) : base(initialContainer)
+		private Container2D initialContainer;
+
+		public AbstractGuillotineCut2DAlgorithm(Container2D initialContainer, AbstractFittingStrategy2D strategy) : base(initialContainer)
 		{
+			FittingStrategy = strategy;
 		}
 
-		public override void AddContainer()
-		{
-			throw new NotImplementedException();
-		}
+		public AbstractFittingStrategy2D FittingStrategy { get; set; }
 
 		public override void Execute(ObjectSet originalObjects)
 		{
+			double bestFittingQuality = Double.MaxValue;
+			double localFittingQuality;
 			PlacedObject2D newPlacedObject;
 			Position2D positionToPlace = null;
 
@@ -39,41 +44,39 @@ namespace Logic.Algorithms.Implementations._2D.Guillotine
 
 				// TODO: Outline of Guillotine Cut algorithm
 
-				//for (int i = 0; positionToPlace == null; i++)
-				//{
-				//	selectedContainer = containers[i] as ShelfContainer2D;
+				foreach (GuillotineCutContainer2D container in containers)
+				{
+					foreach (GuillotineCutSubcontainer2D subcontainer in container.Subcontainers)
+					{
+						if (FittingStrategy.ValidateObjectPlacement(selectedObject, subcontainer))
+						{
+							localFittingQuality = FittingStrategy.CalculateFittingQuality(selectedObject, subcontainer);
+							if (localFittingQuality < bestFittingQuality)
+							{
+								bestFittingQuality = localFittingQuality;
+								selectedContainer = container;
+								selectedSubcontainer = subcontainer;
+								positionToPlace = subcontainer.Position;
+							}
+						}
+					}
+				}
+				if (positionToPlace == null)
+				{
+					AddContainer();
 
-				//	for (int j = 0; positionToPlace == null; j++)
-				//	{
+					selectedContainer = containers.Last() as GuillotineCutContainer2D;
+					selectedSubcontainer = selectedContainer.Subcontainers.Last() as GuillotineCutSubcontainer2D;
+					positionToPlace = selectedSubcontainer.Position;
+				}
 
-				//		selectedShelf = selectedContainer.Subcontainers[j] as ShelfSubContainer2D;
-
-				//		if (selectedObject.Width + selectedShelf.LastPlacedObject.X2 <= selectedContainer.Width &&
-				//			((j == selectedContainer.Subcontainers.Count - 1 && selectedObject.Height + selectedShelf.Y <= selectedContainer.Height) ||
-				//			j != selectedContainer.Subcontainers.Count - 1 && selectedObject.Height < selectedShelf.Height))
-				//		{
-				//			positionToPlace = new Position2D(selectedShelf.LastPlacedObject.X2, selectedShelf.Y);
-				//		}
-				//		else if (selectedObject.Height + selectedShelf.Y > selectedContainer.Height && i == containers.Count - 1 && j == selectedContainer.Subcontainers.Count - 1)
-				//		{
-				//			AddContainer();
-				//			(containers.Last() as ShelfContainer2D).AddShelf();
-				//			break;
-				//		}
-				//		else if (selectedObject.Height + selectedShelf.Y > selectedContainer.Height && j == selectedContainer.Subcontainers.Count - 1)
-				//			break;
-				//		else if (selectedObject.Width + selectedShelf.LastPlacedObject.X2 > selectedContainer.Width && j == selectedContainer.Subcontainers.Count - 1)
-				//			selectedContainer.AddShelf();
-
-				//	}
-				//}
 
 				objectsCopy.Remove(selectedObject);
 				newPlacedObject = selectedContainer.PlaceObject(selectedObject, positionToPlace) as PlacedObject2D;
 				selectedContainer.SplitSubcontainer(selectedSubcontainer, newPlacedObject); 
 				positionToPlace = null;
+				bestFittingQuality = Double.MaxValue;
 			}
 		}
-
 	}
 }

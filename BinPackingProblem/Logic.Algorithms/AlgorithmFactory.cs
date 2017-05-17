@@ -11,11 +11,21 @@ using Logic.Domain.Figures;
 using Logic.Domain.Containers._2D;
 using Logic.Domain.Containers._3D;
 using Logic.Algorithms.Implementations._2D.Skyline;
+using Logic.Algorithms.Implementations._2D.Guillotine;
+using Logic.Algorithms.ObjectFittingStrategies;
+using Logic.Algorithms.ObjectFittingStrategies._2D;
 
 namespace Logic.Algorithms
 {
 	public class AlgorithmFactory : IAlgorithmFactory
 	{
+		public IObjectFittingStrategyFactory objectFittingStrategyFactory { get; set; }
+
+		public AlgorithmFactory()
+		{
+			objectFittingStrategyFactory = new ObjectFittingStrategyFactory();
+		}
+
 		public IAlgorithm Create(AlgorithmProperties properties, IFigure size)
 		{
 			switch(properties.Dimensionality)
@@ -90,7 +100,16 @@ namespace Logic.Algorithms
 
 		private IAlgorithm Create2DGuillotineAlgorithm(ObjectFittingStrategy fittingStrategy, ContainerSplittingStrategy splittingStrategy, Container2D initialContainer)
 		{
-			throw new NotImplementedException();
+			var strategyInstance = objectFittingStrategyFactory.Create(fittingStrategy) as AbstractFittingStrategy2D;
+
+			switch (splittingStrategy)
+			{
+				case (ContainerSplittingStrategy.MinAreaSplitRule):
+					return new MinAreaGuillotineCut2DAlgorithm(initialContainer, strategyInstance);
+
+				default:
+					throw new NotSuchAlgorithmException();
+			}
 		}
 
 	}

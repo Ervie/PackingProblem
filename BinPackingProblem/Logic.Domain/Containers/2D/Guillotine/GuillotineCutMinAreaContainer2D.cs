@@ -13,7 +13,7 @@ namespace Logic.Domain.Containers._2D.Guillotine
 		{
 		}
 
-		protected override void SplitSubcontainer(GuillotineCutSubcontainer2D subcontainer, PlacedObject2D placedObject)
+		public override void SplitSubcontainer(GuillotineCutSubcontainer2D subcontainer, PlacedObject2D placedObject)
 		{
 			var availableAreaAboveObject = (subcontainer.Height - placedObject.Height) * placedObject.Width;
 			var availableAreaOnTheRightOfObject = placedObject.Height * (subcontainer.Width - placedObject.Width);

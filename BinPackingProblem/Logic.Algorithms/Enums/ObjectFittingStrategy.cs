@@ -14,6 +14,7 @@ namespace Logic.Algorithms.Enums
 		BestWidthFit,
 		WorstWidthFit,
 		BestHeightFit,
+		// Shelf & Guillotine cut
 		BestAreaFit,
 		WorstAreaFit,
 		// Guillotine cut

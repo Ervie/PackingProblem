@@ -1,7 +1,9 @@
 ﻿using Logic.Algorithms;
 using Logic.Algorithms.Structs;
 using Logic.Domain.Containers._2D;
+using Logic.Domain.Containers._2D.Guillotine;
 using Logic.Domain.Containers._2D.Shelf;
+using Logic.Domain.Containers._2D.Skyline;
 using Logic.Domain.Objects;
 using Logic.ObjectGenerator;
 using Logic.Utilities.Extensions;
@@ -169,7 +171,7 @@ namespace TestConsole
 				Family = Logic.Algorithms.Enums.AlgorithmFamily.Skyline,
 				AlgorithmType = Logic.Algorithms.Enums.ObjectFittingStrategy.BottomLeft,
 				SplittingStrategy = Logic.Algorithms.Enums.ContainerSplittingStrategy.None
-			}, new ShelfContainer2D(40, 50));
+			}, new SkylineContainer2D(40, 50));
 
 			algo.Execute(objectSet2d);
 
@@ -181,7 +183,7 @@ namespace TestConsole
 				Family = Logic.Algorithms.Enums.AlgorithmFamily.Skyline,
 				AlgorithmType = Logic.Algorithms.Enums.ObjectFittingStrategy.BestFitBestContainer,
 				SplittingStrategy = Logic.Algorithms.Enums.ContainerSplittingStrategy.None
-			}, new ShelfContainer2D(40, 50));
+			}, new SkylineContainer2D(40, 50));
 
 			algo.Execute(objectSet2d);
 
@@ -193,11 +195,23 @@ namespace TestConsole
 				Family = Logic.Algorithms.Enums.AlgorithmFamily.Skyline,
 				AlgorithmType = Logic.Algorithms.Enums.ObjectFittingStrategy.BestFitFirstContainer,
 				SplittingStrategy = Logic.Algorithms.Enums.ContainerSplittingStrategy.None
-			}, new ShelfContainer2D(40, 50));
+			}, new SkylineContainer2D(40, 50));
 
 			algo.Execute(objectSet2d);
 
 			var results10 = algo.CreateResults();
+
+			algo = factory.Create(new AlgorithmProperties()
+			{
+				Dimensionality = Logic.Algorithms.Enums.AlgorithmDimensionality.TwoDimensional,
+				Family = Logic.Algorithms.Enums.AlgorithmFamily.GuillotineCut,
+				AlgorithmType = Logic.Algorithms.Enums.ObjectFittingStrategy.BestAreaFit,
+				SplittingStrategy = Logic.Algorithms.Enums.ContainerSplittingStrategy.MinAreaSplitRule
+			}, new GuillotineCutMinAreaContainer2D(40, 50));
+
+			algo.Execute(objectSet2d);
+
+			var results11 = algo.CreateResults();
 
 		}
     }

@@ -12,6 +12,8 @@ namespace Logic.Domain.Containers._2D.Guillotine
 	{
 		public GuillotineCutContainer2D(int width, int height) : base(width, height)
 		{
+			Subcontainers = new List<SubContainer2D>();
+
 			// At beginning new container is single subcontainer filling all space
 			CreateSubcontainer(new Position2D(0, 0), new Rectangle(Width, Height));
 		}
@@ -35,10 +37,14 @@ namespace Logic.Domain.Containers._2D.Guillotine
 
 			var rightSubcontainerPosition = new Position2D(placedObject.X2, subcontainer.Y);
 			var rightSubcontainerSize = new Rectangle(subcontainer.Width - placedObject.Width, subcontainer.Height);
-			var rightSubcontainer = new GuillotineCutSubcontainer2D(rightSubcontainerPosition, rightSubcontainerSize.Width, topSubcontainerSize.Height);
+			var rightSubcontainer = new GuillotineCutSubcontainer2D(rightSubcontainerPosition, rightSubcontainerSize.Width, rightSubcontainerSize.Height);
 
-			Subcontainers.Add(topSubcontainer);
-			Subcontainers.Add(rightSubcontainer);
+			// No need to add one dimensional container
+			if (topSubcontainer.Width == 0 || topSubcontainer.Height == 0)
+				Subcontainers.Add(topSubcontainer);
+
+			if (rightSubcontainer.Width == 0 || rightSubcontainer.Height == 0)
+				Subcontainers.Add(rightSubcontainer);
 
 			Subcontainers.Remove(subcontainer);
 		}
@@ -51,10 +57,14 @@ namespace Logic.Domain.Containers._2D.Guillotine
 
 			var rightSubcontainerPosition = new Position2D(placedObject.X2, subcontainer.Y);
 			var rightSubcontainerSize = new Rectangle(subcontainer.Width - placedObject.Width, placedObject.Height);
-			var rightSubcontainer = new GuillotineCutSubcontainer2D(topSubcontainerPosition, topSubcontainerSize.Width, topSubcontainerSize.Height);
+			var rightSubcontainer = new GuillotineCutSubcontainer2D(rightSubcontainerPosition, rightSubcontainerSize.Width, rightSubcontainerSize.Height);
 
-			Subcontainers.Add(topSubcontainer);
-			Subcontainers.Add(rightSubcontainer);
+			// No need to add one dimensional container
+			if (topSubcontainer.Width == 0 || topSubcontainer.Height == 0)
+				Subcontainers.Add(topSubcontainer);
+
+			if (rightSubcontainer.Width == 0 || rightSubcontainer.Height == 0)
+				Subcontainers.Add(rightSubcontainer);
 
 			Subcontainers.Remove(subcontainer);
 		}
