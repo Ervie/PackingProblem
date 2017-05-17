@@ -50,6 +50,8 @@
     <Compile Include="IAlgorithm.cs" />
     <Compile Include="IAlgorithmFactory.cs" />
     <Compile Include="Exceptions\NotSuchAlgorithmException.cs" />
+    <Compile Include="Implementations\2D\Guillotine\AbstractGuillotineCut2DAlgorithm.cs" />
+    <Compile Include="Implementations\2D\Guillotine\MinAreaGuillotineCut2DAlgorithm.cs" />
     <Compile Include="Implementations\2D\Shelf\AbstractBestFitShelf2DAlgorithm.cs" />
     <Compile Include="Implementations\2D\Shelf\AbstractShelf2DAlgorithm.cs" />
     <Compile Include="Implementations\2D\Shelf\BestFitAreaShelf2DAlgorithm.cs" />
@@ -78,9 +80,7 @@
       <Name>Logic.Utilities</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Implementations\2D\Guillotine\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

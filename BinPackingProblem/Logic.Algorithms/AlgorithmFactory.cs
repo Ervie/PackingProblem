@@ -88,7 +88,7 @@ namespace Logic.Algorithms
 			}
 		}
 
-		private IAlgorithm Create2DGuillotineAlgorithm(ObjectFittingStrategy algorithmType, ContainerSplittingStrategy splittingStrategy, Container2D initialContainer)
+		private IAlgorithm Create2DGuillotineAlgorithm(ObjectFittingStrategy fittingStrategy, ContainerSplittingStrategy splittingStrategy, Container2D initialContainer)
 		{
 			throw new NotImplementedException();
 		}

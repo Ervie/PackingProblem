@@ -8,17 +8,23 @@ using System.Threading.Tasks;
 
 namespace Logic.Domain.Containers._2D.Guillotine
 {
-	abstract class GuillotineCutContainer2D : Container2D
+	public abstract class GuillotineCutContainer2D : Container2D
 	{
 		public GuillotineCutContainer2D(int width, int height) : base(width, height)
 		{
+			// At beginning new container is single subcontainer filling all space
+			CreateSubcontainer(new Position2D(0, 0), new Rectangle(Width, Height));
 		}
 
-		protected abstract void SplitSubcontainer(GuillotineCutSubcontainer2D subcontainer);
+		public abstract void SplitSubcontainer(GuillotineCutSubcontainer2D subcontainer, PlacedObject2D placedObject);
 
 		protected override SubContainer2D CreateSubcontainer(Position2D position, Rectangle size)
 		{
-			return new GuillotineCutSubcontainer2D(position.X, position.Y, size.Width, size.Height);
+			GuillotineCutSubcontainer2D newSubcontainer = new GuillotineCutSubcontainer2D(position.X, position.Y, size.Width, size.Height);
+
+			Subcontainers.Add(newSubcontainer);
+
+			return newSubcontainer;
 		}
 
 		protected void SplitSubcontainerVertically(GuillotineCutSubcontainer2D subcontainer, PlacedObject2D placedObject)
