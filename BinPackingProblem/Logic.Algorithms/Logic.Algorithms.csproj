@@ -68,6 +68,12 @@
     <Compile Include="Implementations\2D\Skyline\BottomLeftSkyline2DAlgorithm.cs" />
     <Compile Include="ObjectFittingStrategies\2D\AbstractFittingStrategy2D.cs" />
     <Compile Include="ObjectFittingStrategies\2D\BestAreaObjectFittingStrategy2D.cs" />
+    <Compile Include="ObjectFittingStrategies\2D\BestLongSideObjectFittingStrategy2D.cs" />
+    <Compile Include="ObjectFittingStrategies\2D\BestShortSideObjectFittingStrategy2D.cs" />
+    <Compile Include="ObjectFittingStrategies\2D\BottomLeftObjectFittingStrategy2D.cs" />
+    <Compile Include="ObjectFittingStrategies\2D\WorstAreaObjectFittingStrategy2D.cs" />
+    <Compile Include="ObjectFittingStrategies\2D\WorstLongSideObjectFittingStrategy2D.cs" />
+    <Compile Include="ObjectFittingStrategies\2D\WorstShortSideObjectFittingStrategy2D.cs" />
     <Compile Include="ObjectFittingStrategies\IObjectFittingStrategy.cs" />
     <Compile Include="ObjectFittingStrategies\IObjectFittingStrategyFactory.cs" />
     <Compile Include="ObjectFittingStrategies\ObjectFittingStrategyFactory.cs" />
