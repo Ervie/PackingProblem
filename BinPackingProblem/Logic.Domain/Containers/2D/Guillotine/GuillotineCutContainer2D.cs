@@ -40,10 +40,10 @@ namespace Logic.Domain.Containers._2D.Guillotine
 			var rightSubcontainer = new GuillotineCutSubcontainer2D(rightSubcontainerPosition, rightSubcontainerSize.Width, rightSubcontainerSize.Height);
 
 			// No need to add one dimensional container
-			if (topSubcontainer.Width == 0 || topSubcontainer.Height == 0)
+			if (topSubcontainer.Width != 0 && topSubcontainer.Height != 0)
 				Subcontainers.Add(topSubcontainer);
 
-			if (rightSubcontainer.Width == 0 || rightSubcontainer.Height == 0)
+			if (rightSubcontainer.Width != 0 && rightSubcontainer.Height != 0)
 				Subcontainers.Add(rightSubcontainer);
 
 			Subcontainers.Remove(subcontainer);
@@ -60,10 +60,10 @@ namespace Logic.Domain.Containers._2D.Guillotine
 			var rightSubcontainer = new GuillotineCutSubcontainer2D(rightSubcontainerPosition, rightSubcontainerSize.Width, rightSubcontainerSize.Height);
 
 			// No need to add one dimensional container
-			if (topSubcontainer.Width == 0 || topSubcontainer.Height == 0)
+			if (topSubcontainer.Width != 0 && topSubcontainer.Height != 0)
 				Subcontainers.Add(topSubcontainer);
 
-			if (rightSubcontainer.Width == 0 || rightSubcontainer.Height == 0)
+			if (rightSubcontainer.Width != 0 && rightSubcontainer.Height != 0)
 				Subcontainers.Add(rightSubcontainer);
 
 			Subcontainers.Remove(subcontainer);
