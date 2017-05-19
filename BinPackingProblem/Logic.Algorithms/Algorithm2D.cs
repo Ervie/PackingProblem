@@ -1,12 +1,9 @@
-﻿using System;
+﻿using Logic.Algorithms.Structs;
+using Logic.Domain.Containers._2D;
+using Logic.Domain.Objects;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Logic.Domain.Objects;
-using Logic.Algorithms.Structs;
-using Logic.Domain.Containers._2D;
-using Logic.Domain.Figures;
 
 namespace Logic.Algorithms
 {
@@ -57,7 +54,6 @@ namespace Logic.Algorithms
 				Quality = (double)containerArea / objectsTotalArea,
 			};
 
-
 			return results;
 		}
 
@@ -89,6 +85,5 @@ namespace Logic.Algorithms
 
 			return false;
 		}
-		
 	}
 }

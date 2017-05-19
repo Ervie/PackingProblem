@@ -1,14 +1,16 @@
-﻿using Logic.Algorithms.Enums;
+﻿using System;
+using Logic.Algorithms.Enums;
 using Logic.Algorithms.Exceptions;
 using Logic.Algorithms.ObjectFittingStrategies._2D;
 using Logic.Domain.Containers._2D;
+using Logic.Domain.Containers._3D;
 using Logic.Domain.Objects;
 
 namespace Logic.Algorithms.ObjectFittingStrategies
 {
 	public class ObjectFittingStrategyFactory : IObjectFittingStrategyFactory
 	{
-		public IObjectFittingStrategy<Object2D, SubContainer2D> Create(ObjectFittingStrategy objectFittingStrategy)
+		public IObjectFittingStrategy<Object2D, SubContainer2D> Create2D(ObjectFittingStrategy objectFittingStrategy)
 		{
 			switch (objectFittingStrategy)
 			{
@@ -36,6 +38,11 @@ namespace Logic.Algorithms.ObjectFittingStrategies
 				default:
 					throw new NotSuchAlgorithmException();
 			}
+		}
+
+		public IObjectFittingStrategy<Object3D, SubContainer3D> Create3D(ObjectFittingStrategy objectFittingStrategy)
+		{
+			throw new NotImplementedException();
 		}
 	}
 }

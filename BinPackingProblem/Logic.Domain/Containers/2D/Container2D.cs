@@ -8,12 +8,6 @@ namespace Logic.Domain.Containers._2D
 {
 	public abstract class Container2D : Rectangle, IContainer<Object2D, Position2D>
 	{
-		//public PlacedObjects PlacedObjects
-		//{
-		//	get { return GetAllPlacedObjects(); }
-		//	set { }
-		//}
-
 		public PlacedObjects PlacedObjects { get; set; }
 
 		public bool IsClosed { get; set; }
@@ -41,22 +35,5 @@ namespace Logic.Domain.Containers._2D
 		{
 			return (double)PlacedObjects.Sum(o => (o as Object2D).Width * (o as Object2D).Height)/Area;
 		}
-
-		//private PlacedObjects GetAllPlacedObjects()
-		//{
-		//	var placedObjects = new PlacedObjects();
-
-		//	if (Subcontainers == null)
-		//	{
-		//		return placedObjects;
-		//	}
-
-		//	foreach (var subcontainer in Subcontainers)
-		//	{
-		//		placedObjects.AddRange(subcontainer.PlacedObjects);
-		//	}
-
-		//	return placedObjects;
-		//}
 	}
 }

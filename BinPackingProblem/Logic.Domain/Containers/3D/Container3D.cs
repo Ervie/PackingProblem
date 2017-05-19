@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace Logic.Domain.Containers._3D
 {
-	public class Container3D : Cuboid, IContainer<Object3D, Position2D>
+	public class Container3D : Cuboid, IContainer<Object3D, Position3D>
 	{
 		public PlacedObjects PlacedObjects { get; set; }
 
@@ -17,9 +17,13 @@ namespace Logic.Domain.Containers._3D
 			IsClosed = false;
 		}
 
-		public IPlacedObject PlaceObject(Object3D objectToPlace, Position2D position)
+		public IPlacedObject PlaceObject(Object3D objectToPlace, Position3D position)
 		{
-			throw new NotImplementedException();
+			PlacedObject3D newObject = new PlacedObject3D(position, objectToPlace.Width, objectToPlace.Height, objectToPlace.Depth);
+
+			PlacedObjects.Add(newObject);
+
+			return newObject;
 		}
 
 		public double GetFulfilment()

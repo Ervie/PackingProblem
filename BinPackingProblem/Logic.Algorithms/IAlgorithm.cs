@@ -10,5 +10,7 @@ namespace Logic.Algorithms
 		AlgorithmExecutionResults CreateResults();
 
 		bool DoesPlacedObjectsOverlap();
+
+		void AddContainer();
 	}
 }

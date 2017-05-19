@@ -100,7 +100,7 @@ namespace Logic.Algorithms
 
 		private IAlgorithm Create2DGuillotineAlgorithm(ObjectFittingStrategy fittingStrategy, ContainerSplittingStrategy splittingStrategy, Container2D initialContainer)
 		{
-			var strategyInstance = objectFittingStrategyFactory.Create(fittingStrategy) as AbstractFittingStrategy2D;
+			var strategyInstance = objectFittingStrategyFactory.Create2D(fittingStrategy) as AbstractFittingStrategy2D;
 
 			switch (splittingStrategy)
 			{
