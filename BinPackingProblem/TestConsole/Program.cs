@@ -213,6 +213,18 @@ namespace TestConsole
 
 			var results11 = algo.CreateResults();
 
+			algo = factory.Create(new AlgorithmProperties()
+			{
+				Dimensionality = Logic.Algorithms.Enums.AlgorithmDimensionality.TwoDimensional,
+				Family = Logic.Algorithms.Enums.AlgorithmFamily.GuillotineCut,
+				AlgorithmType = Logic.Algorithms.Enums.ObjectFittingStrategy.BestAreaFit,
+				SplittingStrategy = Logic.Algorithms.Enums.ContainerSplittingStrategy.ShorterAxisSplitRule
+			}, new GuillotineCutMinAreaContainer2D(40, 50));
+
+			algo.Execute(objectSet2d);
+
+			var results12 = algo.CreateResults();
+
 		}
     }
 }

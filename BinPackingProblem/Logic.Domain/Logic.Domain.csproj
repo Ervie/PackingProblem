@@ -42,8 +42,13 @@
   <ItemGroup>
     <Compile Include="Containers\2D\Container2D.cs" />
     <Compile Include="Containers\2D\Guillotine\GuillotineCutContainer2D.cs" />
+    <Compile Include="Containers\2D\Guillotine\GuillotineCutLongerAxisContainer2D.cs" />
+    <Compile Include="Containers\2D\Guillotine\GuillotineCutLongerLeftoverAxisContainer2D.cs" />
+    <Compile Include="Containers\2D\Guillotine\GuillotineCutMaxAreaContainer2D.cs" />
     <Compile Include="Containers\2D\Guillotine\GuillotineCutMinAreaContainer2D.cs" />
+    <Compile Include="Containers\2D\Guillotine\GuillotineCutShorterAxisContainer2D.cs" />
     <Compile Include="Containers\2D\Guillotine\GuillotineCutSubcontainer2D.cs" />
+    <Compile Include="Containers\2D\Guillotine\GuillotineCutShorterLeftoverAxisContainer2D.cs" />
     <Compile Include="Containers\2D\Shelf\ShelfContainer2D.cs" />
     <Compile Include="Containers\2D\Shelf\ShelfSubContainer2D.cs" />
     <Compile Include="Containers\2D\Skyline\SkylineContainer2D.cs" />

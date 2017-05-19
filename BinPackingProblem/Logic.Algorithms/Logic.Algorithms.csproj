@@ -51,7 +51,12 @@
     <Compile Include="IAlgorithmFactory.cs" />
     <Compile Include="Exceptions\NotSuchAlgorithmException.cs" />
     <Compile Include="Implementations\2D\Guillotine\AbstractGuillotineCut2DAlgorithm.cs" />
+    <Compile Include="Implementations\2D\Guillotine\LongerAxisGuillotineCut2DAlgorithm.cs" />
+    <Compile Include="Implementations\2D\Guillotine\LongerLeftoverAxisGullotineCut2DAlgorithm.cs" />
+    <Compile Include="Implementations\2D\Guillotine\MaxAreaGuillotineCut2DAlgorithm.cs" />
     <Compile Include="Implementations\2D\Guillotine\MinAreaGuillotineCut2DAlgorithm.cs" />
+    <Compile Include="Implementations\2D\Guillotine\ShorterAxisGuillotineCut2DAlgorithm.cs" />
+    <Compile Include="Implementations\2D\Guillotine\ShorterLeftoverAxisGuillotineCut2DAlgorithm.cs" />
     <Compile Include="Implementations\2D\Shelf\AbstractBestFitShelf2DAlgorithm.cs" />
     <Compile Include="Implementations\2D\Shelf\AbstractShelf2DAlgorithm.cs" />
     <Compile Include="Implementations\2D\Shelf\BestFitAreaShelf2DAlgorithm.cs" />

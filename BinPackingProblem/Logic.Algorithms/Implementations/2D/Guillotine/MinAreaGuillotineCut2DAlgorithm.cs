@@ -1,14 +1,8 @@
-﻿using System;
+﻿using Logic.Algorithms.ObjectFittingStrategies._2D;
+using Logic.Domain.Containers._2D;
+using Logic.Domain.Containers._2D.Guillotine;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Logic.Domain.Containers._2D;
-using Logic.Domain.Objects;
-using Logic.Domain.Containers._2D.Guillotine;
-using Logic.Domain;
-using Logic.Algorithms.Enums;
-using Logic.Algorithms.ObjectFittingStrategies._2D;
 
 namespace Logic.Algorithms.Implementations._2D.Guillotine
 {

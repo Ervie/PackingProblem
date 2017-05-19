@@ -106,6 +106,16 @@ namespace Logic.Algorithms
 			{
 				case (ContainerSplittingStrategy.MinAreaSplitRule):
 					return new MinAreaGuillotineCut2DAlgorithm(initialContainer, strategyInstance);
+				case (ContainerSplittingStrategy.MaxAreaSplitRule):
+					return new MaxAreaGuillotineCut2DAlgorithm(initialContainer, strategyInstance);
+				case (ContainerSplittingStrategy.LongerAxisSplitRule):
+					return new LongerAxisGuillotineCut2DAlgorithm(initialContainer, strategyInstance);
+				case (ContainerSplittingStrategy.LongerLeftoverAxisSplitRule):
+					return new LongerLeftoverAxisGullotineCut2DAlgorithm(initialContainer, strategyInstance);
+				case (ContainerSplittingStrategy.ShorterAxisSplitRule):
+					return new ShorterAxisGuillotineCut2DAlgorithm(initialContainer, strategyInstance);
+				case (ContainerSplittingStrategy.ShorterLeftoverAxisSplitRule):
+					return new ShorterLeftoverAxisGuillotineCut2DAlgorithm(initialContainer, strategyInstance);
 
 				default:
 					throw new NotSuchAlgorithmException();
