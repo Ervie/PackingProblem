@@ -16,17 +16,21 @@ namespace Logic.Algorithms.Structs
 		/// <summary>
 		/// Either area or volume of container
 		/// </summary>
-		public int ContainerFulfilment { get; set; }
+		public int ContainerFulfillment { get; set; }
 
 		/// <summary>
 		/// Either total area or volume of all placed objects
 		/// </summary>
-		public int ObjectsTotalFulfilment { get; set; }
+		public int ObjectsTotalFulfillment { get; set; }
 
-		public double AverageFulfilmentRatio { get; set; }
+		public double AverageFulfillmentRatio { get; set; }
 
-		public double FulfilmentRatioStandardDeviation { get; set; }
+		public double FulfillmentRatioStandardDeviation  { get; set; }
 		public double Quality { get; set; }
 		public TimeSpan ExecutionTime { get; set; }
+
+		public int ContainersUsed { get; set; }
+
+		public double WorstFulfillment { get; set; }
 	}
 }

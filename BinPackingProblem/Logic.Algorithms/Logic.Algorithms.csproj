@@ -79,6 +79,7 @@
     <Compile Include="ObjectFittingStrategies\2D\WorstAreaObjectFittingStrategy2D.cs" />
     <Compile Include="ObjectFittingStrategies\2D\WorstLongSideObjectFittingStrategy2D.cs" />
     <Compile Include="ObjectFittingStrategies\2D\WorstShortSideObjectFittingStrategy2D.cs" />
+    <Compile Include="ObjectFittingStrategies\3D\AbstractFittingStrategy3D.cs" />
     <Compile Include="ObjectFittingStrategies\IObjectFittingStrategy.cs" />
     <Compile Include="ObjectFittingStrategies\IObjectFittingStrategyFactory.cs" />
     <Compile Include="ObjectFittingStrategies\ObjectFittingStrategyFactory.cs" />
@@ -97,7 +98,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ObjectFittingStrategies\3D\" />
+    <Folder Include="Implementations\3D\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -54,6 +54,7 @@
     <Compile Include="Containers\2D\Skyline\SkylineContainer2D.cs" />
     <Compile Include="Containers\2D\SubContainer2D.cs" />
     <Compile Include="Containers\3D\Container3D.cs" />
+    <Compile Include="Containers\3D\SubContainer3D.cs" />
     <Compile Include="Containers\IContainer.cs" />
     <Compile Include="Figures\Line.cs" />
     <Compile Include="IPosition.cs" />

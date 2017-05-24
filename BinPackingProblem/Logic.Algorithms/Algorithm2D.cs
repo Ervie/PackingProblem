@@ -25,6 +25,7 @@ namespace Logic.Algorithms
 			double standardDeviation = 0.0;
 			var containerArea = containers.Sum(x => x.Height * x.Width);
 			var objectsTotalArea = containers.Sum(container => container.PlacedObjects.Sum(o => (o as Object2D).Width * (o as Object2D).Height));
+			double worstFulfillment;
 
 			PlacedObjects placedObjectsTotal = new PlacedObjects();
 
@@ -43,15 +44,18 @@ namespace Logic.Algorithms
 
 			standardDeviation = Math.Sqrt(standardDeviation / containers.Count);
 
+			worstFulfillment = containers.OrderBy(x => x.GetFulfilment()).FirstOrDefault().GetFulfilment();
+
 			var results = new AlgorithmExecutionResults
 			{
 				PlacedObjects = placedObjectsTotal,
 				ContainerSize = containers.First(),
-				ContainerFulfilment = containerArea,
-				ObjectsTotalFulfilment = objectsTotalArea,
-				AverageFulfilmentRatio = averageFulfilment,
-				FulfilmentRatioStandardDeviation = standardDeviation,
+				ContainerFulfillment = containerArea,
+				ObjectsTotalFulfillment = objectsTotalArea,
+				AverageFulfillmentRatio = averageFulfilment,
+				FulfillmentRatioStandardDeviation = standardDeviation,
 				Quality = (double)containerArea / objectsTotalArea,
+				ContainersUsed = containers.Count,
 			};
 
 			return results;
