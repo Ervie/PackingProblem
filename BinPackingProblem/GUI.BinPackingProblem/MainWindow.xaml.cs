@@ -23,6 +23,7 @@ namespace GUI.BinPackingProblem
 		public MainWindow()
 		{
 			InitializeComponent();
+			this.DataContext = new MainViewModel();
 		}
 	}
 }
