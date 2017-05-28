@@ -4,57 +4,109 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUI.BinPackingProblem"
+		xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:enums="clr-namespace:Logic.Algorithms.Enums;assembly=Logic.Algorithms"
         mc:Ignorable="d"
-        Title="Bin Packing Problem" Height="350" Width="525">
+        Title="Bin Packing Problem" Height="300" Width="600"
+        ResizeMode="NoResize">
 	<Grid>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="1*" />
 			<ColumnDefinition Width="4*" />
 			<ColumnDefinition Width="4*" />
-			<ColumnDefinition Width="4*" />
-			<ColumnDefinition Width="4*" />
+			<ColumnDefinition Width="6*" />
+			<ColumnDefinition Width="2*" />
 			<ColumnDefinition Width="1*" />
 		</Grid.ColumnDefinitions>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="1*" />
-			<RowDefinition Height="6*" />
+			<RowDefinition Height="1*" />
+			<RowDefinition Height="1*" />
+			<RowDefinition Height="1*" />
+			<RowDefinition Height="1*" />
+			<RowDefinition Height="1*" />
+			<RowDefinition Height="1*" />
+			<RowDefinition Height="1*" />
+			<RowDefinition Height="1*" />
 			<RowDefinition Height="1*" />
 		</Grid.RowDefinitions>
 
 
-		<GroupBox Header="Algorithm" Grid.Column="1" Grid.Row="1" Grid.RowSpan="1" Grid.ColumnSpan="2" />
+		<GroupBox Header="Algorithm" Grid.Column="1" Grid.Row="1" Grid.RowSpan="8" Grid.ColumnSpan="2" BorderThickness="2" />
 
-		<StackPanel Grid.Column="1" Grid.Row="1" Margin="0, 20, 0, 0" Grid.ColumnSpan="2">
-			<Label Content="Dimensionality:" HorizontalAlignment="Left" VerticalAlignment="Center" />
-			<Label Content="ObjectSet:" HorizontalAlignment="Left" VerticalAlignment="Center" />
-			<Label Content="Family:" HorizontalAlignment="Left" VerticalAlignment="Center" />
-			<Label Content="SubType:" HorizontalAlignment="Left" VerticalAlignment="Center" />
-			<Label Content="Container Splitting:" HorizontalAlignment="Left" VerticalAlignment="Center" />
-			<Label Content="Object Ordering:" HorizontalAlignment="Left" VerticalAlignment="Center" />
-		</StackPanel>
+			<Label Grid.Column="1" Grid.Row="2" Content="Dimensionality:" HorizontalAlignment="Left" VerticalAlignment="Center" />
+			<Label Grid.Column="1" Grid.Row="3" Content="ObjectSet:" HorizontalAlignment="Left" VerticalAlignment="Center" />
+			<Label Grid.Column="1" Grid.Row="4" Content="Family:" HorizontalAlignment="Left" VerticalAlignment="Center" />
+			<Label Grid.Column="1" Grid.Row="5" Content="SubType:" HorizontalAlignment="Left" VerticalAlignment="Center" />
+			<Label Grid.Column="1" Grid.Row="6" Content="Container Splitting:" HorizontalAlignment="Left" VerticalAlignment="Center" />
+			<Label Grid.Column="1" Grid.Row="7" Content="Object Ordering:" HorizontalAlignment="Left" VerticalAlignment="Center" />
+			<Label Grid.Column="1" Grid.Row="8" Content="Bin size (W,H,D):" HorizontalAlignment="Left" VerticalAlignment="Center" />
+
+
+		<ComboBox 
+				Grid.Column="2" Grid.Row="2"
+				Margin="3, 2"
+				Name="DimensionalityComboBox"
+				ItemsSource="{Binding Source={local:Enumeration {x:Type enums:AlgorithmDimensionality}}}" 
+				DisplayMemberPath="Description" 
+				SelectedValue="{Binding Dimensionality, Mode=TwoWay}"  
+				SelectedValuePath="Value" SelectedIndex="0"  />
+
+		<WrapPanel Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center">
+			<TextBox Name="SavePathTextBox" Text="{Binding Path=DataPath, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" HorizontalAlignment="Center" VerticalAlignment="Center" IsEnabled="False" Width="115" />
+			<Button Name="ChangePathBtn" Content="..." Command="{Binding Path=LoadData}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+		</WrapPanel>
+
+		<ComboBox 
+				Grid.Column="2" Grid.Row="4"
+				Margin="3, 2"
+				Name="FamilyComboBox"
+				ItemsSource="{Binding Path=Families}" 
+				SelectedValue="{Binding Path=Family, Mode=TwoWay}"  
+				SelectedIndex="0"  />
+
+		<ComboBox 
+				Grid.Column="2" Grid.Row="5"
+				Margin="3, 2"
+				Name="StrategyComboBox"
+				ItemsSource="{Binding Path=Strategies}"
+				SelectedValue="{Binding Path=Strategy, Mode=TwoWay}"  
+				SelectedIndex="0"  />
+
+		<ComboBox 
+				Grid.Column="2" Grid.Row="6"
+				Margin="3, 2"
+				Name="SplittingComboBox"
+				ItemsSource="{Binding Path=SplittingStrategies}"
+				SelectedValue="{Binding Path=SplittingStrategy, Mode=TwoWay}"  
+				SelectedIndex="0"  />
+
+		<WrapPanel Grid.Column="2" Grid.Row="8" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center">
+			<xctk:IntegerUpDown  Margin="1, 0" Value="{Binding Path=ContainerWidth, UpdateSourceTrigger=PropertyChanged}" Name="Width" Minimum="1" />
+			<xctk:IntegerUpDown  Margin="1, 0" Value="{Binding Path=ContainerHeight, UpdateSourceTrigger=PropertyChanged}" Name="Height" Minimum="1" />
+			<xctk:IntegerUpDown  Margin="1, 0" Value="{Binding Path=ContainerDepth, UpdateSourceTrigger=PropertyChanged}" Name="Depth" Minimum="1" IsEnabled="{Binding Path=IsSelectedAlgorithm3D}" />
+		</WrapPanel>
 		
-
-		<GroupBox Header="Results" Grid.Column="3" Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="2" />
-
-		<StackPanel Grid.Column="3" Grid.Row="1" Margin="0, 20, 0, 0" Grid.ColumnSpan="2">
-			<Label Content="Containers used:" HorizontalAlignment="Left" VerticalAlignment="Center" />
-			<Label Content="Total container area/volume:" HorizontalAlignment="Left" VerticalAlignment="Center" />
-			<Label Content="Total objects area/volume:" HorizontalAlignment="Left" VerticalAlignment="Center" />
-			<Label Content="Average fulfillment:" HorizontalAlignment="Left" VerticalAlignment="Center" />
-			<Label Content="St. dev. fulfillment:" HorizontalAlignment="Left" VerticalAlignment="Center" />
-			<Label Content="Worst fulfillment:" HorizontalAlignment="Left" VerticalAlignment="Center" />
-			<Label Content="Execution time:" HorizontalAlignment="Left" VerticalAlignment="Center" />
-		</StackPanel>
-
-		<StackPanel Grid.Column="4" Grid.Row="1"  Margin="0, 20, 0, 0">
-			<Label Content="-" HorizontalAlignment="Right" VerticalAlignment="Center" Name="containersUsedLabel"/>
-			<Label Content="-" HorizontalAlignment="Right" VerticalAlignment="Center" Name="totalContainerLabel"/>
-			<Label Content="-" HorizontalAlignment="Right" VerticalAlignment="Center" Name="totalObjectLabel"/>
-			<Label Content="-" HorizontalAlignment="Right" VerticalAlignment="Center" Name="AverageLabel"/>
-			<Label Content="-" HorizontalAlignment="Right" VerticalAlignment="Center" Name="DeviationLabel"/>
-			<Label Content="-" HorizontalAlignment="Right" VerticalAlignment="Center" Name="WorstLabel"/>
-			<Label Content="-" HorizontalAlignment="Right" VerticalAlignment="Center" Name="TimeLabel"/>
-		</StackPanel>
 		
+		<GroupBox Header="Results" Grid.Column="3" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="8" BorderThickness="2" />
+
+
+		<Label Grid.Column="3" Grid.Row="2" Content="Containers used:" HorizontalAlignment="Left" VerticalAlignment="Center" />
+		<Label Grid.Column="3" Grid.Row="3" Content="Total container area/volume:" HorizontalAlignment="Left" VerticalAlignment="Center" />
+		<Label Grid.Column="3" Grid.Row="4" Content="Total objects area/volume:" HorizontalAlignment="Left" VerticalAlignment="Center" />
+		<Label Grid.Column="3" Grid.Row="5" Content="Average fulfillment:" HorizontalAlignment="Left" VerticalAlignment="Center" />
+		<Label Grid.Column="3" Grid.Row="6" Content="St. dev. fulfillment:" HorizontalAlignment="Left" VerticalAlignment="Center" />
+		<Label Grid.Column="3" Grid.Row="7" Content="Worst fulfillment:" HorizontalAlignment="Left" VerticalAlignment="Center" />
+		<Label Grid.Column="3" Grid.Row="8" Content="Execution time:" HorizontalAlignment="Left" VerticalAlignment="Center" />
+
+		<Label Grid.Column="4" Grid.Row="2" Content="-" HorizontalAlignment="Right" VerticalAlignment="Center" Name="containersUsedLabel"/>
+		<Label Grid.Column="4" Grid.Row="3" Content="-" HorizontalAlignment="Right" VerticalAlignment="Center" Name="totalContainerLabel"/>
+		<Label Grid.Column="4" Grid.Row="4" Content="-" HorizontalAlignment="Right" VerticalAlignment="Center" Name="totalObjectLabel"/>
+		<Label Grid.Column="4" Grid.Row="5" Content="-" HorizontalAlignment="Right" VerticalAlignment="Center" Name="AverageLabel"/>
+		<Label Grid.Column="4" Grid.Row="6" Content="-" HorizontalAlignment="Right" VerticalAlignment="Center" Name="DeviationLabel"/>
+		<Label Grid.Column="4" Grid.Row="7" Content="-" HorizontalAlignment="Right" VerticalAlignment="Center" Name="WorstLabel"/>
+		<Label Grid.Column="4" Grid.Row="8" Content="-" HorizontalAlignment="Right" VerticalAlignment="Center" Name="TimeLabel"/>
+
+		<Button Grid.Column="2" Grid.Row="9" x:Name="StartAlgorithmBtn" Content="Generate" Command="{Binding Path=StartAlgorithm}" Margin="20, 3" />
 	</Grid>
 </Window>
