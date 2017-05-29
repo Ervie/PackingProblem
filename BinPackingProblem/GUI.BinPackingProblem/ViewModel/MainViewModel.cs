@@ -1,7 +1,11 @@
 ﻿using GUI.Helpers;
 using Logic.Algorithms;
+using Logic.Algorithms.Containers;
 using Logic.Algorithms.Enums;
 using Logic.Algorithms.Structs;
+using Logic.Domain.Containers;
+using Logic.Domain.Containers._2D;
+using Logic.Domain.Containers._3D;
 using Logic.Domain.Figures;
 using Logic.Domain.Objects;
 using Logic.ObjectGenerator;
@@ -9,6 +13,7 @@ using Logic.Utilities.Files;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows.Input;
 
@@ -20,6 +25,8 @@ namespace GUI.BinPackingProblem.ViewModel
 
 		private ObjectGenerator generator;
 
+		private IContainerFactory containerFactory;
+
 		private IAlgorithmFactory factory;
 
 		private AlgorithmProperties algorithmProperties;
@@ -27,6 +34,8 @@ namespace GUI.BinPackingProblem.ViewModel
 		private AlgorithmExecutionResults results;
 
 		private ObjectSet objectsToPack;
+
+		private Stopwatch stopwatch;
 
 		private string _dialogBoxFilter;
 
@@ -225,6 +234,86 @@ namespace GUI.BinPackingProblem.ViewModel
 			}
 		}
 
+		public int ContainersUsed
+		{
+			get { return results.ContainersUsed; }
+			set
+			{
+				results.ContainersUsed = value;
+				RaisePropertyChanged("ContainersUsed");
+			}
+		}
+
+		public int ObjectTotalFullfilment
+		{
+			get { return results.ObjectsTotalFulfillment; }
+			set
+			{
+				results.ObjectsTotalFulfillment = value;
+				RaisePropertyChanged("ObjectTotalFullfilment");
+			}
+		}
+
+		public int ContainerFulfillment
+		{
+			get { return results.ContainerFulfillment; }
+			set
+			{
+				results.ContainerFulfillment = value;
+				RaisePropertyChanged("ContainerFulfillment");
+			}
+		}
+
+		public double Quality
+		{
+			get { return results.Quality; }
+			set
+			{
+				results.Quality = value;
+				RaisePropertyChanged("Quality");
+			}
+		}
+
+		public double AverageFulfillmentRatio
+		{
+			get { return results.AverageFulfillmentRatio; }
+			set
+			{
+				results.AverageFulfillmentRatio = value;
+				RaisePropertyChanged("AverageFulfillmentRatio");
+			}
+		}
+
+		public double FulfillmentRatioStandardDeviation
+		{
+			get { return results.FulfillmentRatioStandardDeviation; }
+			set
+			{
+				results.FulfillmentRatioStandardDeviation = value;
+				RaisePropertyChanged("FulfillmentRatioStandardDeviation");
+			}
+		}
+
+		public double WorstFulfillment
+		{
+			get { return results.WorstFulfillment; }
+			set
+			{
+				results.WorstFulfillment = value;
+				RaisePropertyChanged("WorstFulfillment");
+			}
+		}
+
+		public long ExecutionTime
+		{
+			get { return results.ExecutionTime; }
+			set
+			{
+				results.ExecutionTime = value;
+				RaisePropertyChanged("ExecutionTime");
+			}
+		}
+
 		#endregion Properties
 
 		#region Commands
@@ -268,9 +357,11 @@ namespace GUI.BinPackingProblem.ViewModel
 		private void Init()
 		{
 			generator = new ObjectGenerator();
+			containerFactory = new ContainerFactory();
 			factory = new AlgorithmFactory();
 			algorithmProperties = new AlgorithmProperties();
 			results = new AlgorithmExecutionResults();
+			stopwatch = new Stopwatch();
 
 			HandleDimensionalityChange();
 		}
@@ -407,14 +498,41 @@ namespace GUI.BinPackingProblem.ViewModel
 
 		private bool StartAlgorithm_CanExecute()
 		{
-			return (ObjectsToPack != null && ContainerDepth > 0 && ContainerHeight > 0 && ContainerWidth > 0);
+			return (ObjectsToPack != null && ContainerWidth > 0 && ContainerHeight > 0 && (ContainerDepth > 0 || Dimensionality.Equals(AlgorithmDimensionality.TwoDimensional)));
 		}
 
 		private void StartAlgorithm_Execute()
 		{
-			IFigure startingContainer = PrepareStartingContainer();
+			IAlgorithm algorithm;
 
-			var algorithm = factory.Create(algorithmProperties, startingContainer);
+
+			if (Dimensionality == AlgorithmDimensionality.TwoDimensional)
+			{
+				Container2D startingContainer = containerFactory.Create(algorithmProperties, ContainerWidth, ContainerHeight);
+				algorithm = factory.Create(algorithmProperties, startingContainer);
+			}
+			else
+			{
+				Container3D startingContainer = containerFactory.Create(algorithmProperties, ContainerWidth, ContainerHeight, ContainerDepth);
+				algorithm = factory.Create(algorithmProperties, startingContainer);
+			}
+
+			stopwatch.Reset();
+
+			stopwatch.Start();
+			algorithm.Execute(objectsToPack);
+			stopwatch.Stop();
+
+			var endResults = algorithm.CreateResults();
+
+			ExecutionTime = stopwatch.ElapsedMilliseconds;
+			Quality = endResults.Quality;
+			ContainersUsed = endResults.ContainersUsed;
+			ObjectTotalFullfilment = endResults.ObjectsTotalFulfillment;
+			ContainerFulfillment = endResults.ContainerFulfillment;
+			AverageFulfillmentRatio = endResults.AverageFulfillmentRatio;
+			FulfillmentRatioStandardDeviation = endResults.FulfillmentRatioStandardDeviation;
+			WorstFulfillment = endResults.WorstFulfillment;			
 		}
 
 		#endregion Methods

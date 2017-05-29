@@ -43,6 +43,8 @@
     <Compile Include="Algorithm2D.cs" />
     <Compile Include="Algorithm3D.cs" />
     <Compile Include="AlgorithmFactory.cs" />
+    <Compile Include="Containers\ContainerFactory.cs" />
+    <Compile Include="Containers\IContainerFactory.cs" />
     <Compile Include="Enums\AlgorithmDimensionality.cs" />
     <Compile Include="Enums\AlgorithmFamily.cs" />
     <Compile Include="Enums\ObjectFittingStrategy.cs" />
