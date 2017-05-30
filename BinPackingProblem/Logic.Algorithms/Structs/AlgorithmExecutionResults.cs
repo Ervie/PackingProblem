@@ -1,10 +1,6 @@
 ﻿using Logic.Domain.Figures;
 using Logic.Domain.Objects;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Logic.Algorithms.Structs
 {
@@ -25,9 +21,9 @@ namespace Logic.Algorithms.Structs
 
 		public double AverageFulfillmentRatio { get; set; }
 
-		public double FulfillmentRatioStandardDeviation  { get; set; }
+		public double FulfillmentRatioStandardDeviation { get; set; }
 		public double Quality { get; set; }
-		public TimeSpan ExecutionTime { get; set; }
+		public long ExecutionTime { get; set; }
 
 		public int ContainersUsed { get; set; }
 

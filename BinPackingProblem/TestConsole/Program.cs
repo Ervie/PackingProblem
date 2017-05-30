@@ -41,34 +41,34 @@ namespace TestConsole
 			//}
 
 			//generator.SaveObjectSet(testSet, "C:\\Users\\bbuchala\\Documents\\Git Repos\\PackingProblem\\BinPackingProblem\\Data\\test2d.set");
-			generator.SaveObjectSet(testSet, "E:\\test2d.set");
+			generator.SaveObjectSet(testSet, "E:\\test2d.2Dset");
 
 
-			//testSet = generator.Generate3DObjectSet(new ObjectSetProperties3D()
-			//{
-			//    ObjectAmount = 100,
-			//    AverageObjectWidthHeightRatio = 1,
-			//    ObjectWidthHeightRatioStandardDeviation = 1,
-			//    MaxObjectWidthHeightRatio = 10,
-			//    MinObjectWidthHeightRatio = 0.2m,
+			testSet = generator.Generate3DObjectSet(new ObjectSetProperties3D()
+			{
+				ObjectAmount = 100,
+				AverageObjectWidthHeightRatio = 1,
+				ObjectWidthHeightRatioStandardDeviation = 1,
+				MaxObjectWidthHeightRatio = 10,
+				MinObjectWidthHeightRatio = 0.2m,
 
-			//    AverageObjectDepthHeightRatio = 1,
-			//    ObjectDepthHeightRatioStandardDeviation = 1,
-			//    MaxObjectDepthHeightRatio = 10,
-			//    MinObjectDepthHeightRatio = 0.2m,
+				AverageObjectDepthHeightRatio = 1,
+				ObjectDepthHeightRatioStandardDeviation = 1,
+				MaxObjectDepthHeightRatio = 10,
+				MinObjectDepthHeightRatio = 0.2m,
 
-			//    AverageObjectVolume = 1000,
-			//    VolumeStandardDeviation = 200,
-			//    MaxVolume = 2000,
-			//    MinVolume = 100
-			//});
+				AverageObjectVolume = 1000,
+				VolumeStandardDeviation = 200,
+				MaxVolume = 2000,
+				MinVolume = 100
+			});
 
 			//foreach (var element in testSet)
 			//{
 			//    Console.WriteLine("Object w = {0}, h = {1}, d = {2}", (element as Object3D).Width, (element as Object3D).Height, (element as Object3D).Depth);
 			//}
 
-			//generator.SaveObjectSet(testSet, "E:\\test3d.set");
+			generator.SaveObjectSet(testSet, "E:\\test3d.3Dset");
 
 
 
