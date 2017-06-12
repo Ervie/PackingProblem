@@ -49,6 +49,8 @@
     <Compile Include="Enums\AlgorithmFamily.cs" />
     <Compile Include="Enums\ObjectFittingStrategy.cs" />
     <Compile Include="Enums\ContainerSplittingStrategy.cs" />
+    <Compile Include="Enums\ObjectOrdering.cs" />
+    <Compile Include="Exceptions\CannotSortObjectsException.cs" />
     <Compile Include="IAlgorithm.cs" />
     <Compile Include="IAlgorithmFactory.cs" />
     <Compile Include="Exceptions\NotSuchAlgorithmException.cs" />
@@ -86,6 +88,7 @@
     <Compile Include="ObjectFittingStrategies\IObjectFittingStrategyFactory.cs" />
     <Compile Include="ObjectFittingStrategies\ObjectFittingStrategyFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sorting\SortingHelper.cs" />
     <Compile Include="Structs\AlgorithmExecutionResults.cs" />
     <Compile Include="Structs\AlgorithmProperties.cs" />
   </ItemGroup>
