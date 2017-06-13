@@ -8,6 +8,7 @@ namespace Logic.Algorithms.Enums
 {
 	public enum ObjectOrdering
 	{
+		None,
 		ByWidth,
 		ByHeight,
 		ByDepth,

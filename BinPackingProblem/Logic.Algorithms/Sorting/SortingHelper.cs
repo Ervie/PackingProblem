@@ -16,6 +16,8 @@ namespace Logic.Algorithms.Sorting
 		{
 			if (inputObjectSet != null && inputObjectSet.Count != 0)
 			{
+				if (ordering.Equals(ObjectOrdering.None))
+					return inputObjectSet;
 				if (inputObjectSet.First() is Object2D)
 					return Sort2DSet(inputObjectSet, ordering);
 				else
