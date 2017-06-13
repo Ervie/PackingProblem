@@ -1,25 +1,22 @@
 ﻿using Logic.Algorithms;
+using Logic.Algorithms.Enums;
+using Logic.Algorithms.Sorting;
 using Logic.Algorithms.Structs;
-using Logic.Domain.Containers._2D;
 using Logic.Domain.Containers._2D.Guillotine;
 using Logic.Domain.Containers._2D.Shelf;
 using Logic.Domain.Containers._2D.Skyline;
 using Logic.Domain.Objects;
 using Logic.ObjectGenerator;
 using Logic.Utilities.Extensions;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TestConsole
 {
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            ObjectGenerator generator = new ObjectGenerator();
+	internal class Program
+	{
+		private static void Main(string[] args)
+		{
+			ObjectGenerator generator = new ObjectGenerator();
 
 			var testSet = generator.Generate2DObjectSet(new ObjectSetProperties2D()
 			{
@@ -42,7 +39,6 @@ namespace TestConsole
 
 			//generator.SaveObjectSet(testSet, "C:\\Users\\bbuchala\\Documents\\Git Repos\\PackingProblem\\BinPackingProblem\\Data\\test2d.set");
 			generator.SaveObjectSet(testSet, "E:\\test2d.2Dset");
-
 
 			testSet = generator.Generate3DObjectSet(new ObjectSetProperties3D()
 			{
@@ -70,12 +66,9 @@ namespace TestConsole
 
 			generator.SaveObjectSet(testSet, "E:\\test3d.3Dset");
 
-
-
 			ObjectSet objectSet2d = generator.LoadObjectSet("E:\\test2d.set");
 
 			//var objectSet3d = generator.LoadObjectSet("E:\\test3d.set");
-
 
 			ObjectSet sortedObjectSet = objectSet2d.OrderBy(x => (x as Object2D).Width).ToObjectList();
 
@@ -92,7 +85,6 @@ namespace TestConsole
 
 			var results = algo.CreateResults();
 
-			
 			algo = factory.Create(new AlgorithmProperties()
 			{
 				Dimensionality = Logic.Algorithms.Enums.AlgorithmDimensionality.TwoDimensional,
@@ -213,18 +205,19 @@ namespace TestConsole
 
 			var results11 = algo.CreateResults();
 
+			objectSet2d = SortingHelper.Sort(objectSet2d, ObjectOrdering.ByArea);
+
 			algo = factory.Create(new AlgorithmProperties()
 			{
 				Dimensionality = Logic.Algorithms.Enums.AlgorithmDimensionality.TwoDimensional,
 				Family = Logic.Algorithms.Enums.AlgorithmFamily.GuillotineCut,
 				AlgorithmType = Logic.Algorithms.Enums.ObjectFittingStrategy.BestAreaFit,
-				SplittingStrategy = Logic.Algorithms.Enums.ContainerSplittingStrategy.ShorterAxisSplitRule
+				SplittingStrategy = Logic.Algorithms.Enums.ContainerSplittingStrategy.MinAreaSplitRule
 			}, new GuillotineCutMinAreaContainer2D(40, 50));
 
 			algo.Execute(objectSet2d);
 
 			var results12 = algo.CreateResults();
-
 		}
-    }
+	}
 }
