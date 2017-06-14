@@ -81,6 +81,14 @@
 				SelectedValue="{Binding Path=SplittingStrategy, Mode=TwoWay}"  
 				SelectedIndex="0"  />
 
+		<ComboBox 
+				Grid.Column="2" Grid.Row="7"
+				Margin="3, 2"
+				Name="OrderingComboBox"
+				ItemsSource="{Binding Path=ObjectOrderings}"
+				SelectedValue="{Binding Path=ObjectOrdering, Mode=TwoWay}"  
+				SelectedIndex="0"  />
+
 		<WrapPanel Grid.Column="2" Grid.Row="8" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center">
 			<xctk:IntegerUpDown  Margin="1, 0" Value="{Binding Path=ContainerWidth, UpdateSourceTrigger=PropertyChanged}" Name="Width" Minimum="1" />
 			<xctk:IntegerUpDown  Margin="1, 0" Value="{Binding Path=ContainerHeight, UpdateSourceTrigger=PropertyChanged}" Name="Height" Minimum="1" />

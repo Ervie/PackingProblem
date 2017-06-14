@@ -2,6 +2,7 @@
 using Logic.Algorithms;
 using Logic.Algorithms.Containers;
 using Logic.Algorithms.Enums;
+using Logic.Algorithms.Sorting;
 using Logic.Algorithms.Structs;
 using Logic.Domain.Containers;
 using Logic.Domain.Containers._2D;
@@ -54,6 +55,10 @@ namespace GUI.BinPackingProblem.ViewModel
 		public List<ObjectFittingStrategy> strategies;
 
 		public List<ContainerSplittingStrategy> splittingStrategies;
+
+		public List<ObjectOrdering> objectOrderings;
+
+		private ObjectOrdering objectOrdering;
 
 		private ICommand _LoadData;
 
@@ -234,6 +239,32 @@ namespace GUI.BinPackingProblem.ViewModel
 			}
 		}
 
+		public ObjectOrdering ObjectOrdering
+		{
+			get
+			{
+				return objectOrdering;
+			}
+			set
+			{
+				objectOrdering = value;
+				RaisePropertyChanged("ObjectOrdering");
+			}
+		}
+		public List<ObjectOrdering> ObjectOrderings
+		{
+			get
+			{
+				return objectOrderings;
+			}
+			set
+			{
+				objectOrderings = value;
+				RaisePropertyChanged("ObjectOrderings");
+			}
+		}
+
+
 		public int ContainersUsed
 		{
 			get { return results.ContainersUsed; }
@@ -372,6 +403,15 @@ namespace GUI.BinPackingProblem.ViewModel
 			{
 				case (AlgorithmDimensionality.TwoDimensional):
 					Families = Enum.GetValues(typeof(AlgorithmFamily)).Cast<AlgorithmFamily>().ToList();
+					ObjectOrderings = Enum.GetValues(typeof(ObjectOrdering)).Cast<ObjectOrdering>().Where(x => !x.Equals(ObjectOrdering.ByDepth) &&
+																												!x.Equals(ObjectOrdering.ByVolume) &&
+																												!x.Equals(ObjectOrdering.BySurfaceArea) &&
+																												!x.Equals(ObjectOrdering.ByWidthDepthRatio) &&
+																												!x.Equals(ObjectOrdering.ByWidthDepthDifference) &&
+																												!x.Equals(ObjectOrdering.ByWidthHeightRatio) &&
+																												!x.Equals(ObjectOrdering.ByWidthHeightDifference) &&
+																												!x.Equals(ObjectOrdering.ByHeightDepthRatio) &&
+																												!x.Equals(ObjectOrdering.ByHeightDepthDifference)).ToList();
 					_dialogBoxFilter = "2D Object set file (*.2Dset)|*.2Dset";
 					DataPath = string.Empty;
 					objectsToPack = null;
@@ -380,6 +420,10 @@ namespace GUI.BinPackingProblem.ViewModel
 
 				case (AlgorithmDimensionality.ThreeDimensional):
 					Families = Enum.GetValues(typeof(AlgorithmFamily)).Cast<AlgorithmFamily>().Where(e => !e.Equals(AlgorithmFamily.Skyline)).ToList();
+					ObjectOrderings = Enum.GetValues(typeof(ObjectOrdering)).Cast<ObjectOrdering>().Where(x => !x.Equals(ObjectOrdering.ByArea) &&
+																							!x.Equals(ObjectOrdering.ByPerimeter) &&
+																							!x.Equals(ObjectOrdering.BySideDifference) &&
+																							!x.Equals(ObjectOrdering.BySideRatio)).ToList();
 					_dialogBoxFilter = "3D Object set file (*.3Dset)|*.3Dset";
 					DataPath = string.Empty;
 					objectsToPack = null;
@@ -492,7 +536,7 @@ namespace GUI.BinPackingProblem.ViewModel
 			}
 			catch (Exception err)
 			{
-				System.Windows.MessageBox.Show("Error during loading data:" + err.Message, "Error");
+				System.Windows.MessageBox.Show("Error during loading data: " + err.Message, "Error");
 			}
 		}
 
@@ -503,38 +547,71 @@ namespace GUI.BinPackingProblem.ViewModel
 
 		private void StartAlgorithm_Execute()
 		{
-			IAlgorithm algorithm;
+			try
+			{
+				IAlgorithm algorithm;
 
+				if (!CheckContainerSize())
+					throw new InvalidContainerSizeException("Container is not big enough to contain biggest object. Enlarge the container.");
 
+				if (Dimensionality == AlgorithmDimensionality.TwoDimensional)
+				{
+					Container2D startingContainer = containerFactory.Create(algorithmProperties, ContainerWidth, ContainerHeight);
+					algorithm = factory.Create(algorithmProperties, startingContainer);
+				}
+				else
+				{
+					Container3D startingContainer = containerFactory.Create(algorithmProperties, ContainerWidth, ContainerHeight, ContainerDepth);
+					algorithm = factory.Create(algorithmProperties, startingContainer);
+				}
+
+				stopwatch.Reset();
+
+				var sortedObjects = SortingHelper.Sort(objectsToPack, ObjectOrdering);
+
+				stopwatch.Start();
+				algorithm.Execute(sortedObjects);
+				stopwatch.Stop();
+
+				var endResults = algorithm.CreateResults();
+
+				ExecutionTime = stopwatch.ElapsedMilliseconds;
+				Quality = endResults.Quality;
+				ContainersUsed = endResults.ContainersUsed;
+				ObjectTotalFullfilment = endResults.ObjectsTotalFulfillment;
+				ContainerFulfillment = endResults.ContainerFulfillment;
+				AverageFulfillmentRatio = endResults.AverageFulfillmentRatio;
+				FulfillmentRatioStandardDeviation = endResults.FulfillmentRatioStandardDeviation;
+				WorstFulfillment = endResults.WorstFulfillment;
+			}
+			catch (Exception err)
+			{
+				System.Windows.MessageBox.Show("Error during executing algorithm: " + err.Message, "Error");
+			}	
+		}
+
+		/// <summary>
+		/// Check if container(s) is(are) big enough to contain every object.
+		/// </summary>
+		/// <returns>True - big enough, false - not</returns>
+		private bool CheckContainerSize()
+		{
 			if (Dimensionality == AlgorithmDimensionality.TwoDimensional)
 			{
-				Container2D startingContainer = containerFactory.Create(algorithmProperties, ContainerWidth, ContainerHeight);
-				algorithm = factory.Create(algorithmProperties, startingContainer);
+				if (objectsToPack.Max(x => (x as Object2D).Height) > ContainerHeight ||
+					objectsToPack.Max(x => (x as Object2D).Width) > ContainerWidth)
+					return false;
 			}
 			else
 			{
-				Container3D startingContainer = containerFactory.Create(algorithmProperties, ContainerWidth, ContainerHeight, ContainerDepth);
-				algorithm = factory.Create(algorithmProperties, startingContainer);
+				if (objectsToPack.Max(x => (x as Object3D).Height) > ContainerHeight ||
+					objectsToPack.Max(x => (x as Object3D).Width) > ContainerWidth ||
+					objectsToPack.Max(x => (x as Object3D).Depth) > ContainerDepth)
+					return false;
 			}
 
-			stopwatch.Reset();
-
-			stopwatch.Start();
-			algorithm.Execute(objectsToPack);
-			stopwatch.Stop();
-
-			var endResults = algorithm.CreateResults();
-
-			ExecutionTime = stopwatch.ElapsedMilliseconds;
-			Quality = endResults.Quality;
-			ContainersUsed = endResults.ContainersUsed;
-			ObjectTotalFullfilment = endResults.ObjectsTotalFulfillment;
-			ContainerFulfillment = endResults.ContainerFulfillment;
-			AverageFulfillmentRatio = endResults.AverageFulfillmentRatio;
-			FulfillmentRatioStandardDeviation = endResults.FulfillmentRatioStandardDeviation;
-			WorstFulfillment = endResults.WorstFulfillment;			
+			return true;
 		}
-
 		#endregion Methods
 	}
 }

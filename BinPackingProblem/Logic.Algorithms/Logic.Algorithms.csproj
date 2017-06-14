@@ -51,6 +51,7 @@
     <Compile Include="Enums\ContainerSplittingStrategy.cs" />
     <Compile Include="Enums\ObjectOrdering.cs" />
     <Compile Include="Exceptions\CannotSortObjectsException.cs" />
+    <Compile Include="Exceptions\InvalidContainerSizeException.cs" />
     <Compile Include="IAlgorithm.cs" />
     <Compile Include="IAlgorithmFactory.cs" />
     <Compile Include="Exceptions\NotSuchAlgorithmException.cs" />
