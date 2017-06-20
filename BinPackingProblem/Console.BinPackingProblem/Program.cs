@@ -1,11 +1,15 @@
-﻿using Logic.Algorithms;
+﻿using Console.BinPackingProblem.Exceptions;
+using Logic.Algorithms;
 using Logic.Algorithms.Containers;
 using Logic.Algorithms.Enums;
 using Logic.Algorithms.Sorting;
 using Logic.Algorithms.Structs;
 using Logic.Domain.Containers._2D;
 using Logic.Domain.Containers._3D;
+using Logic.Domain.Figures;
 using Logic.Domain.Objects;
+using Logic.ObjectGenerator;
+using Logic.Utilities.Files;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -53,6 +57,7 @@ namespace Console.BinPackingProblem
 				try
 				{
 					ProcessArguments(args);
+					RunAlgorithm();
 				}
 				catch (Exception er)
 				{
@@ -77,12 +82,7 @@ namespace Console.BinPackingProblem
 				Directory.CreateDirectory(pathWithoutFile);
 			}
 
-			if (!File.Exists(InputFilePath))
-			{
-				File.Create(InputFilePath);
-			}
-
-			OutputFilePath = Path.GetDirectoryName(InputFilePath) + args.Last();
+			OutputFilePath = args.Last();
 
 			if (!OutputFilePath.EndsWith(".csv"))
 				OutputFilePath += ".csv";
@@ -97,6 +97,8 @@ namespace Console.BinPackingProblem
 				ContainerDepth = tmpDepth;
 				hasThreeSizes = true;
 			}
+
+			Properties = new AlgorithmProperties();
 
 			if (hasThreeSizes)
 			{
@@ -125,6 +127,7 @@ namespace Console.BinPackingProblem
 
 		private static void RunAlgorithm()
 		{
+			IFigure startingContainer;
 			IAlgorithm algorithm;
 			Stopwatch stopwatch = new Stopwatch();
 			IContainerFactory containerFactory = new ContainerFactory();
@@ -132,12 +135,12 @@ namespace Console.BinPackingProblem
 
 			if (Properties.Dimensionality == AlgorithmDimensionality.TwoDimensional)
 			{
-				Container2D startingContainer = containerFactory.Create(Properties, ContainerWidth, ContainerHeight);
+				startingContainer = containerFactory.Create(Properties, ContainerWidth, ContainerHeight);
 				algorithm = factory.Create(Properties, startingContainer);
 			}
 			else
 			{
-				Container3D startingContainer = containerFactory.Create(Properties, ContainerWidth, ContainerHeight, ContainerDepth);
+				startingContainer = containerFactory.Create(Properties, ContainerWidth, ContainerHeight, ContainerDepth);
 				algorithm = factory.Create(Properties, startingContainer);
 			}
 
@@ -155,17 +158,24 @@ namespace Console.BinPackingProblem
 
 			endResults.ExecutionTime = stopwatch.ElapsedMilliseconds;
 
-			WriteResiltsToCsv(endResults);
+			WriteResiltsToCsv(endResults, startingContainer);
 		}
 
 		private static ObjectSet LoadObjectSet()
 		{
-			throw new NotImplementedException();
+			ObjectGenerator generator = new ObjectGenerator();
+
+			if (FileHelper.HasAccessPermission(InputFilePath) && FileHelper.DirectoryExist(InputFilePath))
+			{
+				return generator.LoadObjectSet(InputFilePath);
+			}
+			else
+				throw new InvalidArgumentException($"Cannot access data set on given path: {InputFilePath}");
 		}
 
-		private static void WriteResiltsToCsv(AlgorithmExecutionResults endResults)
+		private static void WriteResiltsToCsv(AlgorithmExecutionResults endResults, IFigure initialContainer)
 		{
-			throw new NotImplementedException();
+			CSVWriter.Write(endResults, Properties, Ordering, initialContainer, OutputFilePath);
 		}
 
 		private static void RecognizePair(string argumentType, string argumentValue)
@@ -274,6 +284,8 @@ namespace Console.BinPackingProblem
 		{
 			switch (argumentValue)
 			{
+				case ("None"):
+					return ContainerSplittingStrategy.None;
 				case ("MaxA"):
 					return ContainerSplittingStrategy.MaxAreaSplitRule;
 				case ("MinA"):
@@ -287,7 +299,7 @@ namespace Console.BinPackingProblem
 				case ("SL"):
 					return ContainerSplittingStrategy.ShorterLeftoverAxisSplitRule;
 				default:
-					throw new InvalidArgumentException();
+					return ContainerSplittingStrategy.None;
 			}
 		}
 

@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Console.BinPackingProblem
+namespace Console.BinPackingProblem.Exceptions
 {
-	internal class InvalidArgumentException: Exception
+	internal class InvalidArgumentException : Exception
 	{
 		public InvalidArgumentException()
 		{
