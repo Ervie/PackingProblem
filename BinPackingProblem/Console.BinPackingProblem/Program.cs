@@ -1,8 +1,14 @@
 ﻿using Logic.Algorithms;
+using Logic.Algorithms.Containers;
 using Logic.Algorithms.Enums;
+using Logic.Algorithms.Sorting;
 using Logic.Algorithms.Structs;
+using Logic.Domain.Containers._2D;
+using Logic.Domain.Containers._3D;
+using Logic.Domain.Objects;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -26,13 +32,18 @@ namespace Console.BinPackingProblem
 
 		public static string OutputFilePath { get; set; }
 
+		public static int ContainerWidth { get; set; }
+
+		public static int ContainerHeight { get; set; }
+
+		public static int ContainerDepth { get; set; }
 		public static AlgorithmProperties Properties { get; set; }
 
 		public static ObjectOrdering Ordering { get; set; }
 
 		static void Main(string[] args)
 		{
-			if (args.Count() < 2)
+			if (args.Count() < 4)
 			{
 				System.Console.WriteLine("Input or output file is not specified");
 				DisplayHelp();
@@ -59,6 +70,8 @@ namespace Console.BinPackingProblem
 
 			string pathWithoutFile = Path.GetDirectoryName(InputFilePath);
 
+			bool hasThreeSizes = false;
+
 			if (!Directory.Exists(pathWithoutFile))
 			{
 				Directory.CreateDirectory(pathWithoutFile);
@@ -74,18 +87,85 @@ namespace Console.BinPackingProblem
 			if (!OutputFilePath.EndsWith(".csv"))
 				OutputFilePath += ".csv";
 
-			if (args.Count() > 3 && arguments.Contains(args[2]))
-				RecognizePair(args[2], args[3]);
-			if (args.Count() > 5 && arguments.Contains(args[4]))
-				RecognizePair(args[4], args[5]);
-			if (args.Count() > 7 && arguments.Contains(args[6]))
-				RecognizePair(args[6], args[7]);
-			if (args.Count() > 9 && arguments.Contains(args[8]))
-				RecognizePair(args[8], args[9]);
+			ContainerWidth = Int32.Parse(args[1]);
+			ContainerHeight = Int32.Parse(args[2]);
 
+			int tmpDepth;
 
-			var factory = new AlgorithmFactory();
-			//var algorithm = factory.Create(Properties);
+			if (Int32.TryParse(args[3], out tmpDepth))
+			{
+				ContainerDepth = tmpDepth;
+				hasThreeSizes = true;
+			}
+
+			if (hasThreeSizes)
+			{
+				if (args.Count() > 5 && arguments.Contains(args[4]))
+					RecognizePair(args[4], args[5]);
+				if (args.Count() > 7 && arguments.Contains(args[6]))
+					RecognizePair(args[6], args[7]);
+				if (args.Count() > 9 && arguments.Contains(args[8]))
+					RecognizePair(args[8], args[9]);
+				if (args.Count() > 11 && arguments.Contains(args[10]))
+					RecognizePair(args[10], args[11]);
+			}
+			else
+			{
+				if (args.Count() > 4 && arguments.Contains(args[3]))
+					RecognizePair(args[3], args[4]);
+				if (args.Count() > 6 && arguments.Contains(args[5]))
+					RecognizePair(args[5], args[6]);
+				if (args.Count() > 8 && arguments.Contains(args[7]))
+					RecognizePair(args[7], args[8]);
+				if (args.Count() > 10 && arguments.Contains(args[9]))
+					RecognizePair(args[9], args[10]);
+			}
+
+		}
+
+		private static void RunAlgorithm()
+		{
+			IAlgorithm algorithm;
+			Stopwatch stopwatch = new Stopwatch();
+			IContainerFactory containerFactory = new ContainerFactory();
+			IAlgorithmFactory factory = new AlgorithmFactory();
+
+			if (Properties.Dimensionality == AlgorithmDimensionality.TwoDimensional)
+			{
+				Container2D startingContainer = containerFactory.Create(Properties, ContainerWidth, ContainerHeight);
+				algorithm = factory.Create(Properties, startingContainer);
+			}
+			else
+			{
+				Container3D startingContainer = containerFactory.Create(Properties, ContainerWidth, ContainerHeight, ContainerDepth);
+				algorithm = factory.Create(Properties, startingContainer);
+			}
+
+			ObjectSet objectsToPack = LoadObjectSet();
+
+			stopwatch.Reset();
+
+			var sortedObjects = SortingHelper.Sort(objectsToPack, Ordering);
+
+			stopwatch.Start();
+			algorithm.Execute(sortedObjects);
+			stopwatch.Stop();
+
+			var endResults = algorithm.CreateResults();
+
+			endResults.ExecutionTime = stopwatch.ElapsedMilliseconds;
+
+			WriteResiltsToCsv(endResults);
+		}
+
+		private static ObjectSet LoadObjectSet()
+		{
+			throw new NotImplementedException();
+		}
+
+		private static void WriteResiltsToCsv(AlgorithmExecutionResults endResults)
+		{
+			throw new NotImplementedException();
 		}
 
 		private static void RecognizePair(string argumentType, string argumentValue)
@@ -259,8 +339,9 @@ namespace Console.BinPackingProblem
 		{
 			StringBuilder sb = new StringBuilder();
 
-			sb.AppendLine("Format of arguments: <input_set> [options] <result_file>");
+			sb.AppendLine("Format of arguments: <input_set> <container_size> [options] <result_file>");
 			sb.AppendLine("input_set - file of .2Dset or .3Dset");
+			sb.AppendLine("container_size - two (for 2D algorithms) or three (for 3D algorithms) integer numbers representing width and height of container (optionally) depth");
 			sb.AppendLine("result_file - .csv file containing information of carried experiments");
 			sb.AppendLine("Format of options - -d <dimensionality> -t <type> -o <ordering> -s <splitting_strategy>");
 			sb.AppendLine("");
