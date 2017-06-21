@@ -1,0 +1,3 @@
+Dimensionality;Family;Fitting Strategy;Container Splitting Strategy;Object Ordering;Container Size;Average Fulfillent;WorstFulfillment;Quality;Execution Time [s];Containers Used
+TwoDimensional;Shelf;FirstFit;None;ByPerimeter;40x50;0,722774193548387;0,1025;1,38355797554227;41;62
+TwoDimensional;GuillotineCut;BestAreaFit;MinAreaSplitRule;ByPerimeter;40x50;0,878666666666667;0,4465;1,13808801213961;30;51

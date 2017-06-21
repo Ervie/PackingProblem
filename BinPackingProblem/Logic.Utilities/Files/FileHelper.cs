@@ -42,6 +42,11 @@ namespace Logic.Utilities.Files
 			return (Directory.Exists(path));
 		}
 
+		public static bool FileExist(string path)
+		{
+			return (File.Exists(path));
+		}
+
 		public static bool HasAccessPermission(string path)
 		{
 			try
@@ -60,6 +65,12 @@ namespace Logic.Utilities.Files
 			}
 
 			return true;
+		}
+
+		public static void CreateNewFile(string filePath)
+		{
+			if (HasAccessPermission(filePath))
+				File.Create(filePath).Close();
 		}
     }
 }
