@@ -30,7 +30,7 @@ namespace Console.BinPackingProblem
 		"GBA", "GWA", "GBSS", "GWSS", "GBLS", "GWLS", "GBL"};
 		public static string[] orderings = { "N", "W", "H", "D", "L", "S", "P", "A", "V", "PA", "SA", "SR", "WHR", "WHD",
 		"WDR", "WDD", "HDR", "HDD"};
-		public static string[] splittingStrategies = { "MinA", "MaxA", "LA", "LL", "SA", "SL" };
+		public static string[] splittingStrategies = { "N", "MinA", "MaxA", "LA", "LL", "SA", "SL" };
 
 		public static string InputFilePath { get; set; }
 
@@ -58,6 +58,7 @@ namespace Console.BinPackingProblem
 				{
 					ProcessArguments(args);
 					RunAlgorithm();
+					System.Console.WriteLine("Successfully ended computation");
 				}
 				catch (Exception er)
 				{
