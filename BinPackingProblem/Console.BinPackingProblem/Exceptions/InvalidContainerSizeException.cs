@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace GUI.BinPackingProblem.ViewModel
+namespace Console.BinPackingProblem.Exceptions
 {
 	[Serializable]
 	internal class InvalidContainerSizeException : Exception

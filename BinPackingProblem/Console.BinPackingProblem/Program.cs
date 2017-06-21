@@ -134,6 +134,8 @@ namespace Console.BinPackingProblem
 			IContainerFactory containerFactory = new ContainerFactory();
 			IAlgorithmFactory factory = new AlgorithmFactory();
 
+
+
 			if (Properties.Dimensionality == AlgorithmDimensionality.TwoDimensional)
 			{
 				startingContainer = containerFactory.Create(Properties, ContainerWidth, ContainerHeight);
@@ -146,6 +148,10 @@ namespace Console.BinPackingProblem
 			}
 
 			ObjectSet objectsToPack = LoadObjectSet();
+
+			if (!CheckContainerSize(objectsToPack))
+				throw new InvalidContainerSizeException("Container is not big enough to contain biggest object. Enlarge the container.");
+
 
 			stopwatch.Reset();
 
@@ -177,6 +183,29 @@ namespace Console.BinPackingProblem
 		private static void WriteResiltsToCsv(AlgorithmExecutionResults endResults, IFigure initialContainer)
 		{
 			CSVWriter.Write(endResults, Properties, Ordering, initialContainer, OutputFilePath);
+		}
+
+		/// <summary>
+		/// Check if container(s) is(are) big enough to contain every object.
+		/// </summary>
+		/// <returns>True - big enough, false - not</returns>
+		private static bool CheckContainerSize(ObjectSet objectsToPack)
+		{
+			if (Properties.Dimensionality == AlgorithmDimensionality.TwoDimensional)
+			{
+				if (objectsToPack.Max(x => (x as Object2D).Height) > ContainerHeight ||
+					objectsToPack.Max(x => (x as Object2D).Width) > ContainerWidth)
+					return false;
+			}
+			else
+			{
+				if (objectsToPack.Max(x => (x as Object3D).Height) > ContainerHeight ||
+					objectsToPack.Max(x => (x as Object3D).Width) > ContainerWidth ||
+					objectsToPack.Max(x => (x as Object3D).Depth) > ContainerDepth)
+					return false;
+			}
+
+			return true;
 		}
 
 		private static void RecognizePair(string argumentType, string argumentValue)

@@ -76,9 +76,13 @@ namespace Logic.Algorithms
 						{
 							PlacedObject3D placedObject1 = object1 as PlacedObject3D;
 							PlacedObject3D placedObject2 = object2 as PlacedObject3D;
-							if ((placedObject1.X <= placedObject2.X2 && placedObject1.X2 >= placedObject2.X) &&
-								 (placedObject1.Y <= placedObject2.Y2 && placedObject1.Y2 >= placedObject2.Y) &&
-								 (placedObject1.Z <= placedObject2.Z2 && placedObject1.Z2 >= placedObject2.Z))
+
+							if (placedObject1.Position.X < placedObject2.Position.X + placedObject2.Width &&
+								placedObject1.Position.X + placedObject1.Width > placedObject2.Position.X &&
+								placedObject1.Position.Y > placedObject2.Position.Y + placedObject2.Height &&
+								placedObject1.Position.Y + placedObject1.Height < placedObject2.Position.Y &&
+								placedObject1.Position.Z > placedObject2.Position.Z + placedObject2.Depth &&
+								placedObject1.Position.Z + placedObject1.Depth < placedObject2.Position.Z)
 								return true;
 						}
 					}
