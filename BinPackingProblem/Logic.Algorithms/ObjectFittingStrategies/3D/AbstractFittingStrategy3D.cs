@@ -10,10 +10,7 @@ namespace Logic.Algorithms.ObjectFittingStrategies._3D
 {
 	public abstract class AbstractFittingStrategy3D : IObjectFittingStrategy<Object3D, SubContainer3D>
 	{
-		public double CalculateFittingQuality(Object3D objectToPlace, SubContainer3D subcontainer)
-		{
-			throw new NotImplementedException();
-		}
+		public abstract double CalculateFittingQuality(Object3D objectToPlace, SubContainer3D subcontainer);
 
 		public bool ValidateObjectPlacement(Object3D objectToPlace, SubContainer3D subcontainer)
 		{

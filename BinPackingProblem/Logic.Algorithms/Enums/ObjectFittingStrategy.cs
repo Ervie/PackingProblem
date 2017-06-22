@@ -4,7 +4,7 @@ namespace Logic.Algorithms.Enums
 {
 	public enum ObjectFittingStrategy
 	{
-		// Shelf
+		// Shelf 2D
 
 		[Description("Next Fit")]
 		NextFit,
@@ -21,14 +21,14 @@ namespace Logic.Algorithms.Enums
 		[Description("Best Fit by Height")]
 		BestHeightFit,
 
-		// Shelf & Guillotine cut
+		// Shelf & Guillotine cut 2D
 		[Description("Best Fit by Area")]
 		BestAreaFit,
 
 		[Description("Worst Fit by Area")]
 		WorstAreaFit,
 
-		// Guillotine cut
+		// Guillotine cut 2D & 3D
 		[Description("Best Fit by Short Side")]
 		BestShortSideFit,
 
@@ -41,11 +41,17 @@ namespace Logic.Algorithms.Enums
 		[Description("Worst Fit by Long Side")]
 		WorstLongSideFit,
 
-		// Skyline & Guillotine cut
+		[Description("Best Fit by Volume")]
+		BestVolumeFit,
+
+		[Description("Worst Fit by Volume")]
+		WorstVolumeFit,
+
+		// Skyline & Guillotine cut 2D
 		[Description("Bottom Left Fit")]
 		BottomLeft,
 
-		// Skyline 
+		// Skyline 2D
 		[Description("Best Fit with First Container")]
 		BestFitFirstContainer,
 
