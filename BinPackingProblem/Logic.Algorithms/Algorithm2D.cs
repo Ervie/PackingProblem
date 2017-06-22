@@ -43,8 +43,12 @@ namespace Logic.Algorithms
 			}
 
 			standardDeviation = Math.Sqrt(standardDeviation / containers.Count);
-
-			worstFulfillment = containers.OrderBy(x => x.GetFulfilment()).FirstOrDefault().GetFulfilment();
+			
+			// If more than 1 container was used, do not take last created into account
+			if (containers.Count > 1)
+				worstFulfillment = containers.OrderBy(x => x.GetFulfilment()).Skip(1).FirstOrDefault().GetFulfilment();
+			else
+				worstFulfillment = containers.OrderBy(x => x.GetFulfilment()).FirstOrDefault().GetFulfilment();
 
 			var results = new AlgorithmExecutionResults
 			{

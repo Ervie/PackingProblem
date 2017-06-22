@@ -43,16 +43,16 @@ namespace TestConsole
 
 			testSet = generator.Generate3DObjectSet(new ObjectSetProperties3D()
 			{
-				ObjectAmount = 1000,
+				ObjectAmount = 10000,
 				AverageObjectWidthHeightRatio = 1,
 				ObjectWidthHeightRatioStandardDeviation = 1,
-				MaxObjectWidthHeightRatio = 10,
-				MinObjectWidthHeightRatio = 0.2m,
+				MaxObjectWidthHeightRatio = 5,
+				MinObjectWidthHeightRatio = 0.5m,
 
 				AverageObjectDepthHeightRatio = 1,
 				ObjectDepthHeightRatioStandardDeviation = 1,
-				MaxObjectDepthHeightRatio = 10,
-				MinObjectDepthHeightRatio = 0.2m,
+				MaxObjectDepthHeightRatio = 5,
+				MinObjectDepthHeightRatio = 0.5m,
 
 				AverageObjectVolume = 1000,
 				VolumeStandardDeviation = 200,
@@ -65,9 +65,9 @@ namespace TestConsole
 			//    Console.WriteLine("Object w = {0}, h = {1}, d = {2}", (element as Object3D).Width, (element as Object3D).Height, (element as Object3D).Depth);
 			//}
 
-			generator.SaveObjectSet(testSet, "C:\\Users\\bbuchala\\Documents\\Git Repos\\PackingProblem\\BinPackingProblem\\Data\\test3d.3Dset");
+			generator.SaveObjectSet(testSet, "E:\\test3d.3Dset");
 
-			ObjectSet objectSet3d = generator.LoadObjectSet("C:\\Users\\bbuchala\\Documents\\Git Repos\\PackingProblem\\BinPackingProblem\\Data\\test3d.3Dset");
+			ObjectSet objectSet3d = generator.LoadObjectSet("E:\\test3d.3Dset");
 
 			//var objectSet3d = generator.LoadObjectSet("E:\\test3d.set");
 

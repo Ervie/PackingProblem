@@ -17,7 +17,7 @@ namespace Logic.Domain.Containers._3D.Guillotine
 		{
 			var availableVolumeAboveObject = (subcontainer.Height - placedObject.Height) * placedObject.Width * placedObject.Depth;
 			var availableVolumeOnTheRightOfObject = placedObject.Height * (subcontainer.Width - placedObject.Width) * placedObject.Depth;
-			var availableVolumeBehindObject = placedObject.Height * placedObject.Height * (subcontainer.Depth - placedObject.Depth);
+			var availableVolumeBehindObject = placedObject.Height * placedObject.Width * (subcontainer.Depth - placedObject.Depth);
 
 			if ((availableVolumeAboveObject > availableVolumeOnTheRightOfObject) && (availableVolumeAboveObject > availableVolumeBehindObject))
 			{
