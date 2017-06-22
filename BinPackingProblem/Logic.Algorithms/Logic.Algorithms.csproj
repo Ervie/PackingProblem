@@ -76,6 +76,8 @@
     <Compile Include="Implementations\2D\Skyline\BestFitBestContainerSkyline2DAlgorithm.cs" />
     <Compile Include="Implementations\2D\Skyline\BestFitFirstContainerSkyline2DAlgorithm.cs" />
     <Compile Include="Implementations\2D\Skyline\BottomLeftSkyline2DAlgorithm.cs" />
+    <Compile Include="Implementations\3D\Guillotine\AbstractGuillotineCut3DAlgorithm.cs" />
+    <Compile Include="Implementations\3D\Guillotine\MaxVolumeGuillotineCut3DAlgorithm.cs" />
     <Compile Include="ObjectFittingStrategies\2D\AbstractFittingStrategy2D.cs" />
     <Compile Include="ObjectFittingStrategies\2D\BestAreaObjectFittingStrategy2D.cs" />
     <Compile Include="ObjectFittingStrategies\2D\BestLongSideObjectFittingStrategy2D.cs" />
@@ -85,6 +87,12 @@
     <Compile Include="ObjectFittingStrategies\2D\WorstLongSideObjectFittingStrategy2D.cs" />
     <Compile Include="ObjectFittingStrategies\2D\WorstShortSideObjectFittingStrategy2D.cs" />
     <Compile Include="ObjectFittingStrategies\3D\AbstractFittingStrategy3D.cs" />
+    <Compile Include="ObjectFittingStrategies\3D\BestLongSideObjectFittingStrategy3D.cs" />
+    <Compile Include="ObjectFittingStrategies\3D\BestShortSideObjectFittingStrategy3D.cs" />
+    <Compile Include="ObjectFittingStrategies\3D\BestVolumeObjectFittingStrategy3D.cs" />
+    <Compile Include="ObjectFittingStrategies\3D\WorstLongSideObjectFittingStrategy3D.cs" />
+    <Compile Include="ObjectFittingStrategies\3D\WorstShortSideObjectFittingStrategy3D.cs" />
+    <Compile Include="ObjectFittingStrategies\3D\WorstVolumeObjectFittingStrategy3D.cs" />
     <Compile Include="ObjectFittingStrategies\IObjectFittingStrategy.cs" />
     <Compile Include="ObjectFittingStrategies\IObjectFittingStrategyFactory.cs" />
     <Compile Include="ObjectFittingStrategies\ObjectFittingStrategyFactory.cs" />
@@ -103,9 +111,7 @@
       <Name>Logic.Utilities</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Implementations\3D\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

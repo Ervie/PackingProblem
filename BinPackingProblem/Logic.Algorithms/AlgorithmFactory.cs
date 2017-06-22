@@ -14,6 +14,8 @@ using Logic.Algorithms.Implementations._2D.Skyline;
 using Logic.Algorithms.Implementations._2D.Guillotine;
 using Logic.Algorithms.ObjectFittingStrategies;
 using Logic.Algorithms.ObjectFittingStrategies._2D;
+using Logic.Algorithms.ObjectFittingStrategies._3D;
+using Logic.Algorithms.Implementations._3D.Guillotine;
 
 namespace Logic.Algorithms
 {
@@ -57,9 +59,18 @@ namespace Logic.Algorithms
 
 		private IAlgorithm Create3DAlgorithm(AlgorithmProperties properties, Container3D initialContainer)
 		{
-			throw new NotImplementedException();
+			switch (properties.Family)
+			{
+				case (AlgorithmFamily.Shelf):
+					return Create3DShelfAlgorithm(properties.AlgorithmType, initialContainer);
+				case (AlgorithmFamily.GuillotineCut):
+					return Create3DGuillotineAlgorithm(properties.AlgorithmType, properties.SplittingStrategy, initialContainer);
+				default:
+					throw new NotSuchAlgorithmException();
+			}
 		}
-		
+
+
 		private IAlgorithm Create2DSkylineAlgorithm(ObjectFittingStrategy fittingStrategy, Container2D initialContainer)
 		{
 			switch (fittingStrategy)
@@ -120,6 +131,25 @@ namespace Logic.Algorithms
 				default:
 					throw new NotSuchAlgorithmException();
 			}
+		}
+		
+		private IAlgorithm Create3DGuillotineAlgorithm(ObjectFittingStrategy fittingStrategy, ContainerSplittingStrategy splittingStrategy, Container3D initialContainer)
+		{
+			var strategyInstance = objectFittingStrategyFactory.Create3D(fittingStrategy) as AbstractFittingStrategy3D;
+
+			switch (splittingStrategy)
+			{
+				case (ContainerSplittingStrategy.MaxVolumeSplitRule):
+					return new MaxVolumeGuillotineCut3DAlgorithm(initialContainer, strategyInstance);
+
+				default:
+					throw new NotSuchAlgorithmException();
+			}
+		}
+
+		private IAlgorithm Create3DShelfAlgorithm(ObjectFittingStrategy algorithmType, Container3D initialContainer)
+		{
+			throw new NotImplementedException();
 		}
 
 	}

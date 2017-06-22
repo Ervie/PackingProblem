@@ -55,6 +55,7 @@
     <Compile Include="Containers\2D\SubContainer2D.cs" />
     <Compile Include="Containers\3D\Container3D.cs" />
     <Compile Include="Containers\3D\Guillotine\GuillotineCutContainer3D.cs" />
+    <Compile Include="Containers\3D\Guillotine\GuillotineCutMaxVolumeContainer3D.cs" />
     <Compile Include="Containers\3D\Guillotine\GuillotineCutSubcontainer3D.cs" />
     <Compile Include="Containers\3D\SubContainer3D.cs" />
     <Compile Include="Containers\IContainer.cs" />

@@ -41,8 +41,7 @@ namespace Logic.Algorithms.Implementations._2D.Guillotine
 			while (objectsCopy.Any())
 			{
 				Object2D selectedObject = objectsCopy.First() as Object2D;
-
-				// TODO: Outline of Guillotine Cut algorithm
+				
 
 				foreach (GuillotineCutContainer2D container in containers)
 				{

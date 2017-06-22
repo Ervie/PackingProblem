@@ -14,8 +14,6 @@ namespace Logic.Algorithms
 
 		public Algorithm3D(Container3D initialContainer)
 		{
-			containers = new List<Container3D>();
-			containers.Add(initialContainer);
 		}
 
 		public abstract void Execute(ObjectSet originalObjects);
@@ -27,7 +25,7 @@ namespace Logic.Algorithms
 			double averageFulfilment = 0.0;
 			double standardDeviation = 0.0;
 			var containerVolume = containers.Sum(x => x.Height * x.Width * x.Depth);
-			var objectsTotalVolume = containers.Sum(x => x.PlacedObjects.Sum(o => (o as Cuboid).Width * (o as Cuboid).Height * (o as Cuboid).Depth));
+			var objectsTotalVolume = containers.Sum(container => container.PlacedObjects.Sum(o => (o as Object3D).Width * (o as Object3D).Height * (o as Object3D).Depth));
 			double worstFulfillment;
 
 			PlacedObjects placedObjectsTotal = new PlacedObjects();
