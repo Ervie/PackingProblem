@@ -77,7 +77,12 @@
     <Compile Include="Implementations\2D\Skyline\BestFitFirstContainerSkyline2DAlgorithm.cs" />
     <Compile Include="Implementations\2D\Skyline\BottomLeftSkyline2DAlgorithm.cs" />
     <Compile Include="Implementations\3D\Guillotine\AbstractGuillotineCut3DAlgorithm.cs" />
+    <Compile Include="Implementations\3D\Guillotine\LongerAxisGuillotineCut3DAlgorithm.cs" />
+    <Compile Include="Implementations\3D\Guillotine\LongerLeftoverAxisGuillotineCut3DAlgorithm.cs" />
     <Compile Include="Implementations\3D\Guillotine\MaxVolumeGuillotineCut3DAlgorithm.cs" />
+    <Compile Include="Implementations\3D\Guillotine\MinVolumeGuillotineCut3DAlgorithm.cs" />
+    <Compile Include="Implementations\3D\Guillotine\ShorterAxisGuillotineCut3DAlgorithm.cs" />
+    <Compile Include="Implementations\3D\Guillotine\ShorterLeftoverAxisGuillotineCut3DAlgorithm.cs" />
     <Compile Include="ObjectFittingStrategies\2D\AbstractFittingStrategy2D.cs" />
     <Compile Include="ObjectFittingStrategies\2D\BestAreaObjectFittingStrategy2D.cs" />
     <Compile Include="ObjectFittingStrategies\2D\BestLongSideObjectFittingStrategy2D.cs" />

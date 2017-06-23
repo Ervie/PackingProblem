@@ -18,7 +18,7 @@ namespace Logic.Domain.Containers._2D.Guillotine
 			var leftoverHeight = subcontainer.Height - placedObject.Height;
 			var leftoverWidth = subcontainer.Width - placedObject.Width;
 
-			if (leftoverHeight > leftoverWidth)
+			if (leftoverHeight < leftoverWidth)
 			{
 				SplitSubcontainerVertically(subcontainer, placedObject);
 			}
