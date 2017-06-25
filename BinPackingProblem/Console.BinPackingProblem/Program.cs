@@ -27,10 +27,10 @@ namespace Console.BinPackingProblem
 		public static string[] arguments = { "-d", "-t", "-o", "-s" };
 		public static string[] dimensionalities = { "3", "2",};
 		public static string[] algorithTypes = { "ShN", "ShF", "ShBA", "ShBW", "ShBH", "ShWA", "ShWW", "SkBL", "SkBFFC", "SkBFBC",
-		"GBA", "GWA", "GBSS", "GWSS", "GBLS", "GWLS", "GBL"};
+		"GBA", "GWA", "GBV", "GWV", "GBSS", "GWSS", "GBLS", "GWLS", "GBL"};
 		public static string[] orderings = { "N", "W", "H", "D", "L", "S", "P", "A", "V", "PA", "SA", "SR", "WHR", "WHD",
 		"WDR", "WDD", "HDR", "HDD"};
-		public static string[] splittingStrategies = { "N", "MinA", "MaxA", "LA", "LL", "SA", "SL" };
+		public static string[] splittingStrategies = { "N", "MinA", "MaxA", "MinV", "MaxV", "LA", "LL", "SA", "SL" };
 
 		public static string InputFilePath { get; set; }
 
@@ -259,6 +259,8 @@ namespace Console.BinPackingProblem
 					return AlgorithmFamily.Skyline;
 				case ("GBA"):
 				case ("GWA"):
+				case ("GBV"):
+				case ("GWV"):
 				case ("GBSS"):
 				case ("GWSS"):
 				case ("GWLS"):
@@ -305,6 +307,10 @@ namespace Console.BinPackingProblem
 					return ObjectFittingStrategy.WorstLongSideFit;
 				case ("GBLS"):
 					return ObjectFittingStrategy.BestLongSideFit;
+				case ("GWV"):
+					return ObjectFittingStrategy.WorstVolumeFit;
+				case ("GBV"):
+					return ObjectFittingStrategy.BestVolumeFit;
 				default:
 					throw new InvalidArgumentException();
 			}
@@ -320,6 +326,10 @@ namespace Console.BinPackingProblem
 					return ContainerSplittingStrategy.MaxAreaSplitRule;
 				case ("MinA"):
 					return ContainerSplittingStrategy.MinAreaSplitRule;
+				case ("MaxV"):
+					return ContainerSplittingStrategy.MaxVolumeSplitRule;
+				case ("MinV"):
+					return ContainerSplittingStrategy.MinVolumeSplitRule;
 				case ("LA"):
 					return ContainerSplittingStrategy.LongerAxisSplitRule;
 				case ("LL"):
@@ -402,6 +412,8 @@ namespace Console.BinPackingProblem
 			sb.AppendLine("SkBFBC - Skyline best fit best container");
 			sb.AppendLine("GBA - Guillotine cut best area");
 			sb.AppendLine("GWA - Guillotine cut worst area");
+			sb.AppendLine("GBV - Guillotine cut best volume");
+			sb.AppendLine("GWV - Guillotine cut worst volume");
 			sb.AppendLine("GBSS - Guillotine cut best short side");
 			sb.AppendLine("GWSS - Guillotine cut worst short side");
 			sb.AppendLine("GBLS - Guillotine cut best long side");

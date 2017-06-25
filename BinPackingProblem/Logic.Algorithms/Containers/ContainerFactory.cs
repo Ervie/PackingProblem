@@ -6,6 +6,7 @@ using Logic.Domain.Containers._2D.Guillotine;
 using Logic.Domain.Containers._2D.Shelf;
 using Logic.Domain.Containers._2D.Skyline;
 using Logic.Domain.Containers._3D;
+using Logic.Domain.Containers._3D.Guillotine;
 using System;
 
 namespace Logic.Algorithms.Containers
@@ -62,7 +63,50 @@ namespace Logic.Algorithms.Containers
 
 		public Container3D Create(AlgorithmProperties properties, int Width, int Height, int Depth)
 		{
-			throw new NotImplementedException();
+			if (properties.Dimensionality != AlgorithmDimensionality.ThreeDimensional)
+				throw new NotSuchAlgorithmException();
+
+			switch (properties.Family)
+			{
+				case (AlgorithmFamily.Shelf):
+					throw new NotImplementedException();
+
+				case (AlgorithmFamily.Skyline):
+					throw new NotSuchAlgorithmException();
+
+				case (AlgorithmFamily.GuillotineCut):
+					return Create3DGuillotineCutContainer(properties, Width, Height, Depth);
+
+				default:
+					throw new NotSuchAlgorithmException();
+			}
+		}
+
+		private Container3D Create3DGuillotineCutContainer(AlgorithmProperties properties, int width, int height, int depth)
+		{
+			switch (properties.SplittingStrategy)
+			{
+				case (ContainerSplittingStrategy.MaxVolumeSplitRule):
+					return new GuillotineCutMaxVolumeContainer3D(width, height, depth);
+
+				case (ContainerSplittingStrategy.MinVolumeSplitRule):
+					return new GuillotineCutMinVolumeContainer3D(width, height, depth);
+
+				case (ContainerSplittingStrategy.LongerAxisSplitRule):
+					return new GuillotineCutLongerAxisContainer3D(width, height, depth);
+
+				case (ContainerSplittingStrategy.LongerLeftoverAxisSplitRule):
+					return new GuillotineCutLongerLeftoverAxisContainer3D(width, height, depth);
+
+				case (ContainerSplittingStrategy.ShorterAxisSplitRule):
+					return new GuillotineCutShorterAxisContainer3D(width, height, depth);
+
+				case (ContainerSplittingStrategy.ShorterLeftoverAxisSplitRule):
+					return new GuillotineCutShorterLeftoverAxisContainer3D(width, height, depth);
+
+				default:
+					throw new NotSuchAlgorithmException();
+			}
 		}
 	}
 }
