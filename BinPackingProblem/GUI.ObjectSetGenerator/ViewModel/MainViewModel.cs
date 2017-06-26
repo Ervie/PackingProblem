@@ -506,8 +506,8 @@ namespace GUI.ObjectSetGenerator.ViewModel
 			return (FileHelper.HasAccessPermission(SavePath2D) &&
 						FileHelper.DirectoryExist(SavePath2D) &&
 						ObjectAmount2d > 0 &&
-						MaxArea2d > MinArea2d &&
-						MaxWidthHeightRatio2d > MinWidthHeightRatio2d);
+						MaxArea2d >= MinArea2d &&
+						MaxWidthHeightRatio2d >= MinWidthHeightRatio2d);
 		}
 
 		private void Generate3dObjectSet_Execute()
@@ -530,9 +530,9 @@ namespace GUI.ObjectSetGenerator.ViewModel
 			return (FileHelper.HasAccessPermission(SavePath3D) &&
 						FileHelper.DirectoryExist(SavePath3D) &&
 						ObjectAmount3d > 0 &&
-						MaxVolume3d > MinVolume3d &&
-						MaxWidthHeightRatio3d > MinWidthHeightRatio3d &&
-						MaxDepthHeightRatio3d > MinDepthHeightRatio3d);
+						MaxVolume3d >= MinVolume3d &&
+						MaxWidthHeightRatio3d >= MinWidthHeightRatio3d &&
+						MaxDepthHeightRatio3d >= MinDepthHeightRatio3d);
 		}
 
 		private void ChangePath2D_Execute()

@@ -19,9 +19,9 @@ namespace Logic.Domain.Containers._3D.Guillotine
 			var leftoverWidth = subcontainer.Width - placedObject.Width;
 			var leftoverDepth = subcontainer.Depth - placedObject.Depth;
 
-			if ((leftoverHeight > leftoverWidth) && (leftoverHeight > leftoverDepth))
+			if ((leftoverHeight >= leftoverWidth) && (leftoverHeight >= leftoverDepth))
 			{
-				if (leftoverWidth > leftoverDepth)
+				if (leftoverWidth >= leftoverDepth)
 				{
 					SplitSubcontainerVerticallyThenHorizontally(subcontainer, placedObject);
 					//Console.WriteLine("{0} {1} {2}", a, b, c);
@@ -32,9 +32,9 @@ namespace Logic.Domain.Containers._3D.Guillotine
 					//Console.WriteLine("{0} {1} {2}", a, c, b);
 				}
 			}
-			else if ((leftoverWidth > leftoverHeight) && (leftoverWidth > leftoverDepth))
+			else if ((leftoverWidth >= leftoverHeight) && (leftoverWidth >= leftoverDepth))
 			{
-				if (leftoverHeight > leftoverDepth)
+				if (leftoverHeight >= leftoverDepth)
 				{
 					SplitSubcontainerHorizontallyThenVertically(subcontainer, placedObject);
 					//Console.WriteLine("{0} {1} {2}", b, a, c);
@@ -45,9 +45,9 @@ namespace Logic.Domain.Containers._3D.Guillotine
 					//Console.WriteLine("{0} {1} {2}", b, c, a);
 				}
 			}
-			else if ((leftoverDepth > leftoverHeight) && (leftoverDepth > leftoverWidth))
+			else if ((leftoverDepth >= leftoverHeight) && (leftoverDepth >= leftoverWidth))
 			{
-				if (leftoverHeight > leftoverWidth)
+				if (leftoverHeight >= leftoverWidth)
 				{
 					SplitSubcontainerDepthThenVertically(subcontainer, placedObject);
 					//Console.WriteLine("{0} {1} {2}", c, a, b);

@@ -15,9 +15,9 @@ namespace Logic.Domain.Containers._3D.Guillotine
 
 		public override void SplitSubcontainer(GuillotineCutSubcontainer3D subcontainer, PlacedObject3D placedObject)
 		{
-			if ((subcontainer.Height > subcontainer.Width) && (subcontainer.Height > subcontainer.Depth))
+			if ((subcontainer.Height >= subcontainer.Width) && (subcontainer.Height >= subcontainer.Depth))
 			{
-				if (subcontainer.Width > subcontainer.Depth)
+				if (subcontainer.Width >= subcontainer.Depth)
 				{
 					SplitSubcontainerVerticallyThenHorizontally(subcontainer, placedObject);
 					//Console.WriteLine("{0} {1} {2}", a, b, c);
@@ -28,9 +28,9 @@ namespace Logic.Domain.Containers._3D.Guillotine
 					//Console.WriteLine("{0} {1} {2}", a, c, b);
 				}
 			}
-			else if ((subcontainer.Width > subcontainer.Height) && (subcontainer.Width > subcontainer.Depth))
+			else if ((subcontainer.Width >= subcontainer.Height) && (subcontainer.Width >= subcontainer.Depth))
 			{
-				if (subcontainer.Height > subcontainer.Depth)
+				if (subcontainer.Height >= subcontainer.Depth)
 				{
 					SplitSubcontainerHorizontallyThenVertically(subcontainer, placedObject);
 					//Console.WriteLine("{0} {1} {2}", b, a, c);
@@ -41,9 +41,9 @@ namespace Logic.Domain.Containers._3D.Guillotine
 					//Console.WriteLine("{0} {1} {2}", b, c, a);
 				}
 			}
-			else if ((subcontainer.Depth > subcontainer.Height) && (subcontainer.Depth > subcontainer.Width))
+			else if ((subcontainer.Depth >= subcontainer.Height) && (subcontainer.Depth >= subcontainer.Width))
 			{
-				if (subcontainer.Height > subcontainer.Width)
+				if (subcontainer.Height >= subcontainer.Width)
 				{
 					SplitSubcontainerDepthThenVertically(subcontainer, placedObject);
 					//Console.WriteLine("{0} {1} {2}", c, a, b);

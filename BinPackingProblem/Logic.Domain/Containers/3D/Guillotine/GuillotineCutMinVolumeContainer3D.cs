@@ -19,9 +19,9 @@ namespace Logic.Domain.Containers._3D.Guillotine
 			var availableVolumeOnTheRightOfObject = placedObject.Height * (subcontainer.Width - placedObject.Width) * placedObject.Depth;
 			var availableVolumeBehindObject = placedObject.Height * placedObject.Width * (subcontainer.Depth - placedObject.Depth);
 
-			if ((availableVolumeAboveObject < availableVolumeOnTheRightOfObject) && (availableVolumeAboveObject < availableVolumeBehindObject))
+			if ((availableVolumeAboveObject <= availableVolumeOnTheRightOfObject) && (availableVolumeAboveObject <= availableVolumeBehindObject))
 			{
-				if (availableVolumeOnTheRightOfObject < availableVolumeBehindObject)
+				if (availableVolumeOnTheRightOfObject <= availableVolumeBehindObject)
 				{
 					SplitSubcontainerVerticallyThenHorizontally(subcontainer, placedObject);
 				}
@@ -30,9 +30,9 @@ namespace Logic.Domain.Containers._3D.Guillotine
 					SplitSubcontainerVerticallyThenDepth(subcontainer, placedObject);
 				}
 			}
-			else if ((availableVolumeOnTheRightOfObject < availableVolumeAboveObject) && (availableVolumeOnTheRightOfObject < availableVolumeBehindObject))
+			else if ((availableVolumeOnTheRightOfObject <= availableVolumeAboveObject) && (availableVolumeOnTheRightOfObject <= availableVolumeBehindObject))
 			{
-				if (availableVolumeAboveObject < availableVolumeBehindObject)
+				if (availableVolumeAboveObject <= availableVolumeBehindObject)
 				{
 					SplitSubcontainerHorizontallyThenVertically(subcontainer, placedObject);
 				}
@@ -41,9 +41,9 @@ namespace Logic.Domain.Containers._3D.Guillotine
 					SplitSubcontainerHorizontallyThenDepth(subcontainer, placedObject);
 				}
 			}
-			else if ((availableVolumeBehindObject < availableVolumeAboveObject) && (availableVolumeBehindObject < availableVolumeOnTheRightOfObject))
+			else if ((availableVolumeBehindObject <= availableVolumeAboveObject) && (availableVolumeBehindObject <= availableVolumeOnTheRightOfObject))
 			{
-				if (availableVolumeAboveObject < availableVolumeOnTheRightOfObject)
+				if (availableVolumeAboveObject <= availableVolumeOnTheRightOfObject)
 				{
 					SplitSubcontainerDepthThenVertically(subcontainer, placedObject);
 				}

@@ -468,8 +468,8 @@ namespace GUI.BinPackingProblem.ViewModel
 																								e.Equals(ObjectFittingStrategy.BottomLeft)
 																								).ToList();
 							SplittingStrategies = Enum.GetValues(typeof(ContainerSplittingStrategy)).Cast<ContainerSplittingStrategy>().Where(e =>
-																								!e.Equals(ContainerSplittingStrategy.None) ||
-																								!e.Equals(ContainerSplittingStrategy.MaxVolumeSplitRule) ||
+																								!e.Equals(ContainerSplittingStrategy.None) &&
+																								!e.Equals(ContainerSplittingStrategy.MaxVolumeSplitRule) &&
 																								!e.Equals(ContainerSplittingStrategy.MinVolumeSplitRule)).ToList();
 							break;
 
@@ -496,6 +496,7 @@ namespace GUI.BinPackingProblem.ViewModel
 					{
 						case (AlgorithmFamily.Shelf):
 							Strategies = null;
+							SplittingStrategies = null;
 							break;
 
 						case (AlgorithmFamily.GuillotineCut):
@@ -505,20 +506,19 @@ namespace GUI.BinPackingProblem.ViewModel
 															   e.Equals(ObjectFittingStrategy.BestLongSideFit) ||
 															   e.Equals(ObjectFittingStrategy.WorstLongSideFit) ||
 															   e.Equals(ObjectFittingStrategy.BestShortSideFit) ||
-															   e.Equals(ObjectFittingStrategy.WorstShortSideFit) ||
-															   e.Equals(ObjectFittingStrategy.BottomLeft)
+															   e.Equals(ObjectFittingStrategy.WorstShortSideFit)
 															   ).ToList();
 							SplittingStrategies = Enum.GetValues(typeof(ContainerSplittingStrategy)).Cast<ContainerSplittingStrategy>().Where(e =>
-																								!e.Equals(ContainerSplittingStrategy.None) ||
-																								!e.Equals(ContainerSplittingStrategy.MaxAreaSplitRule) ||
+																								!e.Equals(ContainerSplittingStrategy.None) &&
+																								!e.Equals(ContainerSplittingStrategy.MaxAreaSplitRule) &&
 																								!e.Equals(ContainerSplittingStrategy.MinAreaSplitRule)).ToList();
 							break;
 
 						default:
 							Strategies = null;
+							SplittingStrategies = null;
 							break;
 					}
-					SplittingStrategies = null;
 					break;
 
 				default:

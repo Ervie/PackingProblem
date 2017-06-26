@@ -141,6 +141,16 @@ namespace Logic.Algorithms
 			{
 				case (ContainerSplittingStrategy.MaxVolumeSplitRule):
 					return new MaxVolumeGuillotineCut3DAlgorithm(initialContainer, strategyInstance);
+				case (ContainerSplittingStrategy.MinVolumeSplitRule):
+					return new MinVolumeGuillotineCut3DAlgorithm(initialContainer, strategyInstance);
+				case (ContainerSplittingStrategy.LongerAxisSplitRule):
+					return new LongerAxisGuillotineCut3DAlgorithm(initialContainer, strategyInstance);
+				case (ContainerSplittingStrategy.LongerLeftoverAxisSplitRule):
+					return new LongerLeftoverAxisGuillotineCut3DAlgorithm(initialContainer, strategyInstance);
+				case (ContainerSplittingStrategy.ShorterAxisSplitRule):
+					return new ShorterAxisGuillotineCut3DAlgorithm(initialContainer, strategyInstance);
+				case (ContainerSplittingStrategy.ShorterLeftoverAxisSplitRule):
+					return new ShorterLeftoverAxisGuillotineCut3DAlgorithm(initialContainer, strategyInstance);
 
 				default:
 					throw new NotSuchAlgorithmException();
