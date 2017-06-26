@@ -20,19 +20,22 @@ namespace Logic.Domain.Objects
             this.Size = size;
         }
 
-        public int Height
-        {
-            get { return (Size as Cuboid).Height; }
-        }
-        public int Width
-        {
-            get { return (Size as Cuboid).Width; }
-        }
+		public int Height
+		{
+			get { return (Size as Rectangle).Height; }
+			set { (Size as Rectangle).Height = value; }
+		}
+		public int Width
+		{
+			get { return (Size as Rectangle).Width; }
+			set { (Size as Rectangle).Width = value; }
+		}
 
-        public int Depth
+		public int Depth
         {
             get { return (Size as Cuboid).Depth; }
-        }
+			set { (Size as Cuboid).Depth = value; }
+		}
 
         public int Volume
         {

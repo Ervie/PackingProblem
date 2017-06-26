@@ -62,6 +62,8 @@
     <Compile Include="Containers\3D\Guillotine\GuillotineCutShorterLeftoverAxisContainer3D.cs" />
     <Compile Include="Containers\3D\Guillotine\GuillotineCutSubcontainer3D.cs" />
     <Compile Include="Containers\3D\Guillotine\GuillotineCutLongerLeftoverAxisContainer3D.cs" />
+    <Compile Include="Containers\3D\Shelf\ShelfContainer3D.cs" />
+    <Compile Include="Containers\3D\Shelf\ShelfSubContainer3D.cs" />
     <Compile Include="Containers\3D\SubContainer3D.cs" />
     <Compile Include="Containers\IContainer.cs" />
     <Compile Include="Figures\Line.cs" />
