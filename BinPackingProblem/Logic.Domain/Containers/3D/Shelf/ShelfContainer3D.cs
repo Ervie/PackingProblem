@@ -1,9 +1,6 @@
-﻿using System;
+﻿using Logic.Domain.Figures;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Logic.Domain.Figures;
 
 namespace Logic.Domain.Containers._3D.Shelf
 {
