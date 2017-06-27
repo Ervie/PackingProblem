@@ -83,6 +83,8 @@
     <Compile Include="Implementations\3D\Guillotine\MinVolumeGuillotineCut3DAlgorithm.cs" />
     <Compile Include="Implementations\3D\Guillotine\ShorterAxisGuillotineCut3DAlgorithm.cs" />
     <Compile Include="Implementations\3D\Guillotine\ShorterLeftoverAxisGuillotineCut3DAlgorithm.cs" />
+    <Compile Include="Implementations\3D\Shelf\AbstractShelf3DAlgorithm.cs" />
+    <Compile Include="Implementations\3D\Shelf\NextFitShelf3DAlgorithm.cs" />
     <Compile Include="ObjectFittingStrategies\2D\AbstractFittingStrategy2D.cs" />
     <Compile Include="ObjectFittingStrategies\2D\BestAreaObjectFittingStrategy2D.cs" />
     <Compile Include="ObjectFittingStrategies\2D\BestLongSideObjectFittingStrategy2D.cs" />
