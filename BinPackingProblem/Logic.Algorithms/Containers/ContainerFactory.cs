@@ -7,6 +7,7 @@ using Logic.Domain.Containers._2D.Shelf;
 using Logic.Domain.Containers._2D.Skyline;
 using Logic.Domain.Containers._3D;
 using Logic.Domain.Containers._3D.Guillotine;
+using Logic.Domain.Containers._3D.Shelf;
 using System;
 
 namespace Logic.Algorithms.Containers
@@ -69,7 +70,7 @@ namespace Logic.Algorithms.Containers
 			switch (properties.Family)
 			{
 				case (AlgorithmFamily.Shelf):
-					throw new NotImplementedException();
+					return new ShelfContainer3D(Width, Height, Depth);
 
 				case (AlgorithmFamily.Skyline):
 					throw new NotSuchAlgorithmException();

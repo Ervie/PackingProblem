@@ -22,13 +22,13 @@ namespace Logic.Domain.Objects
 
 		public int Height
 		{
-			get { return (Size as Rectangle).Height; }
-			set { (Size as Rectangle).Height = value; }
+			get { return (Size as Cuboid).Height; }
+			set { (Size as Cuboid).Height = value; }
 		}
 		public int Width
 		{
-			get { return (Size as Rectangle).Width; }
-			set { (Size as Rectangle).Width = value; }
+			get { return (Size as Cuboid).Width; }
+			set { (Size as Cuboid).Width = value; }
 		}
 
 		public int Depth

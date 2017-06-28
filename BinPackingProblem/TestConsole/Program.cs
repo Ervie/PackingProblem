@@ -6,6 +6,7 @@ using Logic.Domain.Containers._2D.Guillotine;
 using Logic.Domain.Containers._2D.Shelf;
 using Logic.Domain.Containers._2D.Skyline;
 using Logic.Domain.Containers._3D.Guillotine;
+using Logic.Domain.Containers._3D.Shelf;
 using Logic.Domain.Objects;
 using Logic.ObjectGenerator;
 using Logic.Utilities.Extensions;
@@ -54,9 +55,9 @@ namespace TestConsole
 				MaxObjectDepthHeightRatio = 5,
 				MinObjectDepthHeightRatio = 0.5m,
 
-				AverageObjectVolume = 1000,
-				VolumeStandardDeviation = 200,
-				MaxVolume = 2000,
+				AverageObjectVolume = 500,
+				VolumeStandardDeviation = 50,
+				MaxVolume = 1000,
 				MinVolume = 100
 			});
 
@@ -65,9 +66,9 @@ namespace TestConsole
 			//    Console.WriteLine("Object w = {0}, h = {1}, d = {2}", (element as Object3D).Width, (element as Object3D).Height, (element as Object3D).Depth);
 			//}
 
-			generator.SaveObjectSet(testSet, "E:\\test3d.3Dset");
+			generator.SaveObjectSet(testSet, @"C:\Users\bbuchala\Documents\Git Repos\PackingProblem\BinPackingProblem\Data\test3d.3Dset");
 
-			ObjectSet objectSet3d = generator.LoadObjectSet("E:\\test3d.3Dset");
+			ObjectSet objectSet3d = generator.LoadObjectSet(@"C:\Users\bbuchala\Documents\Git Repos\PackingProblem\BinPackingProblem\Data\test3d.3Dset");
 
 			//var objectSet3d = generator.LoadObjectSet("E:\\test3d.set");
 
@@ -221,17 +222,31 @@ namespace TestConsole
 			//var results12 = algo.CreateResults();
 
 			IAlgorithmFactory factory = new AlgorithmFactory();
+			//IAlgorithm algo = factory.Create(new AlgorithmProperties()
+			//{
+			//	Dimensionality = Logic.Algorithms.Enums.AlgorithmDimensionality.ThreeDimensional,
+			//	Family = Logic.Algorithms.Enums.AlgorithmFamily.GuillotineCut,
+			//	AlgorithmType = Logic.Algorithms.Enums.ObjectFittingStrategy.BestVolumeFit,
+			//	SplittingStrategy = Logic.Algorithms.Enums.ContainerSplittingStrategy.MaxVolumeSplitRule
+			//}, new GuillotineCutMaxVolumeContainer3D(40, 50, 50));
+
+			//algo.Execute(objectSet3d);
+
+			//var result13 = algo.CreateResults();
+
+			objectSet3d = SortingHelper.Sort(objectSet3d, ObjectOrdering.ByDepth);
+
 			IAlgorithm algo = factory.Create(new AlgorithmProperties()
 			{
 				Dimensionality = Logic.Algorithms.Enums.AlgorithmDimensionality.ThreeDimensional,
-				Family = Logic.Algorithms.Enums.AlgorithmFamily.GuillotineCut,
-				AlgorithmType = Logic.Algorithms.Enums.ObjectFittingStrategy.BestVolumeFit,
-				SplittingStrategy = Logic.Algorithms.Enums.ContainerSplittingStrategy.MaxVolumeSplitRule
-			}, new GuillotineCutMaxVolumeContainer3D(40, 50, 50));
+				Family = Logic.Algorithms.Enums.AlgorithmFamily.Shelf,
+				AlgorithmType = Logic.Algorithms.Enums.ObjectFittingStrategy.NextFit,
+				SplittingStrategy = Logic.Algorithms.Enums.ContainerSplittingStrategy.None
+			}, new ShelfContainer3D(36, 36, 36));
 
 			algo.Execute(objectSet3d);
 
-			var result13 = algo.CreateResults();
+			var result14 = algo.CreateResults();
 		}
 	}
 }

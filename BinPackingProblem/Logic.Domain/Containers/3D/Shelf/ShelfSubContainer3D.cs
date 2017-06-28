@@ -34,8 +34,13 @@ namespace Logic.Domain.Containers._3D.Shelf
 
 			GuillotineCutContainer2D selectedContainer = GuillotineContainer;
 
+			// No space in container - return from function
+			if (selectedContainer.Subcontainers.Count == 0)
+				return null;
+
 			GuillotineCutSubcontainer2D selectedSubcontainer = selectedContainer.Subcontainers.First() as GuillotineCutSubcontainer2D;
 
+			// flattens object to 2D during single shelf placement
 			Object2D selectedObject2D = new Object2D(selectedObject.Width, selectedObject.Height);
 
 			foreach (GuillotineCutSubcontainer2D subcontainer in selectedContainer.Subcontainers)
@@ -56,12 +61,18 @@ namespace Logic.Domain.Containers._3D.Shelf
 			if (positionToPlace != null)
 			{
 				var newPlacedObject = selectedContainer.PlaceObject(selectedObject2D, positionToPlace) as PlacedObject2D;
+				UpdateMaxDepth(selectedObject.Depth);
 				selectedContainer.SplitSubcontainer(selectedSubcontainer, newPlacedObject);
 				return new Position3D(positionToPlace.X, positionToPlace.Y, this.Depth);
 			}
 			else
 				return null;
+		}
 
+		private void UpdateMaxDepth(int newObjectDepth)
+		{
+			if (MaxItemDepth < newObjectDepth)
+				MaxItemDepth = newObjectDepth;
 		}
 
 		private double CalculateFittingQuality(Object2D objectToPlace, GuillotineCutSubcontainer2D subcontainer)

@@ -23,6 +23,8 @@ namespace Logic.Algorithms.Implementations._3D.Shelf
 
 			ShelfContainer3D selectedContainer = containers.Last() as ShelfContainer3D;
 
+			selectedContainer.AddShelf();
+
 			ShelfSubContainer3D selectedShelf = selectedContainer.TopShelf as ShelfSubContainer3D;
 
 			var objectsCopy = originalObjects.ToObjectList();
@@ -32,7 +34,7 @@ namespace Logic.Algorithms.Implementations._3D.Shelf
 				Object3D selectedObject = objectsCopy.First() as Object3D;
 
 
-				// Change Container if object is too depp
+				// Change Container if object is too deep
 				if (selectedObject.Depth + selectedContainer.TopShelf.Z > selectedContainer.Depth)
 				{
 					AddContainer();
@@ -53,7 +55,18 @@ namespace Logic.Algorithms.Implementations._3D.Shelf
 
 					selectedShelf = selectedContainer.TopShelf as ShelfSubContainer3D;
 
-					positionToPlace = new Position3D(selectedShelf.X, selectedShelf.Y, selectedShelf.Z);
+					if (selectedObject.Depth + selectedContainer.TopShelf.Z > selectedContainer.Depth)
+					{
+						AddContainer();
+
+						selectedContainer = containers.Last() as ShelfContainer3D;
+
+						selectedContainer.AddShelf();
+
+						selectedShelf = selectedContainer.TopShelf as ShelfSubContainer3D;
+					}
+
+					positionToPlace = selectedShelf.TryToFitObject(selectedObject);
 				}
 				
 				//positionToPlace = new Position3D(selectedShelf.LastPlacedObject.X2, selectedShelf.Y);

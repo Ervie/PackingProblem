@@ -16,6 +16,7 @@ using Logic.Algorithms.ObjectFittingStrategies;
 using Logic.Algorithms.ObjectFittingStrategies._2D;
 using Logic.Algorithms.ObjectFittingStrategies._3D;
 using Logic.Algorithms.Implementations._3D.Guillotine;
+using Logic.Algorithms.Implementations._3D.Shelf;
 
 namespace Logic.Algorithms
 {
@@ -157,9 +158,15 @@ namespace Logic.Algorithms
 			}
 		}
 
-		private IAlgorithm Create3DShelfAlgorithm(ObjectFittingStrategy algorithmType, Container3D initialContainer)
+		private IAlgorithm Create3DShelfAlgorithm(ObjectFittingStrategy fittingStrategy, Container3D initialContainer)
 		{
-			throw new NotImplementedException();
+			switch (fittingStrategy)
+			{
+				case (ObjectFittingStrategy.NextFit):
+					return new NextFitShelf3DAlgorithm(initialContainer);
+				default:
+					throw new NotSuchAlgorithmException();
+			}
 		}
 
 	}
