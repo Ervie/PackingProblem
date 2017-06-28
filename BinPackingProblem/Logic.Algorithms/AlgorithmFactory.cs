@@ -164,6 +164,8 @@ namespace Logic.Algorithms
 			{
 				case (ObjectFittingStrategy.NextFit):
 					return new NextFitShelf3DAlgorithm(initialContainer);
+				case (ObjectFittingStrategy.FirstFit):
+					return new FirstFitShelf3DAlgorithm(initialContainer);
 				default:
 					throw new NotSuchAlgorithmException();
 			}

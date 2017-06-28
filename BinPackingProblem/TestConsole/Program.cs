@@ -242,11 +242,23 @@ namespace TestConsole
 				Family = Logic.Algorithms.Enums.AlgorithmFamily.Shelf,
 				AlgorithmType = Logic.Algorithms.Enums.ObjectFittingStrategy.NextFit,
 				SplittingStrategy = Logic.Algorithms.Enums.ContainerSplittingStrategy.None
-			}, new ShelfContainer3D(36, 36, 36));
+			}, new ShelfContainer3D(100, 100, 100));
 
 			algo.Execute(objectSet3d);
 
 			var result14 = algo.CreateResults();
+
+			algo = factory.Create(new AlgorithmProperties()
+			{
+				Dimensionality = Logic.Algorithms.Enums.AlgorithmDimensionality.ThreeDimensional,
+				Family = Logic.Algorithms.Enums.AlgorithmFamily.Shelf,
+				AlgorithmType = Logic.Algorithms.Enums.ObjectFittingStrategy.FirstFit,
+				SplittingStrategy = Logic.Algorithms.Enums.ContainerSplittingStrategy.None
+			}, new ShelfContainer3D(50, 50, 50));
+
+			algo.Execute(objectSet3d);
+
+			var result15 = algo.CreateResults();
 		}
 	}
 }
