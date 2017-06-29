@@ -493,7 +493,7 @@ namespace GUI.ObjectSetGenerator.ViewModel
 				var objectSet = generator.Generate2DObjectSet(objectSetProperties2D);
 				generator.SaveObjectSet(objectSet, SavePath2D);
 
-				System.Windows.MessageBox.Show(string.Format("Object set {0} was successfully created at {1}", Path.GetFileNameWithoutExtension(SavePath2D), Path.GetPathRoot(SavePath2D)), "Success");
+				System.Windows.MessageBox.Show(string.Format("Object set {0} was successfully created at {1}", Path.GetFileNameWithoutExtension(SavePath2D), Path.GetDirectoryName(SavePath2D)), "Success");
 			}
 			catch (Exception err)
 			{
@@ -517,7 +517,7 @@ namespace GUI.ObjectSetGenerator.ViewModel
 				var objectSet = generator.Generate3DObjectSet(objectSetProperties3D);
 				generator.SaveObjectSet(objectSet, SavePath3D);
 
-				System.Windows.MessageBox.Show(string.Format("Object set {0} was successfully created at {1}", Path.GetFileNameWithoutExtension(SavePath3D), Path.GetPathRoot(SavePath3D)), "Success");
+				System.Windows.MessageBox.Show(string.Format("Object set {0} was successfully created at {1}", Path.GetFileNameWithoutExtension(SavePath3D), Path.GetDirectoryName(SavePath3D)), "Success");
 			}
 			catch (Exception err)
 			{
