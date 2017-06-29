@@ -495,7 +495,10 @@ namespace GUI.BinPackingProblem.ViewModel
 					switch (Family)
 					{
 						case (AlgorithmFamily.Shelf):
-							Strategies = null;
+							Strategies = Enum.GetValues(typeof(ObjectFittingStrategy)).Cast<ObjectFittingStrategy>().Where(e =>
+															   e.Equals(ObjectFittingStrategy.NextFit) ||
+															   e.Equals(ObjectFittingStrategy.FirstFit)
+															   ).ToList();
 							SplittingStrategies = null;
 							break;
 

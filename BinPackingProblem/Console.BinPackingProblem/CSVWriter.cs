@@ -16,7 +16,7 @@ namespace Console.BinPackingProblem
 {
 	public static class CSVWriter
 	{
-		public static string headers = "Dimensionality;Family;Fitting Strategy;Container Splitting Strategy;Object Ordering;Container Size;Average Fulfillent;WorstFulfillment;Quality;Execution Time [s];Containers Used";
+		public static string headers = "Dimensionality;Family;Fitting Strategy;Container Splitting Strategy;Object Ordering;Container Size;Average Fulfillent;WorstFulfillment;Quality;Execution Time [ms];Containers Used";
 
 		public static void Write(AlgorithmExecutionResults endResults, AlgorithmProperties properties, ObjectOrdering ordering, IFigure initialContainer, string filePath)
 		{

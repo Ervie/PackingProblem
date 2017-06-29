@@ -15,6 +15,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -64,10 +65,9 @@ namespace Console.BinPackingProblem
 				{
 					System.Console.WriteLine($"Error during computing: {er.Message}" );
 					DisplayHelp();
+					System.Console.ReadKey();
 				}
 			}
-
-			System.Console.ReadKey();
 		}
 
 		private static void ProcessArguments(string[] args)
@@ -75,15 +75,29 @@ namespace Console.BinPackingProblem
 			InputFilePath = args[0];
 
 			string pathWithoutFile = Path.GetDirectoryName(InputFilePath);
+			string fileWithoutPath = Path.GetFileName(InputFilePath);
 
 			bool hasThreeSizes = false;
 
-			if (!Directory.Exists(pathWithoutFile))
+			if (string.IsNullOrEmpty(pathWithoutFile))
+			{
+				pathWithoutFile = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+			}
+			else if (!Directory.Exists(pathWithoutFile))
 			{
 				Directory.CreateDirectory(pathWithoutFile);
 			}
 
+			InputFilePath = pathWithoutFile + "//" + fileWithoutPath;
+
 			OutputFilePath = args.Last();
+
+			if (!Directory.Exists(OutputFilePath))
+			{
+				OutputFilePath = pathWithoutFile + "\\" + OutputFilePath;
+				if (!File.Exists(OutputFilePath))
+					File.Create(OutputFilePath);
+			}
 
 			if (!OutputFilePath.EndsWith(".csv"))
 				OutputFilePath += ".csv";
