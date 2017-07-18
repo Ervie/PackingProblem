@@ -42,10 +42,10 @@
 					</GroupBox>
 
 					<StackPanel Grid.Column="3" Grid.Row="1">
-						<xctk:DecimalUpDown Margin="20, 20, 20, 5" Value="{Binding Path=AverageObjectArea2d, UpdateSourceTrigger=PropertyChanged}" Name="AverageObjectArea2dControl" />
-						<xctk:DecimalUpDown Margin="20, 0" Value="{Binding Path=StandardDeviationObjectArea2d, UpdateSourceTrigger=PropertyChanged}" Name="StandardDeviationObjectArea2dControl" />
-						<xctk:DecimalUpDown Margin="20, 5" Value="{Binding Path=MinArea2d, UpdateSourceTrigger=PropertyChanged}" Name="MinArea2dControl" />
-						<xctk:DecimalUpDown Margin="20, 0"  Value="{Binding Path=MaxArea2d, UpdateSourceTrigger=PropertyChanged}" Name="MaxArea2dControl"/>
+						<xctk:DecimalUpDown Margin="20, 20, 20, 5" Value="{Binding Path=AverageObjectArea2d, UpdateSourceTrigger=PropertyChanged}" Name="AverageObjectArea2dControl" Minimum="0" Maximum="100000" />
+						<xctk:DecimalUpDown Margin="20, 0" Value="{Binding Path=StandardDeviationObjectArea2d, UpdateSourceTrigger=PropertyChanged}" Name="StandardDeviationObjectArea2dControl" Minimum="0" Maximum="100000" />
+						<xctk:DecimalUpDown Margin="20, 5" Value="{Binding Path=MinArea2d, UpdateSourceTrigger=PropertyChanged}" Name="MinArea2dControl" Minimum="0" Maximum="100000" />
+						<xctk:DecimalUpDown Margin="20, 0"  Value="{Binding Path=MaxArea2d, UpdateSourceTrigger=PropertyChanged}" Name="MaxArea2dControl" Minimum="0" Maximum="100000" />
 					</StackPanel>
 
 					<GroupBox Header="Object width/height ratio" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="3">
@@ -58,10 +58,10 @@
 					</GroupBox>
 
 					<StackPanel Grid.Column="3" Grid.Row="3">
-						<xctk:DecimalUpDown Margin="20, 20, 20, 5" Value="{Binding Path=AverageWidthHeightRatio2d, UpdateSourceTrigger=PropertyChanged}" Name="AverageWidthHeightRatio2dControl" />
-						<xctk:DecimalUpDown Margin="20, 0" Value="{Binding Path=StandardDeviationWidthHeightRatio2d, UpdateSourceTrigger=PropertyChanged}" Name="StandardDeviationWidthHeightRatio2dControl" />
-						<xctk:DecimalUpDown Margin="20, 5" Value="{Binding Path=MinWidthHeightRatio2d, UpdateSourceTrigger=PropertyChanged}" Name="MinWidthHeightRatio2dControl" />
-						<xctk:DecimalUpDown Margin="20, 0"  Value="{Binding Path=MaxWidthHeightRatio2d, UpdateSourceTrigger=PropertyChanged}" Name="MaxWidthHeightRatio2dControl"/>
+						<xctk:DecimalUpDown Margin="20, 20, 20, 5" Value="{Binding Path=AverageWidthHeightRatio2d, UpdateSourceTrigger=PropertyChanged}" Name="AverageWidthHeightRatio2dControl" Minimum="0" Maximum="100000" />
+						<xctk:DecimalUpDown Margin="20, 0" Value="{Binding Path=StandardDeviationWidthHeightRatio2d, UpdateSourceTrigger=PropertyChanged}" Name="StandardDeviationWidthHeightRatio2dControl" Minimum="0" Maximum="100000" />
+						<xctk:DecimalUpDown Margin="20, 5" Value="{Binding Path=MinWidthHeightRatio2d, UpdateSourceTrigger=PropertyChanged}" Name="MinWidthHeightRatio2dControl" Minimum="0" Maximum="100000" />
+						<xctk:DecimalUpDown Margin="20, 0"  Value="{Binding Path=MaxWidthHeightRatio2d, UpdateSourceTrigger=PropertyChanged}" Name="MaxWidthHeightRatio2dControl" Minimum="0" Maximum="100000" />
 					</StackPanel>
 
 					<WrapPanel Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="3" Margin="10,3,0,3" HorizontalAlignment="Left" VerticalAlignment="Center">
@@ -108,10 +108,10 @@
 					</GroupBox>
 
 					<StackPanel Grid.Column="2" Grid.Row="1">
-						<xctk:DecimalUpDown Margin="20, 20, 20, 5" Value="{Binding Path=AverageObjectVolume3d, UpdateSourceTrigger=PropertyChanged}" Name="AverageObjectVolume3dControl" />
-						<xctk:DecimalUpDown Margin="20, 0" Value="{Binding Path=StandardDeviationObjectVolume3d, UpdateSourceTrigger=PropertyChanged}" Name="StandardDeviationObjectVolume3dControl" />
-						<xctk:DecimalUpDown Margin="20, 5" Value="{Binding Path=MinVolume3d, UpdateSourceTrigger=PropertyChanged}" Name="MinVolume3dControl" />
-						<xctk:DecimalUpDown Margin="20, 0"  Value="{Binding Path=MaxVolume3d, UpdateSourceTrigger=PropertyChanged}" Name="MaxVolume3dControl"/>
+						<xctk:DecimalUpDown Margin="20, 20, 20, 5" Value="{Binding Path=AverageObjectVolume3d, UpdateSourceTrigger=PropertyChanged}" Name="AverageObjectVolume3dControl" Minimum="0" Maximum="100000" />
+						<xctk:DecimalUpDown Margin="20, 0" Value="{Binding Path=StandardDeviationObjectVolume3d, UpdateSourceTrigger=PropertyChanged}" Name="StandardDeviationObjectVolume3dControl" Minimum="0" Maximum="100000" />
+						<xctk:DecimalUpDown Margin="20, 5" Value="{Binding Path=MinVolume3d, UpdateSourceTrigger=PropertyChanged}" Name="MinVolume3dControl" Minimum="0" Maximum="100000" />
+						<xctk:DecimalUpDown Margin="20, 0"  Value="{Binding Path=MaxVolume3d, UpdateSourceTrigger=PropertyChanged}" Name="MaxVolume3dControl" Minimum="0" Maximum="100000" />
 					</StackPanel>
 
 					<GroupBox Header="Object width/height ratio" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2">
@@ -124,10 +124,10 @@
 					</GroupBox>
 
 					<StackPanel Grid.Column="2" Grid.Row="3">
-						<xctk:DecimalUpDown Margin="20, 20, 20, 5" Value="{Binding Path=AverageWidthHeightRatio3d, UpdateSourceTrigger=PropertyChanged}" Name="AverageWidthHeightRatio3dControl" />
-						<xctk:DecimalUpDown Margin="20, 0" Value="{Binding Path=StandardDeviationWidthHeightRatio3d, UpdateSourceTrigger=PropertyChanged}" Name="StandardDeviationWidthHeightRatio3dControl" />
-						<xctk:DecimalUpDown Margin="20, 5" Value="{Binding Path=MinWidthHeightRatio3d, UpdateSourceTrigger=PropertyChanged}" Name="MinWidthHeightRatio3dControl" />
-						<xctk:DecimalUpDown Margin="20, 0" Value="{Binding Path=MaxWidthHeightRatio3d, UpdateSourceTrigger=PropertyChanged}" Name="MaxWidthHeightRatio3dControl"/>
+						<xctk:DecimalUpDown Margin="20, 20, 20, 5" Value="{Binding Path=AverageWidthHeightRatio3d, UpdateSourceTrigger=PropertyChanged}" Name="AverageWidthHeightRatio3dControl" Minimum="0" Maximum="100000" />
+						<xctk:DecimalUpDown Margin="20, 0" Value="{Binding Path=StandardDeviationWidthHeightRatio3d, UpdateSourceTrigger=PropertyChanged}" Name="StandardDeviationWidthHeightRatio3dControl" Minimum="0" Maximum="100000" />
+						<xctk:DecimalUpDown Margin="20, 5" Value="{Binding Path=MinWidthHeightRatio3d, UpdateSourceTrigger=PropertyChanged}" Name="MinWidthHeightRatio3dControl" Minimum="0" Maximum="100000" />
+						<xctk:DecimalUpDown Margin="20, 0" Value="{Binding Path=MaxWidthHeightRatio3d, UpdateSourceTrigger=PropertyChanged}" Name="MaxWidthHeightRatio3dControl" Minimum="0" Maximum="100000" />
 					</StackPanel>
 
 					<GroupBox Header="Object depth/height ratio" Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="2">
@@ -140,10 +140,10 @@
 					</GroupBox>
 
 					<StackPanel Grid.Column="2" Grid.Row="5">
-						<xctk:DecimalUpDown Margin="20, 20, 20, 5" Value="{Binding Path=AverageDepthHeightRatio3d, UpdateSourceTrigger=PropertyChanged}" Name="AverageDepthHeightRatio3dControl" />
-						<xctk:DecimalUpDown Margin="20, 0" Value="{Binding Path=StandardDeviationDepthHeightRatio3d, UpdateSourceTrigger=PropertyChanged}" Name="StandardDeviationDepthHeightRatio3dControl" />
-						<xctk:DecimalUpDown Margin="20, 5" Value="{Binding Path=MinDepthHeightRatio3d, UpdateSourceTrigger=PropertyChanged}" Name="MinDepthHeightRatio3dControl" />
-						<xctk:DecimalUpDown Margin="20, 0" Value="{Binding Path=MaxDepthHeightRatio3d, UpdateSourceTrigger=PropertyChanged}" Name="MaxDepthHeightRatio3dControl"/>
+						<xctk:DecimalUpDown Margin="20, 20, 20, 5" Value="{Binding Path=AverageDepthHeightRatio3d, UpdateSourceTrigger=PropertyChanged}" Name="AverageDepthHeightRatio3dControl" Minimum="0" Maximum="100000" />
+						<xctk:DecimalUpDown Margin="20, 0" Value="{Binding Path=StandardDeviationDepthHeightRatio3d, UpdateSourceTrigger=PropertyChanged}" Name="StandardDeviationDepthHeightRatio3dControl" Minimum="0" Maximum="100000" />
+						<xctk:DecimalUpDown Margin="20, 5" Value="{Binding Path=MinDepthHeightRatio3d, UpdateSourceTrigger=PropertyChanged}" Name="MinDepthHeightRatio3dControl" Minimum="0" Maximum="100000" />
+						<xctk:DecimalUpDown Margin="20, 0" Value="{Binding Path=MaxDepthHeightRatio3d, UpdateSourceTrigger=PropertyChanged}" Name="MaxDepthHeightRatio3dControl" Minimum="0" Maximum="100000" />
 					</StackPanel>
 
 
