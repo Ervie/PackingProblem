@@ -27,6 +27,8 @@ namespace Logic.Algorithms.Structs
 
 		public int ContainersUsed { get; set; }
 
+		public int ObjectCount { get; set; }
+
 		public double WorstFulfillment { get; set; }
 	}
 }

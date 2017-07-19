@@ -90,30 +90,29 @@
 				SelectedIndex="0"  />
 
 		<WrapPanel Grid.Column="2" Grid.Row="8" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center">
-			<xctk:IntegerUpDown  Margin="1, 0" Value="{Binding Path=ContainerWidth, UpdateSourceTrigger=PropertyChanged}" Name="Width" Minimum="1" />
-			<xctk:IntegerUpDown  Margin="1, 0" Value="{Binding Path=ContainerHeight, UpdateSourceTrigger=PropertyChanged}" Name="Height" Minimum="1" />
-			<xctk:IntegerUpDown  Margin="1, 0" Value="{Binding Path=ContainerDepth, UpdateSourceTrigger=PropertyChanged}" Name="Depth" Minimum="1" IsEnabled="{Binding Path=IsSelectedAlgorithm3D}" />
+			<xctk:IntegerUpDown  Margin="1, 0" Value="{Binding Path=ContainerWidth, UpdateSourceTrigger=PropertyChanged}" Name="Width" Minimum="1" Maximum="100000" />
+			<xctk:IntegerUpDown  Margin="1, 0" Value="{Binding Path=ContainerHeight, UpdateSourceTrigger=PropertyChanged}" Name="Height" Minimum="1" Maximum="100000"  />
+			<xctk:IntegerUpDown  Margin="1, 0" Value="{Binding Path=ContainerDepth, UpdateSourceTrigger=PropertyChanged}" Name="Depth" Minimum="1"  Maximum="100000" IsEnabled="{Binding Path=IsSelectedAlgorithm3D}" />
 		</WrapPanel>
 		
 		
 		<GroupBox Header="Results" Grid.Column="3" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="9" BorderThickness="2" />
 
-
-		<Label Grid.Column="3" Grid.Row="2" Content="Containers used:" HorizontalAlignment="Left" VerticalAlignment="Center" />
-		<Label Grid.Column="3" Grid.Row="3" Content="Total container area/volume:" HorizontalAlignment="Left" VerticalAlignment="Center" />
-		<Label Grid.Column="3" Grid.Row="4" Content="Total objects area/volume:" HorizontalAlignment="Left" VerticalAlignment="Center" />
-		<Label Grid.Column="3" Grid.Row="5" Content="Quality indicator:" HorizontalAlignment="Left" VerticalAlignment="Center" />
-		<Label Grid.Column="3" Grid.Row="6" Content="Average fulfillment:" HorizontalAlignment="Left" VerticalAlignment="Center" />
-		<Label Grid.Column="3" Grid.Row="7" Content="St. dev. fulfillment:" HorizontalAlignment="Left" VerticalAlignment="Center" />
+		<Label Grid.Column="3" Grid.Row="2" Content="Object amount:" HorizontalAlignment="Left" VerticalAlignment="Center" />
+		<Label Grid.Column="3" Grid.Row="3" Content="Containers used:" HorizontalAlignment="Left" VerticalAlignment="Center" />
+		<Label Grid.Column="3" Grid.Row="4" Content="Total container area/volume:" HorizontalAlignment="Left" VerticalAlignment="Center" />
+		<Label Grid.Column="3" Grid.Row="5" Content="Total objects area/volume:" HorizontalAlignment="Left" VerticalAlignment="Center" />
+		<Label Grid.Column="3" Grid.Row="6" Content="Quality indicator:" HorizontalAlignment="Left" VerticalAlignment="Center" />
+		<Label Grid.Column="3" Grid.Row="7" Content="Average fulfillment:" HorizontalAlignment="Left" VerticalAlignment="Center" />
 		<Label Grid.Column="3" Grid.Row="8" Content="Worst fulfillment:" HorizontalAlignment="Left" VerticalAlignment="Center" />
 		<Label Grid.Column="3" Grid.Row="9" Content="Execution time [ms]:" HorizontalAlignment="Left" VerticalAlignment="Center" />
 
-		<Label Grid.Column="4" Grid.Row="2" Content="{Binding Path=ContainersUsed}"  HorizontalAlignment="Right" VerticalAlignment="Center" Name="containersUsedLabel"/>
-		<Label Grid.Column="4" Grid.Row="3" Content="{Binding Path=ContainerFulfillment}" HorizontalAlignment="Right" VerticalAlignment="Center" Name="totalContainerLabel"/>
-		<Label Grid.Column="4" Grid.Row="4" Content="{Binding Path=ObjectTotalFullfilment}" HorizontalAlignment="Right" VerticalAlignment="Center" Name="totalObjectLabel"/>
-		<Label Grid.Column="4" Grid.Row="5" Content="{Binding Path=Quality}" HorizontalAlignment="Right" VerticalAlignment="Center" Name="qualityLabel"/>
-		<Label Grid.Column="4" Grid.Row="6" Content="{Binding Path=AverageFulfillmentRatio}" HorizontalAlignment="Right" VerticalAlignment="Center" Name="AverageLabel"/>
-		<Label Grid.Column="4" Grid.Row="7" Content="{Binding Path=FulfillmentRatioStandardDeviation}" HorizontalAlignment="Right" VerticalAlignment="Center" Name="DeviationLabel"/>
+		<Label Grid.Column="4" Grid.Row="2" Content="{Binding Path=ObjectAmount}"  HorizontalAlignment="Right" VerticalAlignment="Center" Name="ObjectAmountLabel"/>
+		<Label Grid.Column="4" Grid.Row="3" Content="{Binding Path=ContainersUsed}"  HorizontalAlignment="Right" VerticalAlignment="Center" Name="containersUsedLabel"/>
+		<Label Grid.Column="4" Grid.Row="4" Content="{Binding Path=ContainerFulfillment}" HorizontalAlignment="Right" VerticalAlignment="Center" Name="totalContainerLabel"/>
+		<Label Grid.Column="4" Grid.Row="5" Content="{Binding Path=ObjectTotalFullfilment}" HorizontalAlignment="Right" VerticalAlignment="Center" Name="totalObjectLabel"/>
+		<Label Grid.Column="4" Grid.Row="6" Content="{Binding Path=Quality}" HorizontalAlignment="Right" VerticalAlignment="Center" Name="qualityLabel"/>
+		<Label Grid.Column="4" Grid.Row="7" Content="{Binding Path=AverageFulfillmentRatio}" HorizontalAlignment="Right" VerticalAlignment="Center" Name="AverageLabel"/>
 		<Label Grid.Column="4" Grid.Row="8" Content="{Binding Path=WorstFulfillment}" HorizontalAlignment="Right" VerticalAlignment="Center" Name="WorstLabel"/>
 		<Label Grid.Column="4" Grid.Row="9" Content="{Binding Path=ExecutionTime}" HorizontalAlignment="Right" VerticalAlignment="Center" Name="TimeLabel"/>
 

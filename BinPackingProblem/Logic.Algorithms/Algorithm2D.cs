@@ -60,6 +60,7 @@ namespace Logic.Algorithms
 				FulfillmentRatioStandardDeviation = standardDeviation,
 				Quality = (double)containerArea / objectsTotalArea,
 				ContainersUsed = containers.Count,
+				ObjectCount = placedObjectsTotal.Count,
 				WorstFulfillment = worstFulfillment
 			};
 

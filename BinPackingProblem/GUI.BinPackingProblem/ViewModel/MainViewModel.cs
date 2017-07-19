@@ -275,6 +275,16 @@ namespace GUI.BinPackingProblem.ViewModel
 			}
 		}
 
+		public int ObjectAmount
+		{
+			get { return results.ObjectCount; }
+			set
+			{
+				results.ObjectCount = value;
+				RaisePropertyChanged("ObjectAmount");
+			}
+		}
+
 		public int ObjectTotalFullfilment
 		{
 			get { return results.ObjectsTotalFulfillment; }
@@ -595,11 +605,14 @@ namespace GUI.BinPackingProblem.ViewModel
 				ExecutionTime = stopwatch.ElapsedMilliseconds;
 				Quality = endResults.Quality;
 				ContainersUsed = endResults.ContainersUsed;
+				ObjectAmount = endResults.ObjectCount;
 				ObjectTotalFullfilment = endResults.ObjectsTotalFulfillment;
 				ContainerFulfillment = endResults.ContainerFulfillment;
 				AverageFulfillmentRatio = endResults.AverageFulfillmentRatio;
 				FulfillmentRatioStandardDeviation = endResults.FulfillmentRatioStandardDeviation;
 				WorstFulfillment = endResults.WorstFulfillment;
+
+				System.Windows.MessageBox.Show("Program successfully packed input object set." , "End of packing.");
 			}
 			catch (Exception err)
 			{
