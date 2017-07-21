@@ -1,6 +1,2 @@
-Dimensionality;Family;Fitting Strategy;Container Splitting Strategy;Object Ordering;Container Size;Average Fulfillent;WorstFulfillment;Quality;Execution Time [s];Containers Used
-TwoDimensional;Skyline;BottomLeft;None;ByWidth;60x50;0,905292929;0,412;1,104614835;1550;33
-TwoDimensional;Shelf;BestAreaFit;None;ByWidth;100x40;0,7001875;0,02775;1,428188878;1055;32
-TwoDimensional;Shelf;BestAreaFit;None;ByWidth;60x50;0,829851851851852;0,713333333333333;1,20503436579488;62;36
-TwoDimensional;Skyline;BestFitBestContainer;None;ByWidth;60x50;0,905292929292929;0,434;1,10461483531197;133;33
-TwoDimensional;GuillotineCut;BestAreaFit;MinAreaSplitRule;ByWidth;60x50;0,878666666666667;0,225;1,13808801213961;49;34
+Dimensionality;Family;Fitting Strategy;Container Splitting Strategy;Object Ordering;Container Size;Average Fulfillent;Quality;Execution Time [ms];Containers Used;Total Object Amount
+TwoDimensional;GuillotineCut;BestAreaFit;MinAreaSplitRule;ByPerimeter;50x50;0,874380487804878;1,14366687494421;34;41;1000

@@ -16,7 +16,7 @@ namespace Console.BinPackingProblem
 {
 	public static class CSVWriter
 	{
-		public static string headers = "Dimensionality;Family;Fitting Strategy;Container Splitting Strategy;Object Ordering;Container Size;Average Fulfillent;WorstFulfillment;Quality;Execution Time [ms];Containers Used";
+		public static string headers = "Dimensionality;Family;Fitting Strategy;Container Splitting Strategy;Object Ordering;Container Size;Average Fulfillent;Quality;Execution Time [ms];Containers Used;Total Object Amount";
 
 		public static void Write(AlgorithmExecutionResults endResults, AlgorithmProperties properties, ObjectOrdering ordering, IFigure initialContainer, string filePath)
 		{
@@ -30,7 +30,7 @@ namespace Console.BinPackingProblem
 				$"{(initialContainer as Container3D).Width}x{(initialContainer as Container3D).Height}x{(initialContainer as Container3D).Depth}";
 
 			File.AppendAllText(filePath,
-				$"{properties.Dimensionality};{properties.Family};{properties.AlgorithmType};{properties.SplittingStrategy};{ordering};{containerSize};{endResults.AverageFulfillmentRatio};{endResults.WorstFulfillment};{endResults.Quality};{endResults.ExecutionTime};{endResults.ContainersUsed}" + Environment.NewLine);
+				$"{properties.Dimensionality};{properties.Family};{properties.AlgorithmType};{properties.SplittingStrategy};{ordering};{containerSize};{endResults.AverageFulfillmentRatio};{endResults.Quality};{endResults.ExecutionTime};{endResults.ContainersUsed};{endResults.ObjectCount}" + Environment.NewLine);
 
 		}
 

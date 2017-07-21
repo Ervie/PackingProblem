@@ -48,7 +48,12 @@ namespace Console.BinPackingProblem
 
 		static void Main(string[] args)
 		{
-			if (args.Count() < 4)
+			if (args.Count() == 1)
+			{
+				if (args[0].Equals("-h"))
+					DisplayHelp();
+			}
+			else if (args.Count() < 4)
 			{
 				System.Console.WriteLine("Input or output file is not specified");
 				DisplayHelp();
@@ -92,7 +97,7 @@ namespace Console.BinPackingProblem
 
 			OutputFilePath = args.Last();
 
-			if (!Directory.Exists(OutputFilePath))
+			if (!Directory.Exists(OutputFilePath) && !File.Exists(OutputFilePath))
 			{
 				OutputFilePath = pathWithoutFile + "\\" + OutputFilePath;
 				if (!File.Exists(OutputFilePath))
