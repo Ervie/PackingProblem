@@ -51,7 +51,11 @@ namespace Console.BinPackingProblem
 			if (args.Count() == 1)
 			{
 				if (args[0].Equals("-h"))
+				{
 					DisplayHelp();
+					System.Console.ReadKey();
+				}
+					
 			}
 			else if (args.Count() < 4)
 			{
@@ -412,11 +416,11 @@ namespace Console.BinPackingProblem
 
 			sb.AppendLine("Format of arguments: <input_set> <container_size> [options] <result_file>");
 			sb.AppendLine("input_set - file of .2Dset or .3Dset");
-			sb.AppendLine("container_size - two (for 2D algorithms) or three (for 3D algorithms) integer numbers representing width and height of container (optionally) depth");
-			sb.AppendLine("result_file - .csv file containing information of carried experiments");
-			sb.AppendLine("Format of options - -d <dimensionality> -t <type> -o <ordering> -s <splitting_strategy>");
+			sb.AppendLine("container_size - two (for 2D algorithms) or three (for 3D algorithms) integer numbers representing width and height of container, optionally depth");
+			sb.AppendLine("result_file - .csv file containing information of experiments carried out");
+			sb.AppendLine("Format of [options]: [-d <dimensionality>] [-t <type>] [-o <ordering>] [-s <splitting_strategy>]");
 			sb.AppendLine("");
-			sb.AppendLine("Dimensionality values: 2 for 2D object, 3 for 3D objects");
+			sb.AppendLine("Dimensionality values: 2 for 2D objects, 3 for 3D objects");
 			sb.AppendLine("");
 			sb.AppendLine("Type values: ");
 			sb.AppendLine("ShN - Shelf next fit");
@@ -459,7 +463,7 @@ namespace Console.BinPackingProblem
 			sb.AppendLine("HDR - By height-depth ratio");
 			sb.AppendLine("HDD - By height-depth difference");
 			sb.AppendLine("");
-			sb.AppendLine("Splitting strategy values (applies only to guillotine cut algorithm:");
+			sb.AppendLine("Splitting strategy values (applies only to guillotine cut algorithms):");
 			sb.AppendLine("N - none");
 			sb.AppendLine("MinA - By minimum area");
 			sb.AppendLine("MaxA - By maximum area");
