@@ -1,0 +1,1 @@
+Release\\BinPackingProblemConsole.exe test.2Dset 60 50 -d 2 -o W -t GBA -s MinA "result.csv"
