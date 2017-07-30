@@ -1,0 +1,18 @@
+1k - 1000 obiektów
+3k - 3000
+5k - 5000
+10k - 10000
+15k - 15000
+==========================
+
+2000 obiektów
+
+
+l - low (5) (0,1)
+m - medium (15) (0,3)
+h - high (30) (0,6)
+
+xy -> x - zró¿nicowanie pola -> zró¿nicowanie stosunku boków
+=============
+
+3D - ró¿nice w objêtoœci to samo co pole powierzchni, ale x10 (50,150,300)
