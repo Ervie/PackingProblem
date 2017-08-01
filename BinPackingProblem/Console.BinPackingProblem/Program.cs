@@ -1,4 +1,6 @@
 ﻿using Console.BinPackingProblem.Exceptions;
+using log4net;
+using log4net.Config;
 using Logic.Algorithms;
 using Logic.Algorithms.Containers;
 using Logic.Algorithms.Enums;
@@ -25,6 +27,8 @@ namespace Console.BinPackingProblem
 
 	internal class Program
 	{
+		private static readonly ILog log = LogManager.GetLogger(typeof(Program));
+
 		public static string[] arguments = { "-d", "-t", "-o", "-s" };
 		public static string[] dimensionalities = { "3", "2",};
 		public static string[] algorithTypes = { "ShN", "ShF", "ShBA", "ShBW", "ShBH", "ShWA", "ShWW", "SkBL", "SkBFFC", "SkBFBC",
@@ -48,6 +52,8 @@ namespace Console.BinPackingProblem
 
 		static void Main(string[] args)
 		{
+			
+
 			if (args.Count() == 1)
 			{
 				if (args[0].Equals("-h"))
@@ -61,6 +67,7 @@ namespace Console.BinPackingProblem
 			{
 				System.Console.WriteLine("Input or output file is not specified");
 				DisplayHelp();
+				log.Error($"Error occured: Invalid number of parameters with args {PrintArgs(args)}");
 			}
 			else
 			{
@@ -74,9 +81,21 @@ namespace Console.BinPackingProblem
 				{
 					System.Console.WriteLine($"Error during computing: {er.Message}" );
 					DisplayHelp();
-					System.Console.ReadKey();
+					//System.Console.ReadKey();
+					log.Error($"Error occured: {er.Message} with args {PrintArgs(args)}");
 				}
 			}
+		}
+
+		private static string PrintArgs(string[] args)
+		{
+			StringBuilder sb = new StringBuilder();
+			foreach (string arg in args)
+			{
+				sb.Append(arg + " ");
+			}
+
+			return sb.ToString();
 		}
 
 		private static void ProcessArguments(string[] args)
@@ -205,7 +224,7 @@ namespace Console.BinPackingProblem
 
 		private static void WriteResiltsToCsv(AlgorithmExecutionResults endResults, IFigure initialContainer)
 		{
-			CSVWriter.Write(endResults, Properties, Ordering, initialContainer, OutputFilePath);
+			CSVWriter.Write(endResults, Properties, Ordering, initialContainer, OutputFilePath, Path.GetFileName(InputFilePath));
 		}
 
 		/// <summary>
@@ -467,6 +486,8 @@ namespace Console.BinPackingProblem
 			sb.AppendLine("N - none");
 			sb.AppendLine("MinA - By minimum area");
 			sb.AppendLine("MaxA - By maximum area");
+			sb.AppendLine("MinV - By minimum volume");
+			sb.AppendLine("MaxV - By maximum volume");
 			sb.AppendLine("LA - By longer axis");
 			sb.AppendLine("LL - By longer leftover");
 			sb.AppendLine("SA - By shorter axis");

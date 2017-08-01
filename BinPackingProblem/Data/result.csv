@@ -1,2 +1,0 @@
-Dimensionality;Family;Fitting Strategy;Container Splitting Strategy;Object Ordering;Container Size;Average Fulfillent;Quality;Execution Time [ms];Containers Used;Total Object Amount
-TwoDimensional;GuillotineCut;BestAreaFit;MinAreaSplitRule;ByPerimeter;50x50;0,874380487804878;1,14366687494421;34;41;1000

@@ -1,0 +1,2 @@
+Input Set;Dimensionality;Family;Fitting Strategy;Container Splitting Strategy;Object Ordering;Container Size;Average Fulfillent;Quality;Execution Time [ms];Containers Used;Total Object Amount
+mm.2Dset;TwoDimensional;Shelf;NextFit;None;None;60x60;0,645715811965812;1,54866890583895;4;78;2000
