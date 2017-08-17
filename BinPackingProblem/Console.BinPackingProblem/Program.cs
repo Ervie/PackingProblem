@@ -80,8 +80,6 @@ namespace Console.BinPackingProblem
 				catch (Exception er)
 				{
 					System.Console.WriteLine($"Error during computing: {er.Message}" );
-					DisplayHelp();
-					//System.Console.ReadKey();
 					log.Error($"Error occured: {er.Message} with args {PrintArgs(args)}");
 				}
 			}
